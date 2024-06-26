@@ -4,20 +4,94 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <nav class="navbar">
+        <ul class="nav-list">
+            <div class="logo">
+                <img src=
+"https://hbs.edu.pk/wp-content/uploads/2019/11/HBS-Logo-1-150x150.png"
+                />
+            </div>
+            <li>
+                <a href="#Events">List Of Events</a>
+            </li>
+            <li>
+                <a href="#IndEventReg">Individual Event Registration</a>
+            </li>
+            <li>
+                <a href="#TeamEventReg">Team Event Registration</a>
+            </li>
+        </ul>
+
+        <div class="Login">
+            <a href="#Login">
+              <button class="btn btn-sm">
+                Login
+              </button>
+            </a>
+        </div>
+
+        <div class="SignUp">
+          <a href="#SignUp">
+            <button class="btn btn-sm">
+              Sign Up
+            </button>
+          </a>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="box-main">
+            <div class="firstHalf">
+                <h1 class="text-big">
+                    Welcome to the HSB Olympiad
+                </h1>
+                <p class="text-small">
+
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="box-main">
+            <div class="secondHalf">
+                <h1 class="text-big" id="program">
+                    Sports
+                </h1>
+                <p class="text-small">
+                  
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="box-main">
+            <div class="secondHalf">
+                <h1 class="text-big" id="program">
+                    Competitions
+                </h1>
+                <p class="text-small">
+                  
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="box-main">
+            <div class="secondHalf">
+                <h1 class="text-big" id="program">
+                    What is Olympiad?
+                </h1>
+                <p class="text-small">
+                  
+                </p>
+            </div>
+        </div>
+    </section>
+    <footer className="footer">
+        <p className="text-footer">
+            Copyright ©-All rights are reserved
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    </footer>
     </div>
   );
 }
