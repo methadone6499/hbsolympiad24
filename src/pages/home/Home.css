@@ -6,15 +6,64 @@
   .navbar {
     width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    grid-template-columns: auto auto auto auto auto;
     position: sticky;
     top: 0;
     cursor: pointer;
     background-color: rgb(17, 17, 17);
     border-bottom: 5px solid rgb(219, 35, 35);;
   }
+
   
+.dropbtn {
+  margin-left:30px;
+  padding: 16px;
+  border: none;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQttE9sxpEu1EoZgU2lUF_HtygNLCaz2rZYHg&s");
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 110px;
+  min-height: 70px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+
+  .SearchBar {
+    width: 350px;
+  }
+  .SearchBar input {
+    height: 20px;
+  }
+
+  .SearchBar button {
+    background: #ddd;
+    margin-left: 5px;
+    height: 25px;
+    width: 50px;
+    cursor: pointer;
+  }
+
+  .SearchBar button:hover {
+    background: #ccc;
+  }
+
   .background {
     background: rgb(255, 255, 255);
     background-blend-mode: darken;
@@ -26,25 +75,14 @@
   }
   
   .nav-list {
-    width: 80%;
+    width: 100%;
     display: flex;
     align-items: center;
-  }
-  
-  .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .logo img {
-    width: 120px;
-    border-radius: 30px;
   }
   
   .nav-list li {
     list-style: none;
-    padding: 20px 30px;
+    padding: 20px 20px;
   }
   
   .nav-list li a {
@@ -59,7 +97,6 @@
   
   .SignUp .Login{
     border: 2px solid rgb(0, 0, 0);
-    border-radius: 9px;
   }
   
   .box-main {
@@ -109,10 +146,16 @@
     white-space: pre-line;
   }
   
+  .sports-box {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-items: center;
+  }
+
   .btn {
     margin-left: 20px;
     height: 50pxx;
-    width: 75px;
+    width: 100px;
     color: #fff;
     background-color: #000;
     cursor: pointer;
