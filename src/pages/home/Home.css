@@ -10,14 +10,13 @@
     position: sticky;
     top: 0;
     cursor: pointer;
-    background-color: rgb(17, 17, 17);
-    border-bottom: 5px solid rgb(219, 35, 35);;
+    background-color: rgba(17, 17, 17, 0.5);
+    border-bottom: 5px solid rgb(219, 35, 35);
   }
 
   
 .dropbtn {
   margin-left:30px;
-  padding: 16px;
   border: none;
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQttE9sxpEu1EoZgU2lUF_HtygNLCaz2rZYHg&s");
   background-size: cover;
@@ -27,8 +26,10 @@
 }
 
 .dropdown {
+  margin-top: 10px;
   position: relative;
   display: inline-block;
+  align-items: center;
 }
 
 .dropdown-content {
@@ -46,6 +47,8 @@
 
 
   .SearchBar {
+    display: flex;
+    align-items: center;
     width: 350px;
   }
   .SearchBar input {
@@ -100,7 +103,7 @@
   }
   
   .box-main {
-    padding: 100px;
+    padding: 10px 50px 50px 50px;
     display: block;
     justify-content: center;
     align-items: center;
@@ -110,40 +113,26 @@
     margin: auto;
     height: 80%;
     white-space: pre-line;
+  }
+  .Home {
+    
     background-image: url(../../images/insta\ page\ left.png);
     background-size: cover;
-  }
-  
-  .firsthalf {
-    width: 100%;
-    display: block;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  .secondhalf {
-    width: 30%;
-  }
-  
-  .secondhalf img {
-    width: 70%;
-    border: 4px solid white;
-    border-radius: 150px;
-    display: block;
-    margin: auto;
   }
   
   .text-big {
     font-weight: 500;
     font-family: "Consolas";
     font-size: 30px;
-    color: white;
+    color: rgb(236, 236, 236);
+    margin: 10px;
   }
   
   .text-small {
     font-size: 18px;
-    color: white;
+    color: rgb(224, 224, 224);
     white-space: pre-line;
+    margin: 10px;
   }
   
   .sports-box {
@@ -175,21 +164,6 @@
     padding: 6px 7px;
     font-size: 15px;
     vertical-align: middle;
-  }
-  
-  .section {
-    display: block;
-    align-items: center;
-    background-color: rgb(250, 250, 250);
-    justify-content: space-between;
-  }
-  
-  .section-Left {
-    flex-direction: row-reverse;
-  }
-  
-  .center {
-    text-align: center;
   }
   
   .text-footer {

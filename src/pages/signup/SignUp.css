@@ -1,0 +1,34 @@
+.SignUpForm {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: rgb(236, 236, 236);
+}
+
+.Label { 
+    display: block;
+    font-size: larger; 
+    color: white; 
+    padding: 5px;
+} 
+  
+.Input { 
+    font-size: larger; 
+    padding: 5px; 
+    margin: 2px;
+} 
+  
+.buton { 
+    display: block;
+    color: white; 
+    background-color: black; 
+    border-radius: 5px; 
+    font-size: larger; 
+    padding: 5px; 
+    margin: 10px auto; 
+} 
+  
+.messages { 
+    display: flex; 
+    justify-content: center; 
+} 
