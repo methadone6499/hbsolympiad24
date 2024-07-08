@@ -2,12 +2,13 @@ const express = require('express')
 const app = express()
 const mongoose = require("mongoose")
 var bodyParser = require('body-parser');
+var cors = require('cors');
 //get user schema
 
 app.use(express.json());
 // parse application/json, basically parse incoming Request Object as a JSON Object 
 app.use(bodyParser.json());
-
+app.use(cors());
 app.listen(5000, () => {
     console.log('Server is running on port 5000');
 });

@@ -43,12 +43,14 @@ const loginUser = async(req, res) => {
         if(!passwordMatch){
             return res.status(401).json({ error: 'Invalid credentials'});
         }
-        res.status(201).json({message: 'User logged in successfully'});
+        res.status(201).json(user);
     }
     catch(e){
         res.status(500).json({error: 'Internal server error'});
     }
 }
+
+
 
 module.exports = {
     signupUser,

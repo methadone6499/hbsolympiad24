@@ -1,7 +1,26 @@
 import './userDashboard.css'
 import {useNavigate, Link} from "react-router-dom"
+import {useState, useEffect} from 'react'
+import axios from 'axios'
+import React from 'react'
 
-function userDashboard(){
+function UserDashboard(){
+    const [events, setEvents] = useState([]);
+
+    useEffect(() => {
+        const fetchEvents = async() =>{
+            try{
+                const res = await axios.get('http://localhost:5000/v1/getEvents');
+                const data = res.data;
+                setEvents(data);
+                console.log(data);
+            } catch(e){
+                console.log("Error fetching stuff");
+            }
+        }
+        
+        fetchEvents();
+    },[])
 
     return(
         <div className='Home'>
@@ -73,7 +92,7 @@ function userDashboard(){
                 </h2>
                 <div class="eventInfo infoViewBox">
                     <p class="text-small">
-                        Event 1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                        Event 1 AAA
                     </p>
                     <button type="submit" class="btn">Download Ticket</button>
                     <button type="submit" class="btn">Cancel Event Registration</button>
@@ -88,4 +107,4 @@ function userDashboard(){
     )
 }
 
-export default userDashboard
+export default UserDashboard;

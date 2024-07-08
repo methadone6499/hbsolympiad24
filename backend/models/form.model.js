@@ -14,7 +14,6 @@ const formSchema = new mongoose.Schema({
     phoneNumber:{
         type: String,
         required: true,
-        
     },
     affiliation:{
         type: String,

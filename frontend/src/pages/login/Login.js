@@ -1,6 +1,7 @@
 import './Login.css'
 import {useNavigate, Link} from "react-router-dom"
 import { useState } from 'react'
+import axios from 'axios'
 
 function Login(){
     
@@ -12,6 +13,7 @@ function Login(){
     // States for checking the errors 
     const [submitted, setSubmitted] = useState(false); 
     const [error, setError] = useState(false); 
+    const [name, setName] = useState("");
   
 
     // Handling the ID change 
@@ -33,13 +35,28 @@ function Login(){
     }; 
   
     // Handling the form submission 
-    const handleSubmit = (e) => { 
+    const handleSubmit = async(e) => { 
+       
         e.preventDefault(); 
         if (idNum  === "" || email === "" || password === "") { 
             setError(true); 
         } else { 
-            setSubmitted(true); 
-            setError(false); 
+            console.log(email);
+            try{
+                await axios.post("http://localhost:5000/v1/login",{
+                    email, idNum, password
+                })
+                .then(res=>{
+                    console.log(res.data)
+                    setName(res.data.name);
+                    if(res.data){
+                        console.log("User is logged in")
+                    }
+                })
+            }
+            catch(e){
+                alert('Email or password doesn not exist')
+            }
         } 
     }; 
   
@@ -52,7 +69,7 @@ function Login(){
                     display: submitted ? "" : "none", 
                 }} 
             > 
-                <h1>User successfully Logged in!!</h1> 
+                <h1>${name} successfully Logged in!!</h1> 
             </div> 
         ); 
     }; 
