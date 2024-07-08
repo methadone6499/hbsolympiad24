@@ -1,0 +1,22 @@
+.events-box {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-items: center;
+  }
+  
+  .E-event{
+    border: 5px solid rgb(109, 101, 101);
+    padding: 5px
+  }
+
+  .E_T {
+    border-bottom: none;
+  }
+
+  .E_L {
+    border-right: none;
+  }
+
+  .E_B {
+    border-top: none;
+  }

@@ -7,6 +7,8 @@ import SignUp from "./pages/signup/SignUp"
 import Events from "./pages/events/Events"
 import IndEventReg from "./pages/ind_event_reg/IndEventReg"
 import TeamEventReg from "./pages/team_event_reg/TeamEventReg"
+import UserDashboard from "./pages/user_dashboard/userDashboard"
+import AdminDashboard from "./pages/admin_dashboard/adminDashboard"
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
                 <Route path ="/events" element={<Events/>}/>
                 <Route path ="/ind_event_reg" element={<IndEventReg/>}/>
                 <Route path ="/team_event_reg" element={<TeamEventReg/>}/>
+                <Route path="/user_dashboard" element={<UserDashboard/>}/>
+                <Route path="/admin_dashboard" element={<AdminDashboard/>}/>
             </Routes>
         </BrowserRouter>
     </div>

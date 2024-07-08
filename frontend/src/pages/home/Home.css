@@ -115,7 +115,6 @@
     white-space: pre-line;
   }
   .Home {
-    
     background-image: url(../../images/insta\ page\ left.png);
     background-size: cover;
   }
@@ -133,12 +132,6 @@
     color: rgb(224, 224, 224);
     white-space: pre-line;
     margin: 10px;
-  }
-  
-  .sports-box {
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-items: center;
   }
 
   .btn {

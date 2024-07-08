@@ -1,7 +1,7 @@
-import './IndEventReg.css'
+import './userDashboard.css'
 import {useNavigate, Link} from "react-router-dom"
 
-function IndEventReg(){
+function userDashboard(){
 
     return(
         <div className='Home'>
@@ -49,20 +49,35 @@ function IndEventReg(){
             </nav>
 
             <div class="box-main">
-                <img
-                    src="https://i.imgur.com/e6Lnl9j.png"
-                    alt="Logo"
-                    height="235"
-                    width="325"
-                    placeholder="logo"
-                />
                 <h1 class="text-big">
-                    Individual Event Registration
+                    User Dashboard
                 </h1>
-                <p class="text-small">
-                    Here you can register for all events and competitions that require a single person as the competitor.{"\n"}
-                    For events relating to teams please check out the team event registration tab.
-                </p>
+                <div class="userInfo infoViewBox">
+                    <p class="text-small">
+                        <p class="text-small">
+                            Name: A Man {"\n"}
+                        </p>
+                        <p class="text-small">
+                              ID Number: Immeasurable {"\n"}
+                        </p>
+                        <p class="text-small">
+                            Email: Wouldn't you like to know, fed boy {"\n"}
+                        </p>
+                        <p class="text-small">
+                            Phone Number: Nice try scammer {"\n"}
+                        </p>
+                    </p>
+                </div>
+                <h2 class="text-big">
+                    List of Registered Events
+                </h2>
+                <div class="eventInfo infoViewBox">
+                    <p class="text-small">
+                        Event 1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                    </p>
+                    <button type="submit" class="btn">Download Ticket</button>
+                    <button type="submit" class="btn">Cancel Event Registration</button>
+                </div>
             </div>
             <footer className="footer">
                 <p className="text-footer">
@@ -73,4 +88,4 @@ function IndEventReg(){
     )
 }
 
-export default IndEventReg
+export default userDashboard

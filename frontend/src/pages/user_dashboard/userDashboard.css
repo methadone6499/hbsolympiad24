@@ -1,0 +1,14 @@
+.infoViewBox {
+    background-color: rgba(39, 39, 39, 0.7);
+    border-radius: 25px;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    border: 5px solid rgb(56, 56, 56);
+    margin: 0 auto;
+}
+
+.eventInfo button {
+    width: 25%;
+    margin: auto;
+}

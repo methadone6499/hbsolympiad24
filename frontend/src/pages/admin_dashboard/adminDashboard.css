@@ -1,0 +1,14 @@
+.regList li {
+    list-style: none;
+}
+
+.modal {
+    background-color: rgb(43, 43, 43);
+    border-radius: 25px;
+    display: flex;
+    position: relative;
+    border: 5px solid rgb(56, 56, 56);
+    margin: auto;
+    flex-direction: column;
+    align-items: center;
+}

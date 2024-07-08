@@ -110,6 +110,9 @@ function SignUp(){
 
                 <ul class="nav-list">
                     <li>
+                        <Link to="/" class="links">Home</Link>
+                    </li>
+                    <li>
                         <Link to="/events" class="links">List of Events</Link>
                     </li>
                     <li>
@@ -120,12 +123,12 @@ function SignUp(){
                     </li>
                 </ul>
 
-                <div class="SearchBar">
+                {/*<div class="SearchBar">
                     <form action="#">
                         <input type="text" placeholder="Search.." name="search" />
                         <button type="submit">Submit</button>
                     </form>
-                </div>
+                </div>*/}
             </nav>
 
             <div class="box-main">
