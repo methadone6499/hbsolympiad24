@@ -16,9 +16,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    events:{
-        type: [String]
-    }
+    events: [{
+        formId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'form'
+        },
+    }]
 });
 
 const User = mongoose.model("User", userSchema);

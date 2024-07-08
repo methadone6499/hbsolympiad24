@@ -19,17 +19,20 @@ const eventSchema = new mongoose.Schema({
     },
     limits:{
         type: Number,
-        min: 10,
         max: 2000
     },
     price:{
         type: Number,
         required: true
     },
+    category:{
+        type: String,
+        required: true
+    },
     registered:{
         type: Number,
-        min: 10,
-        maX: 2000
+        max: 2000,
+        required: true,
     }
 })
 

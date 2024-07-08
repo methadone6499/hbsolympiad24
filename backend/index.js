@@ -13,14 +13,17 @@ app.listen(5000, () => {
 });
 
 //import routes
-const userRoutes = require("./routes/userRoute")
-
+const userRoutes = require("./routes/userRoute");
+const formRoutes = require("./routes/formRoute")
+const eventRoutes = require("./routes/eventRoute");
 //routes
 //app.use("/v1/login", loginRoute)
-app.use("/v1", userRoutes)
+app.use("/v1", userRoutes);
+app.use("/v1", formRoutes);
+app.use("/v1", eventRoutes);
 
 app.get('/', (req, res) => {
-    res.send("Hello from nigAPI")
+    res.send("Hello from API");
 })
 
 /*app.post('/v1/usersignup', async(req, res) => {
