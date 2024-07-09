@@ -22,7 +22,6 @@ const formSchema = new mongoose.Schema({
     },
     spRequirements:{
         type: String,
-        required: true,
     
     },
     feePayment:{
@@ -32,13 +31,13 @@ const formSchema = new mongoose.Schema({
     user: {
         userID: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'user'
+            ref: 'users'
         }
     },
     event: {
-        eventId: {
+        eventID: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'event'
+            ref: 'events'
         },
     }
 })
