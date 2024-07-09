@@ -10,7 +10,7 @@ function UserDashboard(props){
     console.log(location);
 
     const { name, idNum, email, phoneNumber, password} = location.state;
-
+    console.log(name);
 
     const [events, setEvents] = useState([]);
 
@@ -114,7 +114,7 @@ function UserDashboard(props){
                 </h2>
                 <div class="eventInfo infoViewBox">
                     <p class="text-small">
-                        Event 1 AAA
+                        Event: man!!!!!
                     </p>
                     <button type="submit" class="btn">Download Ticket</button>
                     <button type="submit" class="btn">Cancel Event Registration</button>

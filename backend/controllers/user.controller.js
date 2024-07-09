@@ -18,9 +18,10 @@ const signupUser = async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             id: req.body.idNum,
-            phoneNumber: req.body.number,
+            phoneNumber: req.body.phoneNumber,
             password: hashedPassword
         });
+        console.log(newUser);
         await newUser.save();
         res.status(201).json({ message: 'User registered successfully' });
     }
@@ -32,7 +33,7 @@ const signupUser = async (req, res) => {
 const loginUser = async(req, res) => {
     
     const{email,password}=req.body
-
+    console.log(req.body);
     try{
         const user = await User.findOne({email:email});
         if(!user){
@@ -43,6 +44,7 @@ const loginUser = async(req, res) => {
         if(!passwordMatch){
             return res.status(401).json({ error: 'Invalid credentials'});
         }
+        console.log(user);
         res.status(201).json(user);
     }
     catch(e){

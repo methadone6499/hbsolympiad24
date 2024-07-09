@@ -1,6 +1,6 @@
 import './Login.css'
 import {useNavigate, Link} from "react-router-dom"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios, { all } from 'axios'
 
 function Login(){
@@ -16,6 +16,7 @@ function Login(){
         password1: 'whatcoulditbe'
     })
     const navigate = useNavigate();
+    const [fuck, setFuck] = useState("fuck");
   
     
     // States for checking the errors 
@@ -27,25 +28,32 @@ function Login(){
     // Handling the ID change 
     const handleIdNum = (e) => { 
         setIdNum(e.target.value); 
-        setSubmitted(false); 
+        //setSubmitted(false); 
     }; 
   
     // Handling the email change 
     const handleEmail = (e) => { 
         setEmail(e.target.value); 
-        setSubmitted(false); 
+        //setSubmitted(false); 
     }; 
   
     // Handling the password change 
     const handlePassword = (e) => { 
         setPassword(e.target.value); 
-        setSubmitted(false); 
+        //setSubmitted(false); 
     }; 
 
     function isValidEmail(email) {
         const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return pattern.test(email);
     }
+
+    useEffect(() => {
+        if (name!= "" && phoneNumber!="" && idNum && email) {
+            navigate('/user_dashboard', { state: { name, idNum, email, phoneNumber } });
+        }
+    }, [name, phoneNumber, idNum, email]);
+
   
     // Handling the form submission 
     const handleSubmit = async(e) => { 
@@ -70,15 +78,19 @@ function Login(){
                     idNum, email, password, 
                 })
                 .then(res=>{
-                    alert(res.data.message);
+                    //alert("Successful login!");
+                    console.log(res.data.name);
                     setName(res.data.name);
                     setPhoneNo(res.data.phoneNumber);
+                    console.log(name);
+                    setFuck("nofuck");
+                    
                 })
             }
             catch(e){
-                alert('Please fill in all the fields')
+                alert('Server error')
             }
-            navigate('/user_dashboard', {state: {name, idNum, email, phoneNumber, password}})
+            
         } 
     }; 
     

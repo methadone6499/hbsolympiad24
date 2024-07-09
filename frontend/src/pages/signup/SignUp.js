@@ -77,7 +77,7 @@ function SignUp(){
                 })
             }
             catch(e){
-                alert('Please fill in all the fields')
+                alert('Server error');
             }
         } 
     }; 
