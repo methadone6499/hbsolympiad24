@@ -9,7 +9,7 @@ function UserDashboard(props){
     const location = useLocation();
     console.log(location);
 
-    const { idNum, email, password} = location.state;
+    const { name, idNum, email, phoneNumber, password} = location.state;
 
 
     const [events, setEvents] = useState([]);
@@ -32,10 +32,10 @@ function UserDashboard(props){
     return(
         <div className='Home'>
             <nav class="navbar">
-
-                <div class="dropdown">
+                {/*button to be used for holding the signup/login in a drop down menu*/}
+                {/*<div class="dropdown"> 
                     <button class="dropbtn"></button>
-                    <div class="dropdown-content">
+                    <div class="dropdown-content">*
                         <div class="Login">
                             <button class="btn btn-sm">
                                 <Link to="/login" class="links">Login</Link>
@@ -46,25 +46,42 @@ function UserDashboard(props){
                                 <Link to="/signup" class="links">Sign Up</Link>
                             </button>
                         </div>
-                    </div>
-                </div>
+                    {</div>
+                </div>*/}
 
                 
 
+                {/*navigation list for various menus*/}
                 <ul class="nav-list">
                     <li>
                         <Link to="/" class="links">Home</Link>
                     </li>
                     <li>
-                        <Link to="/events" class="links here">List of Events</Link>
+                        <Link to="/events" class="links">List of Events</Link>
                     </li>
                     <li>
                         <Link to="/ind_event_reg" class="links">Individual Event Registration</Link>
                     </li>
                     <li>
                         <Link to="/team_event_reg" class="links">Team Event Registration</Link>
+                    </li>{/*}
+                    <li>
+                        <Link to="/user_dashboard" class="links">User</Link>
                     </li>
+                    <li>
+                        <Link to="/admin_dashboard" class="links">Admin</Link>
+                    </li>*/}
                 </ul>
+                <div class="Login">
+                    <button class="btn btn-sm">
+                        <Link to="/login" class="links">Login</Link>
+                    </button>
+                </div>
+                <div class="SignUp">
+                    <button class="btn btn-sm">
+                        <Link to="/signup" class="links">Sign Up</Link>
+                    </button>
+                </div>
 
                 {/*<div class="SearchBar">
                     <form action="#">
@@ -80,16 +97,16 @@ function UserDashboard(props){
                 </h1>
                 <div class="userInfo infoViewBox">
                     <p class="text-small">
-                        Name: a {idNum} {"\n"}
+                        Name: {name} {"\n"}
                     </p>
                     <p class="text-small">
-                        ID Number: Immeasurable {"\n"}
+                        ID Number: {idNum} {"\n"}
                     </p>
                     <p class="text-small">
-                        Email: Wouldn't you like to know, fed boy {"\n"}
+                        Email: {email} {"\n"}
                     </p>
                     <p class="text-small">
-                        Phone Number: Nice try scammer {"\n"}
+                        Phone Number: {phoneNumber} {"\n"}
                     </p>
                 </div>
                 <h2 class="text-big">

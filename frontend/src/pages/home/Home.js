@@ -9,9 +9,9 @@ function Home(){
             {/*nav bar at top of page*/}
             <nav class="navbar">
                 {/*button to be used for holding the signup/login in a drop down menu*/}
-                <div class="dropdown"> 
+                {/*<div class="dropdown"> 
                     <button class="dropbtn"></button>
-                    <div class="dropdown-content">
+                    <div class="dropdown-content">*
                         <div class="Login">
                             <button class="btn btn-sm">
                                 <Link to="/login" class="links">Login</Link>
@@ -22,8 +22,8 @@ function Home(){
                                 <Link to="/signup" class="links">Sign Up</Link>
                             </button>
                         </div>
-                    </div>
-                </div>
+                    {</div>
+                </div>*/}
 
                 
 
@@ -40,14 +40,24 @@ function Home(){
                     </li>
                     <li>
                         <Link to="/team_event_reg" class="links">Team Event Registration</Link>
-                    </li>
+                    </li>{/*}
                     <li>
                         <Link to="/user_dashboard" class="links">User</Link>
                     </li>
                     <li>
                         <Link to="/admin_dashboard" class="links">Admin</Link>
-                    </li>
+                    </li>*/}
                 </ul>
+                <div class="Login">
+                    <button class="btn btn-sm">
+                        <Link to="/login" class="links">Login</Link>
+                    </button>
+                </div>
+                <div class="SignUp">
+                    <button class="btn btn-sm">
+                        <Link to="/signup" class="links">Sign Up</Link>
+                    </button>
+                </div>
 
                 
                 {/*search bar for user convinience*/}

@@ -98,9 +98,18 @@
     color: #ddd;
   }
   
-  .SignUp .Login{
-    border: 2px solid rgb(0, 0, 0);
+  .SignUp {
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
   }
+
+  .Login {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+  }
+  
   
   .box-main {
     padding: 10px 50px 50px 50px;
@@ -135,12 +144,10 @@
   }
 
   .btn {
-    margin-left: 20px;
     height: 50pxx;
     width: 100px;
     color: #fff;
     background-color: #000;
-    cursor: pointer;
   }
   
   .links:link {
@@ -156,7 +163,6 @@
   .btn-sm {
     padding: 6px 7px;
     font-size: 15px;
-    vertical-align: middle;
   }
   
   .text-footer {

@@ -9,7 +9,7 @@ function SignUp(){
     const [name, setName] = useState("");
     const [idNum, setIdNum] = useState("");  
     const [email, setEmail] = useState(""); 
-    const [number, setNumber] = useState(""); 
+    const [phoneNumber, setNumber] = useState(""); 
     const [password, setPassword] = useState(""); 
   
     // States for checking the errors 
@@ -54,7 +54,7 @@ function SignUp(){
     // Handling the form submission 
     const handleSubmit = async(e) => { 
         e.preventDefault(); 
-        if (name === "" || idNum  === "" || email === "" || number === "" || password === "") 
+        if (name === "" || idNum  === "" || email === "" || phoneNumber === "" || password === "") 
         { 
             setError(true); 
         } 
@@ -70,7 +70,7 @@ function SignUp(){
             console.log(email);
             try{
                 await axios.post("http://localhost:5000/v1/signup",{
-                    name, idNum, email, number, password, 
+                    name, idNum, email, phoneNumber, password, 
                 })
                 .then(res=>{
                     alert(res.data.message);
@@ -128,10 +128,10 @@ function SignUp(){
     return(
         <div className='Home'>
             <nav class="navbar">
-
-                <div class="dropdown">
+                {/*button to be used for holding the signup/login in a drop down menu*/}
+                {/*<div class="dropdown"> 
                     <button class="dropbtn"></button>
-                    <div class="dropdown-content">
+                    <div class="dropdown-content">*
                         <div class="Login">
                             <button class="btn btn-sm">
                                 <Link to="/login" class="links">Login</Link>
@@ -142,11 +142,12 @@ function SignUp(){
                                 <Link to="/signup" class="links">Sign Up</Link>
                             </button>
                         </div>
-                    </div>
-                </div>
+                    {</div>
+                </div>*/}
 
                 
 
+                {/*navigation list for various menus*/}
                 <ul class="nav-list">
                     <li>
                         <Link to="/" class="links">Home</Link>
@@ -159,8 +160,24 @@ function SignUp(){
                     </li>
                     <li>
                         <Link to="/team_event_reg" class="links">Team Event Registration</Link>
+                    </li>{/*}
+                    <li>
+                        <Link to="/user_dashboard" class="links">User</Link>
                     </li>
+                    <li>
+                        <Link to="/admin_dashboard" class="links">Admin</Link>
+                    </li>*/}
                 </ul>
+                <div class="Login">
+                    <button class="btn btn-sm">
+                        <Link to="/login" class="links">Login</Link>
+                    </button>
+                </div>
+                <div class="SignUp">
+                    <button class="btn btn-sm">
+                        <Link to="/signup" class="links">Sign Up</Link>
+                    </button>
+                </div>
 
                 {/*<div class="SearchBar">
                     <form action="#">
@@ -210,7 +227,7 @@ function SignUp(){
                         <input
                             onChange = {handleNumber}
                             class = "Input"
-                            value = {number}
+                            value = {phoneNumber}
                             type = "number"
                         />
                         

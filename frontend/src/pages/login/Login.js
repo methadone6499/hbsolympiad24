@@ -1,8 +1,7 @@
 import './Login.css'
 import {useNavigate, Link} from "react-router-dom"
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import axios, { all } from 'axios'
-import userDashboard from '../user_dashboard/UserDashboard'
 
 function Login(){
 
@@ -23,6 +22,7 @@ function Login(){
     const [submitted, setSubmitted] = useState(false); 
     const [error, setError] = useState(false); 
     const [name, setName] = useState("");
+    const [phoneNumber, setPhoneNo] = useState("");
 
     // Handling the ID change 
     const handleIdNum = (e) => { 
@@ -71,29 +71,17 @@ function Login(){
                 })
                 .then(res=>{
                     alert(res.data.message);
+                    setName(res.data.name);
+                    setPhoneNo(res.data.phoneNumber);
                 })
             }
             catch(e){
                 alert('Please fill in all the fields')
             }
-            navigate('/user_dashboard', {state: {idNum, email, password}})
+            navigate('/user_dashboard', {state: {name, idNum, email, phoneNumber, password}})
         } 
     }; 
-  
     
-    /*useEffect(() => {
-        const fetchEvents = async() =>{
-            try{
-                console.log(allValues);
-            } catch(e){
-                console.log("Error fetching stuff");
-            }
-        }
-        
-        fetchEvents();
-    },[allValues])*/
-
-    // Showing success message 
     const successMessage = () => { 
         return ( 
             <div 
@@ -141,9 +129,10 @@ function Login(){
         <div className='Home'>
             <nav class="navbar">
 
-                <div class="dropdown">
+                {/*button to be used for holding the signup/login in a drop down menu*/}
+                {/*<div class="dropdown"> 
                     <button class="dropbtn"></button>
-                    <div class="dropdown-content">
+                    <div class="dropdown-content">*
                         <div class="Login">
                             <button class="btn btn-sm">
                                 <Link to="/login" class="links">Login</Link>
@@ -154,11 +143,12 @@ function Login(){
                                 <Link to="/signup" class="links">Sign Up</Link>
                             </button>
                         </div>
-                    </div>
-                </div>
+                    {</div>
+                </div>*/}
 
                 
 
+                {/*navigation list for various menus*/}
                 <ul class="nav-list">
                     <li>
                         <Link to="/" class="links">Home</Link>
@@ -171,11 +161,24 @@ function Login(){
                     </li>
                     <li>
                         <Link to="/team_event_reg" class="links">Team Event Registration</Link>
+                    </li>{/*}
+                    <li>
+                        <Link to="/user_dashboard" class="links">User</Link>
                     </li>
-                    <li> {console.log(idNum, email, password)}
-                        <Link onClick={handleSubmit}>User</Link>
-                    </li>
+                    <li>
+                        <Link to="/admin_dashboard" class="links">Admin</Link>
+                    </li>*/}
                 </ul>
+                <div class="Login">
+                    <button class="btn btn-sm">
+                        <Link to="/login" class="links">Login</Link>
+                    </button>
+                </div>
+                <div class="SignUp">
+                    <button class="btn btn-sm">
+                        <Link to="/signup" class="links">Sign Up</Link>
+                    </button>
+                </div>
 
                 {/*<div class="SearchBar">
                     <form action="#">
