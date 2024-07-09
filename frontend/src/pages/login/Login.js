@@ -33,6 +33,11 @@ function Login(){
         setPassword(e.target.value); 
         setSubmitted(false); 
     }; 
+
+    function isValidEmail(email) {
+        const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return pattern.test(email);
+    }
   
     // Handling the form submission 
     const handleSubmit = async(e) => { 
@@ -40,7 +45,15 @@ function Login(){
         e.preventDefault(); 
         if (idNum  === "" || email === "" || password === "") { 
             setError(true); 
-        } else { 
+        }
+
+        else if (!isValidEmail) {
+            setError(true);
+        }
+        
+        else { 
+            setSubmitted(true); 
+            setError(false); 
             console.log(email);
             try{
                 await axios.post("http://localhost:5000/v1/login",{
@@ -76,7 +89,20 @@ function Login(){
   
     // Showing error message if error is true 
     const errorMessage = () => { 
-        return ( 
+        if (!isValidEmail){
+            return ( 
+                <div 
+                    className="error"
+                    style={{ 
+                        display: error ? "" : "none", 
+                    }} 
+                > 
+                    <h1>Please enter the email correctly</h1> 
+                </div> 
+            ); 
+        }
+        else {
+            return ( 
             <div 
                 className="error"
                 style={{ 
@@ -85,7 +111,7 @@ function Login(){
             > 
                 <h1>Please enter all the fields</h1> 
             </div> 
-        ); 
+        ); }
     };
 
 

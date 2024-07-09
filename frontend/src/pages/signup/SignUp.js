@@ -1,6 +1,7 @@
 import './SignUp.css'
 import {useNavigate, Link} from "react-router-dom"
 import { useState } from 'react'
+import axios from 'axios'
 
 function SignUp(){
     
@@ -44,15 +45,43 @@ function SignUp(){
         setPassword(e.target.value); 
         setSubmitted(false); 
     }; 
+
+    function isValidEmail(email) {
+        const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return pattern.test(email);
+    }
   
     // Handling the form submission 
-    const handleSubmit = (e) => { 
+    const handleSubmit = async(e) => { 
         e.preventDefault(); 
-        if (name === "" || idNum  === "" || email === "" || number === "" || password === "") { 
+        if (name === "" || idNum  === "" || email === "" || number === "" || password === "") 
+        { 
             setError(true); 
-        } else { 
+        } 
+
+        else if (!isValidEmail(email)){
+            setError(true);
+        }
+        
+        else { 
             setSubmitted(true); 
             setError(false); 
+            console.log(email);
+            try{
+                await axios.post("http://localhost:5000/v1/signup",{
+                    email, idNum, email, phoneNo, password, 
+                })
+                .then(res=>{
+                    console.log(res.data)
+                    setName(res.data.name);
+                    if(res.data){
+                        console.log("User is logged in")
+                    }
+                })
+            }
+            catch(e){
+                alert('Email or password doesn not exist')
+            }
         } 
     }; 
   
@@ -65,14 +94,27 @@ function SignUp(){
                     display: submitted ? "" : "none", 
                 }} 
             > 
-                <h1>User {name} successfully registered!!</h1> 
+                <h1>{name} successfully registered!!</h1> 
             </div> 
         ); 
     }; 
   
     // Showing error message if error is true 
     const errorMessage = () => { 
-        return ( 
+        if (!isValidEmail){
+            return ( 
+                <div 
+                    className="error"
+                    style={{ 
+                        display: error ? "" : "none", 
+                    }} 
+                > 
+                    <h1>Please enter the email correctly</h1> 
+                </div> 
+            ); 
+        }
+        else {
+            return ( 
             <div 
                 className="error"
                 style={{ 
@@ -81,7 +123,7 @@ function SignUp(){
             > 
                 <h1>Please enter all the fields</h1> 
             </div> 
-        ); 
+        ); }
     };
 
 
