@@ -12,15 +12,15 @@ const signupUser = async (req, res) => {
         if(check){
             return res.status(400).json({ error: 'Email already exists' });
         }
-        console.log("Email doesn't exist")
+        console.log(req.body)
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const newUser = new User({
             name: req.body.name,
             email: req.body.email,
-            id: req.body.id,
+            id: req.body.idNum,
+            phoneNumber: req.body.number,
             password: hashedPassword
         });
-            
         await newUser.save();
         res.status(201).json({ message: 'User registered successfully' });
     }

@@ -70,17 +70,14 @@ function SignUp(){
             console.log(email);
             try{
                 await axios.post("http://localhost:5000/v1/signup",{
-                    email, idNum, email, number, password, 
+                    name, idNum, email, number, password, 
                 })
                 .then(res=>{
-                    console.log(res.data)
-                    if(res.data){
-                        console.log("User is logged in")
-                    }
+                    alert(res.data.message);
                 })
             }
             catch(e){
-                alert('Email or password doesn not exist')
+                alert('Please fill in all the fields')
             }
         } 
     }; 
