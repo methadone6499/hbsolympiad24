@@ -47,8 +47,10 @@ function Login(){
             setError(true); 
         }
 
-        else if (!isValidEmail) {
+        else if (!isValidEmail(email)) {
             setError(true);
+            setSubmitted(false);
+            console.log("Incorrect Email")
         }
         
         else { 
@@ -82,14 +84,14 @@ function Login(){
                     display: submitted ? "" : "none", 
                 }} 
             > 
-                <h1>${name} successfully Logged in!!</h1> 
+                <h1>{name} successfully Logged in!!</h1> 
             </div> 
         ); 
     }; 
   
     // Showing error message if error is true 
     const errorMessage = () => { 
-        if (!isValidEmail){
+        if (!isValidEmail(email)){
             return ( 
                 <div 
                     className="error"
@@ -103,15 +105,16 @@ function Login(){
         }
         else {
             return ( 
-            <div 
-                className="error"
-                style={{ 
-                    display: error ? "" : "none", 
-                }} 
-            > 
-                <h1>Please enter all the fields</h1> 
+                <div 
+                    className="error"
+                    style={{ 
+                        display: error ? "" : "none", 
+                    }} 
+                > 
+                    <h1>Please enter all the fields</h1> 
             </div> 
-        ); }
+            ); 
+        }
     };
 
 
@@ -178,13 +181,13 @@ function Login(){
                             onChange = {handleIdNum}
                             class = "Input"
                             value = {idNum}
-                            type = "text"
+                            type = "number"
                         />
                         
                         <label class="Label">Email</label>
                         <input
                             onChange = {handleEmail}
-                            class = "Input"
+                            class = "Email"
                             value = {email}
                             type = "text"
                         />

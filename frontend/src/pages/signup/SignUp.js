@@ -61,6 +61,7 @@ function SignUp(){
 
         else if (!isValidEmail(email)){
             setError(true);
+            setSubmitted(false);
         }
         
         else { 
@@ -69,11 +70,10 @@ function SignUp(){
             console.log(email);
             try{
                 await axios.post("http://localhost:5000/v1/signup",{
-                    email, idNum, email, phoneNo, password, 
+                    email, idNum, email, number, password, 
                 })
                 .then(res=>{
                     console.log(res.data)
-                    setName(res.data.name);
                     if(res.data){
                         console.log("User is logged in")
                     }
@@ -101,7 +101,7 @@ function SignUp(){
   
     // Showing error message if error is true 
     const errorMessage = () => { 
-        if (!isValidEmail){
+        if (!isValidEmail(email)){
             return ( 
                 <div 
                     className="error"
