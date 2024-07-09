@@ -1,10 +1,17 @@
 import './userDashboard.css'
-import {useNavigate, Link} from "react-router-dom"
+import {Link, useLocation} from "react-router-dom"
 import {useState, useEffect} from 'react'
-import axios from 'axios'
+import axios, { all } from 'axios'
 import React from 'react'
 
-function UserDashboard(){
+function UserDashboard(props){
+
+    const location = useLocation();
+    console.log(location);
+
+    const { idNum, email, password} = location.state;
+
+
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
@@ -18,7 +25,7 @@ function UserDashboard(){
                 console.log("Error fetching stuff");
             }
         }
-        
+
         fetchEvents();
     },[])
 
@@ -73,18 +80,16 @@ function UserDashboard(){
                 </h1>
                 <div class="userInfo infoViewBox">
                     <p class="text-small">
-                        <p class="text-small">
-                            Name: A Man {"\n"}
-                        </p>
-                        <p class="text-small">
-                              ID Number: Immeasurable {"\n"}
-                        </p>
-                        <p class="text-small">
-                            Email: Wouldn't you like to know, fed boy {"\n"}
-                        </p>
-                        <p class="text-small">
-                            Phone Number: Nice try scammer {"\n"}
-                        </p>
+                        Name: a {idNum} {"\n"}
+                    </p>
+                    <p class="text-small">
+                        ID Number: Immeasurable {"\n"}
+                    </p>
+                    <p class="text-small">
+                        Email: Wouldn't you like to know, fed boy {"\n"}
+                    </p>
+                    <p class="text-small">
+                        Phone Number: Nice try scammer {"\n"}
                     </p>
                 </div>
                 <h2 class="text-big">

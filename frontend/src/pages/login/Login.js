@@ -1,20 +1,28 @@
 import './Login.css'
 import {useNavigate, Link} from "react-router-dom"
-import { useState } from 'react'
-import axios from 'axios'
+import { useEffect, useState } from 'react'
+import axios, { all } from 'axios'
+import userDashboard from '../user_dashboard/UserDashboard'
 
 function Login(){
-    
+
+
     // States for registration 
     const [idNum, setIdNum] = useState("");  
     const [email, setEmail] = useState(""); 
     const [password, setPassword] = useState(""); 
+    const [allValues, setAllValues] = useState({
+        idNum1: '987654321',
+        email1: 'something@gmail.com',
+        password1: 'whatcoulditbe'
+    })
+    const navigate = useNavigate();
   
+    
     // States for checking the errors 
     const [submitted, setSubmitted] = useState(false); 
     const [error, setError] = useState(false); 
     const [name, setName] = useState("");
-  
 
     // Handling the ID change 
     const handleIdNum = (e) => { 
@@ -41,7 +49,7 @@ function Login(){
   
     // Handling the form submission 
     const handleSubmit = async(e) => { 
-       
+       console.log(e);
         e.preventDefault(); 
         if (idNum  === "" || email === "" || password === "") { 
             setError(true); 
@@ -59,22 +67,32 @@ function Login(){
             console.log(email);
             try{
                 await axios.post("http://localhost:5000/v1/login",{
-                    email, idNum, password
+                    idNum, email, password, 
                 })
                 .then(res=>{
-                    console.log(res.data)
-                    setName(res.data.name);
-                    if(res.data){
-                        console.log("User is logged in")
-                    }
+                    alert(res.data.message);
                 })
             }
             catch(e){
-                alert('Email or password doesn not exist')
+                alert('Please fill in all the fields')
             }
+            navigate('/user_dashboard', {state: {idNum, email, password}})
         } 
     }; 
   
+    
+    /*useEffect(() => {
+        const fetchEvents = async() =>{
+            try{
+                console.log(allValues);
+            } catch(e){
+                console.log("Error fetching stuff");
+            }
+        }
+        
+        fetchEvents();
+    },[allValues])*/
+
     // Showing success message 
     const successMessage = () => { 
         return ( 
@@ -154,6 +172,9 @@ function Login(){
                     <li>
                         <Link to="/team_event_reg" class="links">Team Event Registration</Link>
                     </li>
+                    <li> {console.log(idNum, email, password)}
+                        <Link onClick={handleSubmit}>User</Link>
+                    </li>
                 </ul>
 
                 {/*<div class="SearchBar">
@@ -175,7 +196,7 @@ function Login(){
                         {successMessage()}
                     </div>
 
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <label class="Label">Roll Number/CNIC</label>
                         <input
                             onChange = {handleIdNum}
@@ -187,7 +208,7 @@ function Login(){
                         <label class="Label">Email</label>
                         <input
                             onChange = {handleEmail}
-                            class = "Email"
+                            class = "Input"
                             value = {email}
                             type = "text"
                         />
@@ -200,7 +221,7 @@ function Login(){
                             type = "password"
                         />
 
-                        <button onClick={handleSubmit} class="buton" type="submit">
+                        <button class="buton" type="submit">
                             Submit
                         </button>
                     </form>
