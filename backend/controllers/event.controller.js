@@ -21,6 +21,7 @@ const addEvent = async(req, res) =>{
         })
 
         await newEvent.save();
+
         res.status(201).json({message: 'Event successfully registered'});
     } catch(e){
         res.status(500).json({error: 'Internal server error'});

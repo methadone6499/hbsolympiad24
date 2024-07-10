@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const {postForm} = require('../controllers/form.controller.js');
+const {postFormSolo, postFormTeam} = require('../controllers/form.controller.js');
 
 //router.post("/signup", signupUser);
 //router.post("/login", loginUser);
-router.post("/submitForm", postForm);
-
+router.post("/submitFormSolo", postFormSolo);
+router.post("/submitFormTeam", postFormTeam);
 
 module.exports = router;
