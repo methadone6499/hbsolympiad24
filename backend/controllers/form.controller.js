@@ -91,7 +91,34 @@ const postFormTeam = async (req, res) =>{
     }
 }
 
+const deleteFormSolo = async(req, res) =>{
+    console.log("man");
+    const userID = req.body.user.userID;
+    const eventID = req.body.event.eventID;
+    try {
+        const result = await Form.deleteOne({
+            'user.userID': userID,
+            'event.eventID': eventID 
+        });
+        if (result.deletedCount === 0) {
+            console.log('No form found with the specified userID and eventID');
+            res.status(400).json({error: "No form to delete"});
+        }
+        const updateEvent = await Event.findByIdAndUpdate(
+            req.body.event.eventID,
+            {$inc: {registered: -1}},
+            {new: true, runValidators: true}
+        );
+        console.log(updateEvent);
+        res.status(201).json({message: 'Form successfully deleted'});
+
+    } catch (err) {
+        res.status(500).json({error: "internal server error"});
+    }
+}
+
 module.exports = {
     postFormSolo,
-    postFormTeam
+    postFormTeam,
+    deleteFormSolo
 }
