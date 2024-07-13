@@ -9,6 +9,14 @@
     padding: 5px
   }
 
+  .ER-event{
+    display: grid;
+    grid-template-columns: 10% 15% auto auto;
+    align-items: center;
+    border: 5px solid rgb(109, 101, 101);
+    padding: 5px
+  }
+
   .E_T {
     border-bottom: none;
   }
@@ -19,4 +27,11 @@
 
   .E_B {
     border-top: none;
+  }
+
+  .reg-btn {
+    height: 50px;
+    width: 120px;
+    color: #fff;
+    background-color: #000;
   }

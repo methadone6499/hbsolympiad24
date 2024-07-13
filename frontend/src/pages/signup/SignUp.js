@@ -67,7 +67,6 @@ function SignUp(){
         else { 
             setSubmitted(true); 
             setError(false); 
-            console.log(email);
             try{
                 await axios.post("http://localhost:5000/v1/signup",{
                     name, idNum, email, phoneNumber, password, 
@@ -205,6 +204,7 @@ function SignUp(){
                             class = "Input"
                             value = {name}
                             type = "text"
+                            placeholder='John Smith'
                         />
 
                         <label class="Label">Roll Number/CNIC</label>
@@ -213,6 +213,7 @@ function SignUp(){
                             class = "Input"
                             value = {idNum}
                             type = "number"
+                            placeholder='11111-1111111-1'
                         />
                         
                         <label class="Label">Email</label>
@@ -221,6 +222,7 @@ function SignUp(){
                             class = "Input"
                             value = {email}
                             type = "email"
+                            placeholder='someone@something.com'
                         />
                         
                         <label class="Label">Phone Number</label>
@@ -229,6 +231,7 @@ function SignUp(){
                             class = "Input"
                             value = {phoneNumber}
                             type = "number"
+                            placeholder='0000-0000000'
                         />
                         
                         <label class="Label">Password</label>
@@ -237,6 +240,7 @@ function SignUp(){
                             class = "Input"
                             value = {password}
                             type = "password"
+                            placeholder='password'
                         />
 
                         <button onClick={handleSubmit} class="buton" type="submit">

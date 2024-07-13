@@ -5,19 +5,19 @@ function TeamEventReg(){
 
     return(
         <div className='Home'>
-            <nav class="navbar">
+            <nav className="navbar">
                 {/*button to be used for holding the signup/login in a drop down menu*/}
-                {/*<div class="dropdown"> 
-                    <button class="dropbtn"></button>
-                    <div class="dropdown-content">*
-                        <div class="Login">
-                            <button class="btn btn-sm">
-                                <Link to="/login" class="links">Login</Link>
+                {/*<div className="dropdown"> 
+                    <button className="dropbtn"></button>
+                    <div className="dropdown-content">*
+                        <div className="Login">
+                            <button className="btn btn-sm">
+                                <Link to="/login" className="links">Login</Link>
                             </button>
                         </div>
-                        <div class="SignUp">
-                            <button class="btn btn-sm">
-                                <Link to="/signup" class="links">Sign Up</Link>
+                        <div className="SignUp">
+                            <button className="btn btn-sm">
+                                <Link to="/signup" className="links">Sign Up</Link>
                             </button>
                         </div>
                     {</div>
@@ -26,38 +26,38 @@ function TeamEventReg(){
                 
 
                 {/*navigation list for various menus*/}
-                <ul class="nav-list">
+                <ul className="nav-list">
                     <li>
-                        <Link to="/" class="links">Home</Link>
+                        <Link to="/" className="links">Home</Link>
                     </li>
                     <li>
-                        <Link to="/events" class="links">List of Events</Link>
+                        <Link to="/events" className="links">List of Events</Link>
                     </li>
                     <li>
-                        <Link to="/ind_event_reg" class="links">Individual Event Registration</Link>
+                        <Link to="/ind_event_reg" className="links">Individual Event Registration</Link>
                     </li>
                     <li>
-                        <Link to="/team_event_reg" class="links">Team Event Registration</Link>
+                        <Link to="/team_event_reg" className="links">Team Event Registration</Link>
                     </li>{/*}
                     <li>
-                        <Link to="/user_dashboard" class="links">User</Link>
+                        <Link to="/user_dashboard" className="links">User</Link>
                     </li>
                     <li>
-                        <Link to="/admin_dashboard" class="links">Admin</Link>
+                        <Link to="/admin_dashboard" className="links">Admin</Link>
                     </li>*/}
                 </ul>
-                <div class="Login">
-                    <button class="btn btn-sm">
-                        <Link to="/login" class="links">Login</Link>
+                <div className="Login">
+                    <button className="btn btn-sm">
+                        <Link to="/login" className="links">Login</Link>
                     </button>
                 </div>
-                <div class="SignUp">
-                    <button class="btn btn-sm">
-                        <Link to="/signup" class="links">Sign Up</Link>
+                <div className="SignUp">
+                    <button className="btn btn-sm">
+                        <Link to="/signup" className="links">Sign Up</Link>
                     </button>
                 </div>
 
-                {/*<div class="SearchBar">
+                {/*<div className="SearchBar">
                     <form action="#">
                         <input type="text" placeholder="Search.." name="search" />
                         <button type="submit">Submit</button>
@@ -65,17 +65,17 @@ function TeamEventReg(){
                 </div>*/}
             </nav>
 
-            <div class="box-main">
+            <div className="box-main">
                 <img
                     src="https://i.imgur.com/e6Lnl9j.png"
                     alt="Logo"
                     height="235"
                     width="325"
                 />
-                <h1 class="text-big">
+                <h1 className="text-big">
                     Team Event Registration
                 </h1>
-                <p class="text-small">
+                <p className="text-small">
                     Here you can register for all events and competitions that require a team of people to cooperate.{"\n"}
                     For events relating to individual please check out the individual event registration tab.
                 </p>
