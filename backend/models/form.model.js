@@ -28,17 +28,13 @@ const formSchema = new mongoose.Schema({
         type: Buffer,
         required :true,
     },
-    user: {
-        userID: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'users'
-        }
+    userID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users'
     },
-    event: {
-        eventID: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'events'
-        },
+    eventID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'events'
     }
 })
 

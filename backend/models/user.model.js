@@ -21,9 +21,9 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     events: [{
-        formId: {
+        formID: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'form'
+            ref: 'forms'
         },
     }]
 });

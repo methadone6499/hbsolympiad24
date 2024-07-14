@@ -26,24 +26,22 @@ const formTeamSchema = new mongoose.Schema({
     },
     feePayment:{
         type: Buffer,
-        required :true,
+        required: true
     },
     token:{
         type: String,
         required: true,
     },
-    user: {
+    user: [{
         userID: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'users'
         }
+    }],
+    eventID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'events'
     },
-    event: {
-        eventID: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'events'
-        },
-    }
 })
 
 const FormTeam = mongoose.model("FormTeam", formTeamSchema);
