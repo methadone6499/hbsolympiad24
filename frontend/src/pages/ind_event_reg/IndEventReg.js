@@ -1,15 +1,44 @@
 import { useState } from 'react'
 import './IndEventReg.css'
 import {Link} from "react-router-dom"
-import Popup from 'reactjs-popup'
 import axios from 'axios'
 
 function IndEventReg(){
 
     const [specReq, setSpecReq] = useState ("");
     const [proofImg, setProofImg] = useState (null);
-    const [eventID, setEventID] = useState("");
-    
+    const [selectedEvent, setSelectedEvent] = useState("");
+    const handleChange = (e) => {
+        setSelectedEvent(e.target.value);
+        setSubmitted(false);
+    }
+    const options = [
+        { label: 'Choose an event', value: '', key: 'placeholder' },
+        { label: 'Event1', value: 'EventID1', key: 'event1Key' },
+        { label: 'Event2', value: 'EventID2', key: 'event2Key' },
+        { label: 'Event3', value: 'EventID3', key: 'event3Key' },
+    ]
+
+    /*const modal = document.querySelector("#modal");
+    const openModal = document.querySelector("#openModal");
+    const closeModal = document.querySelector("#closeModal");
+
+    if (modal) {
+    openModal &&
+        openModal.addEventListener("click", () => modal.showModal());
+
+    closeModal &&
+        closeModal.addEventListener("click", () => modal.close());
+    }
+
+    if (proofImg != null || specReq != "") {
+        modal.addEventListener('cancel', (e) => {
+            setProofImg(null);
+            setSpecReq("");
+        });
+    }*/
+
+
     const [submitted, setSubmitted] = useState(false); 
     const [error, setError] = useState(false); 
 
@@ -21,7 +50,7 @@ function IndEventReg(){
     const handleSubmit = async(e) => {
 
         e.preventDefault();
-        if (specReq ==="" || proofImg === null)
+        if (specReq ==="" || proofImg === null || selectedEvent=== "")
         {
             setError(true);
         } 
@@ -29,11 +58,13 @@ function IndEventReg(){
         {
             setSubmitted(true);
             setError(false);
-            console.log(eventName);
+            console.log(specReq);
+            console.log(proofImg);
+            console.log(selectedEvent);
             try
             {
                 await axios.post("http://localhost:5000/v1/",{
-                    specReq, proofImg, eventID,
+                    specReq, proofImg, selectedEvent,
                 })
                 .then(res=>{
                     alert(res.data.message);
@@ -151,6 +182,62 @@ function IndEventReg(){
                     For events relating to teams please check out the team event registration tab.
                 </p>
                 
+                <div className='registerBox'>
+                    <div className="text-small">
+                        {errorMessage()}
+                        {SuccessMessage()}
+                    </div>
+
+                    <form className='regForm'>
+
+                    <label className='text-small'>Select Event</label>
+                    <select value={selectedEvent} onChange={handleChange}>
+                        {options.map((option) => (
+                            <option value={option.value}>{option.label}</option>
+                        ))}
+                     </select>
+
+                        <label className="Label">Special Requirements</label>
+                        <input
+                            onChange = {handleSpecReq}
+                            className = "Input"
+                            value = {specReq}
+                            type = "text"
+                            placeholder='John Smith'
+                        />
+
+                        <label className="Label">Proof of Paymnet</label>
+                        {proofImg &&  (
+                            <div className='displayedImg'>
+                                <img 
+                                    alt="not found"
+                                    width = {"250px"}
+                                    src = {URL.createObjectURL(proofImg)}
+                                />
+                                <button className='btn' onClick={()=>setProofImg(null)}>Remove Image</button>
+                            </div>
+                        )}
+
+                        <input
+                            className='imgInput'
+                            type="file"
+                            name="myImage"
+                            onChange={(e)=>{
+                                console.log(e.target.files[0]);
+                                setProofImg(e.target.files[0]);
+                            }} 
+                        />
+
+                        <button onClick={handleSubmit} className="btn" type="submit">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+                
+                
+                
+                {/*
+                
                 <div className="event-reg-box">
                     <div className="ER-event E_T">
                         <img
@@ -165,76 +252,6 @@ function IndEventReg(){
                         <p className="text-small">
                             Table tennis, or ping pong, is a fast-paced indoor sport played on a table divided by a net. Players use paddles to hit a lightweight ball back and forth. It requires quick reflexes, strategic thinking, and precise ball control.
                          </p>
-                        <Popup trigger=
-                            {<button className="reg-btn"> Register </button>}
-                                modal nested>
-                                {
-                                    close=> (
-                                        <div className="modal">
-                                            <div className="content">
-                                                <p className="text-small">
-                                                    Welcome to registration {"\n"}
-                                                </p>
-                                                <p>
-                                                    Here there be user info
-                                                </p>
-
-                                                <div className="messages">
-                                                    {errorMessage()}
-                                                    {SuccessMessage()}
-                                                </div>
-
-                                                <form>
-                                                    <label className="Label">Name</label>
-                                                    <input
-                                                        onChange = {handleSpecReq}
-                                                        className = "Input"
-                                                        value = {specReq}
-                                                        type = "text"
-                                                        placeholder='John Smith'
-                                                    />
-
-                                                    {proofImg &&  (
-                                                        <div>
-                                                            <img 
-                                                                alt="not found"
-                                                                width = {"250px"}
-                                                                src = {URL.createObjectURL(proofImg)}
-                                                            />
-                                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
-                                                        </div>
-                                                   )}
-
-                                                    <input
-                                                        type="file"
-                                                        name="myImage"
-                                                        onChange={(e)=>{
-                                                            console.log(e.target.files[0]);
-                                                            setProofImg(e.target.files[0]);
-                                                        }} 
-                                                    />
-
-                                                    <button onClick={handleSubmit} className="btn" type="submit">
-                                                        Submit
-                                                    </button>
-                                                </form>
-                                            </div>
-                                            <div>
-                                                <button className="btn" onClick=
-                                                    {()=>{
-                                                        close();
-                                                        setProofImg(null);
-                                                        setSpecReq("");
-                                                        setSubmitted(false);
-                                                    } }
-                                                    >
-                                                        Close Window
-                                                </button>
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                        </Popup>
                     </div>
                     <div className="ER-event E_T">
                         <img
@@ -249,76 +266,61 @@ function IndEventReg(){
                         <p className="text-small">
                             Chess is a strategic board game for two players on a checkered 64-square board. Players aim to checkmate the opponent's king by strategically moving pieces.
                         </p>
-                        <Popup trigger=
-                            {<button className="reg-btn"> Register </button>}
-                                modal nested>
-                                {
-                                    close=> (
-                                        <div className="modal">
-                                            <div className="content">
-                                                <p className="text-small">
-                                                    Welcome to registration {"\n"}
-                                                </p>
-                                                <p>
-                                                    Here there be user info
-                                                </p>
+                        <button id="openModal" className='reg-btn'>Open</button>
+                        <dialog id="modal" className='popup'>
+                            <div className="content">
+                                <p className="text-small">
+                                    Welcome to registration {"\n"}
+                                    Here there be user info
+                                </p>
 
-                                                <div className="messages">
-                                                    {errorMessage()}
-                                                    {SuccessMessage()}
-                                                </div>
-                                                
-                                                <form>
-                                                    <label className="Label">Name</label>
-                                                    <input
-                                                        onChange = {handleSpecReq}
-                                                        className = "Input"
-                                                        value = {specReq}
-                                                        type = "text"
-                                                        placeholder='John Smith'
-                                                    />
+                                <div className="text-small">
+                                    {errorMessage()}
+                                    {SuccessMessage()}
+                                </div>
 
-                                                    {proofImg &&  (
-                                                        <div>
-                                                            <img 
-                                                                alt="not found"
-                                                                width = {"250px"}
-                                                                src = {URL.createObjectURL(proofImg)}
-                                                            />
-                                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
-                                                        </div>
-                                                   )}
+                                <form>
+                                    <label className="Label">Name</label>
+                                    <input
+                                        onChange = {handleSpecReq}
+                                        className = "Input"
+                                        value = {specReq}
+                                        type = "text"
+                                        placeholder='John Smith'
+                                    />
 
-                                                    <input
-                                                        type="file"
-                                                        name="myImage"
-                                                        onChange={(e)=>{
-                                                            console.log(e.target.files[0]);
-                                                            setProofImg(e.target.files[0]);
-                                                        }} 
-                                                    />
+                                    {proofImg &&  (
+                                        <div>
+                                            <img 
+                                                alt="not found"
+                                                width = {"250px"}
+                                                src = {URL.createObjectURL(proofImg)}
+                                            />
+                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
+                                        </div>
+                                   )}
 
-                                                    <button onClick={handleSubmit} className="btn" type="submit">
-                                                        Submit
-                                                    </button>
-                                                </form>
-                                            </div>
-                                            <div>
-                                                <button className="btn" onClick=
+                                    <input
+                                        type="file"
+                                        name="myImage"
+                                        onChange={(e)=>{
+                                            console.log(e.target.files[0]);
+                                            setProofImg(e.target.files[0]);
+                                        }} 
+                                    />
+
+                                    <button onClick={handleSubmit} className="btn" type="submit">
+                                        Submit
+                                    </button>
+                                </form>
+                            </div>
+                            <button id="closeModal" className='reg-btn' onClick=
                                                     {()=>{
-                                                        close();
                                                         setProofImg(null);
                                                         setSpecReq("");
                                                         setSubmitted(false);
-                                                    } }
-                                                    >
-                                                        Close Window
-                                                </button>
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                        </Popup>
+                                                    }}>Close</button> 
+                         </dialog>
                     </div>
                     <div className="ER-event E_T">
                         <img
@@ -333,76 +335,61 @@ function IndEventReg(){
                         <p className="text-small">
                             A cultural fest is an event celebrating diverse traditions through music, dance, food, crafts, and performances, promoting cultural exchange and community spirit.
                         </p>
-                        <Popup trigger=
-                            {<button className="reg-btn"> Register </button>}
-                                modal nested>
-                                {
-                                    close=> (
-                                        <div className="modal">
-                                            <div className="content">
-                                                <p className="text-small">
-                                                    Welcome to registration {"\n"}
-                                                </p>
-                                                <p>
-                                                    Here there be user info
-                                                </p>
+                         <button id="openModal" className='reg-btn'>Open</button>
+                         <dialog id="modal" className='popup'>
+                            <div className="content">
+                                <p className="text-small">
+                                    Welcome to registration {"\n"}
+                                    Here there be user info
+                                </p>
 
-                                                <div className="messages">
-                                                    {errorMessage()}
-                                                    {SuccessMessage()}
-                                                </div>
-                                                
-                                                <form>
-                                                    <label className="Label">Name</label>
-                                                    <input
-                                                        onChange = {handleSpecReq}
-                                                        className = "Input"
-                                                        value = {specReq}
-                                                        type = "text"
-                                                        placeholder='John Smith'
-                                                    />
+                                <div className="text-small">
+                                    {errorMessage()}
+                                    {SuccessMessage()}
+                                </div>
 
-                                                    {proofImg &&  (
-                                                        <div>
-                                                            <img 
-                                                                alt="not found"
-                                                                width = {"250px"}
-                                                                src = {URL.createObjectURL(proofImg)}
-                                                            />
-                                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
-                                                        </div>
-                                                   )}
+                                <form>
+                                    <label className="Label">Name</label>
+                                    <input
+                                        onChange = {handleSpecReq}
+                                        className = "Input"
+                                        value = {specReq}
+                                        type = "text"
+                                        placeholder='John Smith'
+                                    />
 
-                                                    <input
-                                                        type="file"
-                                                        name="myImage"
-                                                        onChange={(e)=>{
-                                                            console.log(e.target.files[0]);
-                                                            setProofImg(e.target.files[0]);
-                                                        }} 
-                                                    />
+                                    {proofImg &&  (
+                                        <div>
+                                            <img 
+                                                alt="not found"
+                                                width = {"250px"}
+                                                src = {URL.createObjectURL(proofImg)}
+                                            />
+                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
+                                        </div>
+                                   )}
 
-                                                    <button onClick={handleSubmit} className="btn" type="submit">
-                                                        Submit
-                                                    </button>
-                                                </form>
-                                            </div>
-                                            <div>
-                                                <button className="btn" onClick=
+                                    <input
+                                        type="file"
+                                        name="myImage"
+                                        onChange={(e)=>{
+                                            console.log(e.target.files[0]);
+                                            setProofImg(e.target.files[0]);
+                                        }} 
+                                    />
+
+                                    <button onClick={handleSubmit} className="btn" type="submit">
+                                        Submit
+                                    </button>
+                                </form>
+                            </div>
+                            <button id="closeModal" className='reg-btn' onClick=
                                                     {()=>{
-                                                        close();
                                                         setProofImg(null);
                                                         setSpecReq("");
                                                         setSubmitted(false);
-                                                    } }
-                                                    >
-                                                        Close Window
-                                                </button>
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                        </Popup>
+                                                    }}>Close</button> 
+                         </dialog>
                     </div>
                     <div className="ER-event E_T">
                         <img
@@ -417,77 +404,61 @@ function IndEventReg(){
                         <p className="text-small">
                             Quizzes are short tests or competitions designed to assess knowledge on various topics. They can be used for education, entertainment, or competitive purposes, often featuring multiple-choice, true/false, or open-ended questions.
                         </p>
-                        <Popup trigger=
-                            {<button className="reg-btn"> Register </button>}
-                                modal nested>
-                                {
-                                    close=> (
-                                        <div className="modal">
-                                            <div className="content">
-                                                <p className="text-small">
-                                                    Welcome to registration {"\n"}
-                                                </p>
-                                                <p>
-                                                    Here there be user info
-                                                </p>
+                         <button id="openModal" className='reg-btn'>Open</button>
+                         <dialog id="modal" className='popup'>
+                            <div className="content">
+                                <p className="text-small">
+                                    Welcome to registration {"\n"}
+                                    Here there be user info
+                                </p>
 
-                                                <div className="messages">
-                                                    {errorMessage()}
-                                                    {SuccessMessage()}
-                                                </div>
-                                                
-                                                
-                                                <form>
-                                                    <label className="Label">Name</label>
-                                                    <input
-                                                        onChange = {handleSpecReq}
-                                                        className = "Input"
-                                                        value = {specReq}
-                                                        type = "text"
-                                                        placeholder='John Smith'
-                                                    />
+                                <div className="text-small">
+                                    {errorMessage()}
+                                    {SuccessMessage()}
+                                </div>
 
-                                                    {proofImg &&  (
-                                                        <div>
-                                                            <img 
-                                                                alt="not found"
-                                                                width = {"250px"}
-                                                                src = {URL.createObjectURL(proofImg)}
-                                                            />
-                                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
-                                                        </div>
-                                                   )}
+                                <form>
+                                    <label className="Label">Name</label>
+                                    <input
+                                        onChange = {handleSpecReq}
+                                        className = "Input"
+                                        value = {specReq}
+                                        type = "text"
+                                        placeholder='John Smith'
+                                    />
 
-                                                    <input
-                                                        type="file"
-                                                        name="myImage"
-                                                        onChange={(e)=>{
-                                                            console.log(e.target.files[0]);
-                                                            setProofImg(e.target.files[0]);
-                                                        }} 
-                                                    />
+                                    {proofImg &&  (
+                                        <div>
+                                            <img 
+                                                alt="not found"
+                                                width = {"250px"}
+                                                src = {URL.createObjectURL(proofImg)}
+                                            />
+                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
+                                        </div>
+                                   )}
 
-                                                    <button onClick={handleSubmit} className="btn" type="submit">
-                                                        Submit
-                                                    </button>
-                                                </form>
-                                            </div>
-                                            <div>
-                                                <button className="btn" onClick=
+                                    <input
+                                        type="file"
+                                        name="myImage"
+                                        onChange={(e)=>{
+                                            console.log(e.target.files[0]);
+                                            setProofImg(e.target.files[0]);
+                                        }} 
+                                    />
+
+                                    <button onClick={handleSubmit} className="btn" type="submit">
+                                        Submit
+                                    </button>
+                                </form>
+                            </div>
+                            <button id="closeModal" className='reg-btn' onClick=
                                                     {()=>{
-                                                        close();
                                                         setProofImg(null);
                                                         setSpecReq("");
                                                         setSubmitted(false);
-                                                    } }
-                                                    >
-                                                        Close Window
-                                                </button>
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                        </Popup>
+                                                    }}>Close</button> 
+                         </dialog>
                     </div>
                     <div className="ER-event E_T">
                         <img
@@ -502,76 +473,61 @@ function IndEventReg(){
                         <p className="text-small">
                             Suturing is a medical procedure used to close wounds or surgical incisions with stitches. It involves using a needle and thread to sew tissue together, promoting healing and reducing the risk of infection.
                         </p>
-                        <Popup trigger=
-                            {<button className="reg-btn"> Register </button>}
-                                modal nested>
-                                {
-                                    close=> (
-                                        <div className="modal">
-                                            <div className="content">
-                                                <p className="text-small">
-                                                    Welcome to registration {"\n"}
-                                                </p>
-                                                <p>
-                                                    Here there be user info
-                                                </p>
+                         <button id="openModal" className='reg-btn'>Open</button>
+                         <dialog id="modal" className='popup'>
+                            <div className="content">
+                                <p className="text-small">
+                                    Welcome to registration {"\n"}
+                                    Here there be user info
+                                </p>
 
-                                                <div className="messages">
-                                                    {errorMessage()}
-                                                    {SuccessMessage()}
-                                                </div>
-                                                
-                                                <form>
-                                                    <label className="Label">Name</label>
-                                                    <input
-                                                        onChange = {handleSpecReq}
-                                                        className = "Input"
-                                                        value = {specReq}
-                                                        type = "text"
-                                                        placeholder='John Smith'
-                                                    />
+                                <div className="text-small">
+                                    {errorMessage()}
+                                    {SuccessMessage()}
+                                </div>
 
-                                                    {proofImg &&  (
-                                                        <div>
-                                                            <img 
-                                                                alt="not found"
-                                                                width = {"250px"}
-                                                                src = {URL.createObjectURL(proofImg)}
-                                                            />
-                                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
-                                                        </div>
-                                                   )}
+                                <form>
+                                    <label className="Label">Name</label>
+                                    <input
+                                        onChange = {handleSpecReq}
+                                        className = "Input"
+                                        value = {specReq}
+                                        type = "text"
+                                        placeholder='John Smith'
+                                    />
 
-                                                    <input
-                                                        type="file"
-                                                        name="myImage"
-                                                        onChange={(e)=>{
-                                                            console.log(e.target.files[0]);
-                                                            setProofImg(e.target.files[0]);
-                                                        }} 
-                                                    />
+                                    {proofImg &&  (
+                                        <div>
+                                            <img 
+                                                alt="not found"
+                                                width = {"250px"}
+                                                src = {URL.createObjectURL(proofImg)}
+                                            />
+                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
+                                        </div>
+                                   )}
 
-                                                    <button onClick={handleSubmit} className="btn" type="submit">
-                                                        Submit
-                                                    </button>
-                                                </form>
-                                            </div>
-                                            <div>
-                                                <button className="btn" onClick=
+                                    <input
+                                        type="file"
+                                        name="myImage"
+                                        onChange={(e)=>{
+                                            console.log(e.target.files[0]);
+                                            setProofImg(e.target.files[0]);
+                                        }} 
+                                    />
+
+                                    <button onClick={handleSubmit} className="btn" type="submit">
+                                        Submit
+                                    </button>
+                                </form>
+                            </div>
+                            <button id="closeModal" className='reg-btn' onClick=
                                                     {()=>{
-                                                        close();
                                                         setProofImg(null);
                                                         setSpecReq("");
                                                         setSubmitted(false);
-                                                    } }
-                                                    >
-                                                        Close Window
-                                                </button>
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                        </Popup>
+                                                    }}>Close</button> 
+                         </dialog>
                     </div>
                     <div className="ER-event">
                         <img
@@ -586,77 +542,61 @@ function IndEventReg(){
                         <p className="text-small">
                             A BLS (Basic Life Support) competition tests participants' skills in emergency medical procedures, such as CPR, using an AED, and handling choking incidents. Competitors are judged on their ability to perform these life-saving techniques quickly and accurately.
                         </p>
-                        <Popup trigger=
-                            {<button className="reg-btn"> Register </button>}
-                                modal nested>
-                                {
-                                    close=> (
-                                        <div className="modal">
-                                            <div className="content">
-                                                <p className="text-small">
-                                                    Welcome to registration {"\n"}
-                                                </p>
-                                                <p>
-                                                    Here there be user info
-                                                </p>
+                         <button id="openModal" className='reg-btn'>Open</button>
+                         <dialog id="modal" className='popup'>
+                            <div className="content">
+                                <p className="text-small">
+                                    Welcome to registration {"\n"}
+                                    Here there be user info
+                                </p>
 
-                                                <div className="messages">
-                                                    {errorMessage()}
-                                                    {SuccessMessage()}
-                                                </div>
-                                                
-                                                
-                                                <form>
-                                                    <label className="Label">Name</label>
-                                                    <input
-                                                        onChange = {handleSpecReq}
-                                                        className = "Input"
-                                                        value = {specReq}
-                                                        type = "text"
-                                                        placeholder='John Smith'
-                                                    />
+                                <div className="text-small">
+                                    {errorMessage()}
+                                    {SuccessMessage()}
+                                </div>
 
-                                                    {proofImg &&  (
-                                                        <div>
-                                                            <img 
-                                                                alt="not found"
-                                                                width = {"250px"}
-                                                                src = {URL.createObjectURL(proofImg)}
-                                                            />
-                                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
-                                                        </div>
-                                                   )}
+                                <form>
+                                    <label className="Label">Name</label>
+                                    <input
+                                        onChange = {handleSpecReq}
+                                        className = "Input"
+                                        value = {specReq}
+                                        type = "text"
+                                        placeholder='John Smith'
+                                    />
 
-                                                    <input
-                                                        type="file"
-                                                        name="myImage"
-                                                        onChange={(e)=>{
-                                                            console.log(e.target.files[0]);
-                                                            setProofImg(e.target.files[0]);
-                                                        }} 
-                                                    />
+                                    {proofImg &&  (
+                                        <div>
+                                            <img 
+                                                alt="not found"
+                                                width = {"250px"}
+                                                src = {URL.createObjectURL(proofImg)}
+                                            />
+                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
+                                        </div>
+                                   )}
 
-                                                    <button onClick={handleSubmit} className="btn" type="submit">
-                                                        Submit
-                                                    </button>
-                                                </form>
-                                            </div>
-                                            <div>
-                                                <button className="btn" onClick=
+                                    <input
+                                        type="file"
+                                        name="myImage"
+                                        onChange={(e)=>{
+                                            console.log(e.target.files[0]);
+                                            setProofImg(e.target.files[0]);
+                                        }} 
+                                    />
+
+                                    <button onClick={handleSubmit} className="btn" type="submit">
+                                        Submit
+                                    </button>
+                                </form>
+                            </div>
+                            <button id="closeModal" className='reg-btn' onClick=
                                                     {()=>{
-                                                        close();
                                                         setProofImg(null);
                                                         setSpecReq("");
                                                         setSubmitted(false);
-                                                    } }
-                                                    >
-                                                        Close Window
-                                                </button>
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                        </Popup>
+                                                    }}>Close</button> 
+                         </dialog>
                     </div>
                     <div className="ER-event">
                         <img
@@ -671,77 +611,61 @@ function IndEventReg(){
                         <p className="text-small">
                             An art competition is an event where artists submit their artworks to be judged based on creativity, technique, and interpretation of a theme. It provides a platform for artists to showcase their talents, gain recognition, and often includes awards or prizes for outstanding entries.
                         </p>
-                        <Popup trigger=
-                            {<button className="reg-btn"> Register </button>}
-                                modal nested>
-                                {
-                                    close=> (
-                                        <div className="modal">
-                                            <div className="content">
-                                                <p className="text-small">
-                                                    Welcome to registration {"\n"}
-                                                </p>
-                                                <p>
-                                                    Here there be user info
-                                                </p>
+                         <button id="openModal" className='reg-btn'>Open</button>
+                         <dialog id="modal" className='popup'>
+                            <div className="content">
+                                <p className="text-small">
+                                    Welcome to registration {"\n"}
+                                    Here there be user info
+                                </p>
 
-                                                <div className="messages">
-                                                    {errorMessage()}
-                                                    {SuccessMessage()}
-                                                </div>
-                                                
-                                                
-                                                <form>
-                                                    <label className="Label">Name</label>
-                                                    <input
-                                                        onChange = {handleSpecReq}
-                                                        className = "Input"
-                                                        value = {specReq}
-                                                        type = "text"
-                                                        placeholder='John Smith'
-                                                    />
+                                <div className="text-small">
+                                    {errorMessage()}
+                                    {SuccessMessage()}
+                                </div>
 
-                                                    {proofImg &&  (
-                                                        <div>
-                                                            <img 
-                                                                alt="not found"
-                                                                width = {"250px"}
-                                                                src = {URL.createObjectURL(proofImg)}
-                                                            />
-                                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
-                                                        </div>
-                                                   )}
+                                <form>
+                                    <label className="Label">Name</label>
+                                    <input
+                                        onChange = {handleSpecReq}
+                                        className = "Input"
+                                        value = {specReq}
+                                        type = "text"
+                                        placeholder='John Smith'
+                                    />
 
-                                                    <input
-                                                        type="file"
-                                                        name="myImage"
-                                                        onChange={(e)=>{
-                                                            console.log(e.target.files[0]);
-                                                            setProofImg(e.target.files[0]);
-                                                        }} 
-                                                    />
+                                    {proofImg &&  (
+                                        <div>
+                                            <img 
+                                                alt="not found"
+                                                width = {"250px"}
+                                                src = {URL.createObjectURL(proofImg)}
+                                            />
+                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
+                                        </div>
+                                   )}
 
-                                                    <button onClick={handleSubmit} className="btn" type="submit">
-                                                        Submit
-                                                    </button>
-                                                </form>
-                                            </div>
-                                            <div>
-                                                <button className="btn" onClick=
+                                    <input
+                                        type="file"
+                                        name="myImage"
+                                        onChange={(e)=>{
+                                            console.log(e.target.files[0]);
+                                            setProofImg(e.target.files[0]);
+                                        }} 
+                                    />
+
+                                    <button onClick={handleSubmit} className="btn" type="submit">
+                                        Submit
+                                    </button>
+                                </form>
+                            </div>
+                            <button id="closeModal" className='reg-btn' onClick=
                                                     {()=>{
-                                                        close();
                                                         setProofImg(null);
                                                         setSpecReq("");
                                                         setSubmitted(false);
-                                                    } }
-                                                    >
-                                                        Close Window
-                                                </button>
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                        </Popup>
+                                                    }}>Close</button> 
+                         </dialog>
                     </div>
                     <div className="ER-event">
                         <img
@@ -756,77 +680,61 @@ function IndEventReg(){
                         <p className="text-small">
                             An art gallery is a space where artworks are displayed for public viewing and sale. It serves as a venue for artists to exhibit their creations, ranging from paintings and sculptures to digital art and installations. Art galleries also play a role in cultural enrichment, education, and fostering appreciation for visual arts.
                         </p>
-                        <Popup trigger=
-                            {<button className="reg-btn"> Register </button>}
-                                modal nested>
-                                {
-                                    close=> (
-                                        <div className="modal">
-                                            <div className="content">
-                                                <p className="text-small">
-                                                    Welcome to registration {"\n"}
-                                                </p>
-                                                <p>
-                                                    Here there be user info
-                                                </p>
+                         <button id="openModal" className='reg-btn'>Open</button>
+                         <dialog id="modal" className='popup'>
+                            <div className="content">
+                                <p className="text-small">
+                                    Welcome to registration {"\n"}
+                                    Here there be user info
+                                </p>
 
-                                                <div className="messages">
-                                                    {errorMessage()}
-                                                    {SuccessMessage()}
-                                                </div>
-                                                
-                                                
-                                                <form>
-                                                    <label className="Label">Name</label>
-                                                    <input
-                                                        onChange = {handleSpecReq}
-                                                        className = "Input"
-                                                        value = {specReq}
-                                                        type = "text"
-                                                        placeholder='John Smith'
-                                                    />
+                                <div className="text-small">
+                                    {errorMessage()}
+                                    {SuccessMessage()}
+                                </div>
 
-                                                    {proofImg &&  (
-                                                        <div>
-                                                            <img 
-                                                                alt="not found"
-                                                                width = {"250px"}
-                                                                src = {URL.createObjectURL(proofImg)}
-                                                            />
-                                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
-                                                        </div>
-                                                   )}
+                                <form>
+                                    <label className="Label">Name</label>
+                                    <input
+                                        onChange = {handleSpecReq}
+                                        className = "Input"
+                                        value = {specReq}
+                                        type = "text"
+                                        placeholder='John Smith'
+                                    />
 
-                                                    <input
-                                                        type="file"
-                                                        name="myImage"
-                                                        onChange={(e)=>{
-                                                            console.log(e.target.files[0]);
-                                                            setProofImg(e.target.files[0]);
-                                                        }} 
-                                                    />
+                                    {proofImg &&  (
+                                        <div>
+                                            <img 
+                                                alt="not found"
+                                                width = {"250px"}
+                                                src = {URL.createObjectURL(proofImg)}
+                                            />
+                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
+                                        </div>
+                                   )}
 
-                                                    <button onClick={handleSubmit} className="btn" type="submit">
-                                                        Submit
-                                                    </button>
-                                                </form>
-                                            </div>
-                                            <div>
-                                                <button className="btn" onClick=
+                                    <input
+                                        type="file"
+                                        name="myImage"
+                                        onChange={(e)=>{
+                                            console.log(e.target.files[0]);
+                                            setProofImg(e.target.files[0]);
+                                        }} 
+                                    />
+
+                                    <button onClick={handleSubmit} className="btn" type="submit">
+                                        Submit
+                                    </button>
+                                </form>
+                            </div>
+                            <button id="closeModal" className='reg-btn' onClick=
                                                     {()=>{
-                                                        close();
                                                         setProofImg(null);
                                                         setSpecReq("");
                                                         setSubmitted(false);
-                                                    } }
-                                                    >
-                                                        Close Window
-                                                </button>
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                        </Popup>
+                                                    }}>Close</button> 
+                         </dialog>
                     </div>
                     <div className="ER-event">
                         <img
@@ -841,77 +749,61 @@ function IndEventReg(){
                         <p className="text-small">
                             A videography competition is an event where participants create and submit videos to be judged on creativity, technical skill, and storytelling. It provides a platform for filmmakers to showcase their talents, gain recognition, and often compete for awards or prizes.
                         </p>
-                        <Popup trigger=
-                            {<button className="reg-btn"> Register </button>}
-                                modal nested>
-                                {
-                                    close=> (
-                                        <div className="modal">
-                                            <div className="content">
-                                                <p className="text-small">
-                                                    Welcome to registration {"\n"}
-                                                </p>
-                                                <p>
-                                                    Here there be user info
-                                                </p>
+                         <button id="openModal" className='reg-btn'>Open</button>
+                         <dialog id="modal" className='popup'>
+                            <div className="content">
+                                <p className="text-small">
+                                    Welcome to registration {"\n"}
+                                    Here there be user info
+                                </p>
 
-                                                <div className="messages">
-                                                    {errorMessage()}
-                                                    {SuccessMessage()}
-                                                </div>
-                                                
-                                                
-                                                <form>
-                                                    <label className="Label">Name</label>
-                                                    <input
-                                                        onChange = {handleSpecReq}
-                                                        className = "Input"
-                                                        value = {specReq}
-                                                        type = "text"
-                                                        placeholder='John Smith'
-                                                    />
+                                <div className="text-small">
+                                    {errorMessage()}
+                                    {SuccessMessage()}
+                                </div>
 
-                                                    {proofImg &&  (
-                                                        <div>
-                                                            <img 
-                                                                alt="not found"
-                                                                width = {"250px"}
-                                                                src = {URL.createObjectURL(proofImg)}
-                                                            />
-                                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
-                                                        </div>
-                                                   )}
+                                <form>
+                                    <label className="Label">Name</label>
+                                    <input
+                                        onChange = {handleSpecReq}
+                                        className = "Input"
+                                        value = {specReq}
+                                        type = "text"
+                                        placeholder='John Smith'
+                                    />
 
-                                                    <input
-                                                        type="file"
-                                                        name="myImage"
-                                                        onChange={(e)=>{
-                                                            console.log(e.target.files[0]);
-                                                            setProofImg(e.target.files[0]);
-                                                        }} 
-                                                    />
+                                    {proofImg &&  (
+                                        <div>
+                                            <img 
+                                                alt="not found"
+                                                width = {"250px"}
+                                                src = {URL.createObjectURL(proofImg)}
+                                            />
+                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
+                                        </div>
+                                   )}
 
-                                                    <button onClick={handleSubmit} className="btn" type="submit">
-                                                        Submit
-                                                    </button>
-                                                </form>
-                                            </div>
-                                            <div>
-                                                <button className="btn" onClick=
+                                    <input
+                                        type="file"
+                                        name="myImage"
+                                        onChange={(e)=>{
+                                            console.log(e.target.files[0]);
+                                            setProofImg(e.target.files[0]);
+                                        }} 
+                                    />
+
+                                    <button onClick={handleSubmit} className="btn" type="submit">
+                                        Submit
+                                    </button>
+                                </form>
+                            </div>
+                            <button id="closeModal" className='reg-btn' onClick=
                                                     {()=>{
-                                                        close();
                                                         setProofImg(null);
                                                         setSpecReq("");
                                                         setSubmitted(false);
-                                                    } }
-                                                    >
-                                                        Close Window
-                                                </button>
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                        </Popup>
+                                                    }}>Close</button> 
+                         </dialog>
                     </div>
                     <div className="ER-event">
                         <img
@@ -926,77 +818,61 @@ function IndEventReg(){
                         <p className="text-small">
                             Live karaoke is an entertainment activity where individuals sing along to recorded music tracks in front of an audience, often using a microphone and a screen displaying lyrics. It combines live performance with audience participation and is popular in bars, clubs, and private events.
                         </p>
-                        <Popup trigger=
-                            {<button className="reg-btn"> Register </button>}
-                                modal nested>
-                                {
-                                    close=> (
-                                        <div className="modal">
-                                            <div className="content">
-                                                <p className="text-small">
-                                                    Welcome to registration {"\n"}
-                                                </p>
-                                                <p>
-                                                    Here there be user info
-                                                </p>
+                         <button id="openModal" className='reg-btn'>Open</button>
+                         <dialog id="modal" className='popup'>
+                            <div className="content">
+                                <p className="text-small">
+                                    Welcome to registration {"\n"}
+                                    Here there be user info
+                                </p>
 
-                                                <div className="messages">
-                                                    {errorMessage()}
-                                                    {SuccessMessage()}
-                                                </div>
-                                                
-                                                
-                                                <form>
-                                                    <label className="Label">Name</label>
-                                                    <input
-                                                        onChange = {handleSpecReq}
-                                                        className = "Input"
-                                                        value = {specReq}
-                                                        type = "text"
-                                                        placeholder='John Smith'
-                                                    />
+                                <div className="text-small">
+                                    {errorMessage()}
+                                    {SuccessMessage()}
+                                </div>
 
-                                                    {proofImg &&  (
-                                                        <div>
-                                                            <img 
-                                                                alt="not found"
-                                                                width = {"250px"}
-                                                                src = {URL.createObjectURL(proofImg)}
-                                                            />
-                                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
-                                                        </div>
-                                                   )}
+                                <form>
+                                    <label className="Label">Name</label>
+                                    <input
+                                        onChange = {handleSpecReq}
+                                        className = "Input"
+                                        value = {specReq}
+                                        type = "text"
+                                        placeholder='John Smith'
+                                    />
 
-                                                    <input
-                                                        type="file"
-                                                        name="myImage"
-                                                        onChange={(e)=>{
-                                                            console.log(e.target.files[0]);
-                                                            setProofImg(e.target.files[0]);
-                                                        }} 
-                                                    />
+                                    {proofImg &&  (
+                                        <div>
+                                            <img 
+                                                alt="not found"
+                                                width = {"250px"}
+                                                src = {URL.createObjectURL(proofImg)}
+                                            />
+                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
+                                        </div>
+                                   )}
 
-                                                    <button onClick={handleSubmit} className="btn" type="submit">
-                                                        Submit
-                                                    </button>
-                                                </form>
-                                            </div>
-                                            <div>
-                                                <button className="btn" onClick=
+                                    <input
+                                        type="file"
+                                        name="myImage"
+                                        onChange={(e)=>{
+                                            console.log(e.target.files[0]);
+                                            setProofImg(e.target.files[0]);
+                                        }} 
+                                    />
+
+                                    <button onClick={handleSubmit} className="btn" type="submit">
+                                        Submit
+                                    </button>
+                                </form>
+                            </div>
+                            <button id="closeModal" className='reg-btn' onClick=
                                                     {()=>{
-                                                        close();
                                                         setProofImg(null);
                                                         setSpecReq("");
                                                         setSubmitted(false);
-                                                    } }
-                                                    >
-                                                        Close Window
-                                                </button>
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                        </Popup>
+                                                    }}>Close</button> 
+                         </dialog>
                     </div>
                     <div className="ER-event">
                         <img
@@ -1011,80 +887,66 @@ function IndEventReg(){
                         <p className="text-small">
                             Qawwali is a Sufi devotional music from South Asia, featuring powerful vocals, rhythmic instruments, and repetitive choruses. Its lyrics focus on spiritual themes, aiming to evoke deep emotional and spiritual experiences in the audience.
                         </p>
-                        <Popup trigger=
-                            {<button className="reg-btn"> Register </button>}
-                                modal nested>
-                                {
-                                    close=> (
-                                        <div className="modal">
-                                            <div className="content">
-                                                <p className="text-small">
-                                                    Welcome to registration {"\n"}
-                                                </p>
-                                                <p>
-                                                    Here there be user info
-                                                </p>
+                         <button id="openModal" className='reg-btn'>Open</button>
+                         <dialog id="modal" className='popup'>
+                            <div className="content">
+                                <p className="text-small">
+                                    Welcome to registration {"\n"}
+                                    Here there be user info
+                                </p>
 
-                                                <div className="messages">
-                                                    {errorMessage()}
-                                                    {SuccessMessage()}
-                                                </div>
-                                                
-                                                
-                                                <form>
-                                                    <label className="Label">Name</label>
-                                                    <input
-                                                        onChange = {handleSpecReq}
-                                                        className = "Input"
-                                                        value = {specReq}
-                                                        type = "text"
-                                                        placeholder='John Smith'
-                                                    />
+                                <div className="text-small">
+                                    {errorMessage()}
+                                    {SuccessMessage()}
+                                </div>
 
-                                                    {proofImg &&  (
-                                                        <div>
-                                                            <img 
-                                                                alt="not found"
-                                                                width = {"250px"}
-                                                                src = {URL.createObjectURL(proofImg)}
-                                                            />
-                                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
-                                                        </div>
-                                                   )}
+                                <form>
+                                    <label className="Label">Name</label>
+                                    <input
+                                        onChange = {handleSpecReq}
+                                        className = "Input"
+                                        value = {specReq}
+                                        type = "text"
+                                        placeholder='John Smith'
+                                    />
 
-                                                    <input
-                                                        type="file"
-                                                        name="myImage"
-                                                        onChange={(e)=>{
-                                                            console.log(e.target.files[0]);
-                                                            setProofImg(e.target.files[0]);
-                                                        }} 
-                                                    />
+                                    {proofImg &&  (
+                                        <div>
+                                            <img 
+                                                alt="not found"
+                                                width = {"250px"}
+                                                src = {URL.createObjectURL(proofImg)}
+                                            />
+                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
+                                        </div>
+                                   )}
 
-                                                    <button onClick={handleSubmit} className="btn" type="submit">
-                                                        Submit
-                                                    </button>
-                                                </form>
-                                            </div>
-                                            <div>
-                                                <button className="btn" onClick=
+                                    <input
+                                        type="file"
+                                        name="myImage"
+                                        onChange={(e)=>{
+                                            console.log(e.target.files[0]);
+                                            setProofImg(e.target.files[0]);
+                                        }} 
+                                    />
+
+                                    <button onClick={handleSubmit} className="btn" type="submit">
+                                        Submit
+                                    </button>
+                                </form>
+                            </div>
+                            <button id="closeModal" className='reg-btn' onClick=
                                                     {()=>{
-                                                        close();
                                                         setProofImg(null);
                                                         setSpecReq("");
                                                         setSubmitted(false);
-                                                    } }
-                                                    >
-                                                        Close Window
-                                                </button>
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                        </Popup>
+                                                    }}>Close</button> 
+                         </dialog>
                     </div>
                 </div>
+                */}
             </div>
+
             <footer className="footer">
                 <p className="text-footer">
                     Copyright ©-All rights are reserved
