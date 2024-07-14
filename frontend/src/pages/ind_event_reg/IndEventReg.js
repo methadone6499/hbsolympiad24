@@ -14,11 +14,12 @@ function IndEventReg(){
     }
     const options = [
         { label: 'Choose an event', value: '', key: 'placeholder' },
-        { label: 'Event1', value: 'EventID1', key: 'event1Key' },
+        { label: 'Table Tennis', value: '668c33bd380b578af607fce3', key: 'event1Key' },
         { label: 'Event2', value: 'EventID2', key: 'event2Key' },
         { label: 'Event3', value: 'EventID3', key: 'event3Key' },
     ]
 
+    const [feePayment, setfeePayment] = useState("");
     /*const modal = document.querySelector("#modal");
     const openModal = document.querySelector("#openModal");
     const closeModal = document.querySelector("#closeModal");
@@ -36,6 +37,16 @@ function IndEventReg(){
             setProofImg(null);
             setSpecReq("");
         });
+    }*/
+    /*const convertToBase64 = () => {
+        const reader = new FileReader()
+        console.log(proofImg)
+        reader.readAsDataURL(proofImg)
+        
+        reader.onload = () => {
+          console.log('called: ', reader)
+          setfeePayment(reader.result);
+        }
     }*/
 
 
@@ -58,13 +69,33 @@ function IndEventReg(){
         {
             setSubmitted(true);
             setError(false);
-            console.log(specReq);
-            console.log(proofImg);
-            console.log(selectedEvent);
+            //console.log(specReq);
+            //console.log(proofImg);
+            //console.log(selectedEvent);
+            //console.log(options[0].value);
+            const eventID = selectedEvent;
+            const name = "Usama";
+            const email = "molly@gmail.com";
+            const phoneNumber = "23094392";
+            const affiliation = "nig";
+            const spRequirements = specReq;
+            //convertToBase64();
+            setfeePayment("29034u2rfs8p9caofmuovsogeo");
+            const userID = "6686b17f0aa299110fe38fd9";
+            /*const formData = new FormData();
+            console.log(feePayment);
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('phoneNumber', phoneNumber);
+            formData.append('affiliation', affiliation);
+            formData.append('spRequirements', spRequirements);
+            formData.append('feePayment', feePayment); // Assuming feePayment is a file input
+            formData.append('userID', userID);
+            formData.append('eventID', eventID);*/
             try
             {
-                await axios.post("http://localhost:5000/v1/",{
-                    specReq, proofImg, selectedEvent,
+                await axios.post("http://localhost:5000/v1/submitFormSolo",{
+                    name, email, phoneNumber, affiliation, spRequirements, feePayment,userID, eventID
                 })
                 .then(res=>{
                     alert(res.data.message);

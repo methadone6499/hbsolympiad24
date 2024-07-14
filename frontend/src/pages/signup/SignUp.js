@@ -9,7 +9,8 @@ function SignUp(){
     const [name, setName] = useState("");
     const [idNum, setIdNum] = useState("");  
     const [email, setEmail] = useState(""); 
-    const [phoneNumber, setNumber] = useState(""); 
+    const [phoneNumber, setNumber] = useState("");
+    const [university, setUniversity] = useState(""); 
     const [password, setPassword] = useState(""); 
   
     // States for checking the errors 
@@ -232,6 +233,14 @@ function SignUp(){
                             value = {phoneNumber}
                             type = "number"
                             placeholder='0000-0000000'
+                        />
+
+                        <label class="Label">University</label>
+                        <input
+                            class = "Input"
+                            value = {university}
+                            type = "text"
+                            placeholder='HBS'
                         />
                         
                         <label class="Label">Password</label>

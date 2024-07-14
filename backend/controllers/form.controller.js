@@ -3,6 +3,7 @@ const FormTeam = require('../models/formTeam.model');
 const Event = require('../models/events.model.js');
 const User = require('../models/user.model');
 
+
 const postFormSolo = async (req, res) =>{
     console.log(req.body);
     
