@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
         type: String,
     },
     uniCard:{
-        type: Buffer,
+        type: String,
     },
     phoneNumber:{
         type: String,
@@ -27,7 +27,10 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     feePayment:{
-        type: Buffer
+        type: String
+    },
+    approved:{
+        type: Boolean
     },
     events: [{
         formID: {

@@ -4,13 +4,12 @@ const bcrypt = require('bcrypt');
 
 const signupUser = async (req, res) => {
     const{email}=req.body;
-    console.log("bruh");
+    //console.log(email);
 
     try{
         const check = await User.findOne({email:email})
-
         if(check){
-            return res.status(400).json({ error: 'Email already exists' });
+            return res.status(201).json({ message: 'Email already exists' });
         }
         console.log(req.body)
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -19,6 +18,7 @@ const signupUser = async (req, res) => {
             email: req.body.email,
             id: req.body.idNum,
             phoneNumber: req.body.phoneNumber,
+            uniCard: req.body.uniCardImgFR,
             password: hashedPassword
         });
         console.log(newUser);
@@ -52,9 +52,25 @@ const loginUser = async(req, res) => {
     }
 }
 
+const getUser = async(req, res) => {
+    console.log(req.body);
+    try{
+        const user = await User.findOne({email: req.body.email});
+        if(user){
+            return res.status(201).json({user});
+        }
+        else{
+            return res.status(400).json({message: "man"});
+        }
+    }
+    catch(e){
+        res.status(500).json({error: "Internal server errors"});
+    }
+}
 
 
 module.exports = {
     signupUser,
-    loginUser
+    loginUser,
+    getUser
 }

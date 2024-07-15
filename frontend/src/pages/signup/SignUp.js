@@ -1,7 +1,8 @@
-import './SignUp.css'
-import {Link} from "react-router-dom"
-import { useState } from 'react'
-import axios from 'axios'
+import './SignUp.css';
+import {Link} from "react-router-dom";
+import { useState, useEffect} from 'react';
+import axios from 'axios';
+import FileBase64 from 'react-file-base64';
 
 function SignUp(){
     
@@ -14,7 +15,7 @@ function SignUp(){
     const [uniCardImg, setUniCardImg] = useState("") 
     const [password, setPassword] = useState(""); 
     const [proofImg, setProofImg] = useState("")
-  
+    const [uniCardImgFR, setUniCardImgFR] = useState("");
     // States for checking the errors 
     const [submitted, setSubmitted] = useState(false); 
     const [error, setError] = useState(false); 
@@ -49,7 +50,8 @@ function SignUp(){
     }
   
     const handleUniCardImg = (e) => {
-        setUniCardImg(e.target.value);
+        //setUniCardImg(e.target.value);
+        console.log(e.target.files);
         setSubmitted(false);
     }
 
@@ -68,26 +70,44 @@ function SignUp(){
         const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return pattern.test(email);
     }
+
+    /*useEffect(() =>{
+        const ass = async() =>{
+            await axios.post("http://localhost:5000/v1/suki",{
+                email: "jsodf@gmail.com"
+            })
+            .then(res =>{
+                console.log(res);
+                setProofImg(res.data.user.uniCard);
+            })
+        }
+        ass();
+    },[])*/
+   
   
     // Handling the form submission 
     const handleSubmit = async(e) => { 
+        
         e.preventDefault(); 
-        if (name === "" || idNum  === "" || email === "" || phoneNumber === "" || university==="" || password === "") 
+        
+        
+        if (name === "" || idNum  === "" || email === "" || phoneNumber === "" || university==="" || password === "" || uniCardImgFR === "") 
         { 
             setError(true); 
         } 
-
+        
         else if (!isValidEmail(email)){
             setError(true);
             setSubmitted(false);
         }
         
-        else { 
+        else {
+            console.log(uniCardImgFR);
             setSubmitted(true); 
             setError(false); 
             try{
                 await axios.post("http://localhost:5000/v1/signup",{
-                    name, idNum, email, phoneNumber, university, uniCardImg, password, 
+                    name, idNum, email, phoneNumber, university, uniCardImgFR, password, 
                 })
                 .then(res=>{
                     alert(res.data.message);
@@ -263,26 +283,28 @@ function SignUp(){
 
                         <label className='Label'>University ID Card</label>
                         <div className='imgInuput'>
-                            {uniCardImg &&  (
+                            {uniCardImgFR &&  (
                                 <div className='imgDisplay'>
                                     <img 
                                         alt="not found"
                                         width = {"250px"}
-                                        src = {URL.createObjectURL(uniCardImg)}
+                                        //src = {URL.createObjectURL(uniCardImgFR)}
+                                        src = {uniCardImgFR}
                                     />
-                                    <button className='reg-btn' onClick={()=>setUniCardImg(null)}>Remove Image</button>
+                                    <button className='reg-btn' onClick={()=>{setUniCardImg(null); setUniCardImgFR(null)}}>Remove 8===D Image</button>
                                 </div>
                             )}
 
-                            <input
+                            {/* <input
                                 className='Input'
                                 type="file"
                                 name="myImage"
                                 onChange={(e)=>{
-                                    console.log(e.target.files[0]);
                                     setUniCardImg(e.target.files[0]);
+                                    setUniCardImgFR(e.target.files[0]);
                                 }} 
-                            />
+                            /> */}
+                            <FileBase64 type="file" multiple={false} onDone={({ base64 })=> setUniCardImgFR(base64)}/>
                         </div>
                         
                         <label className="Label">Password</label>
@@ -322,6 +344,9 @@ function SignUp(){
                         <button onClick={handleSubmit} className="buton" type="submit">
                             Submit
                         </button>
+                        <div className="titties">
+                            <img src={proofImg}/>
+                        </div>
                     </form>
                 </div>
             </div>
