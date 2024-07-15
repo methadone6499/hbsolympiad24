@@ -21,10 +21,6 @@ const eventSchema = new mongoose.Schema({
         type: Number,
         max: 2000
     },
-    price:{
-        type: Number,
-        required: true
-    },
     category:{
         type: String,
         required: true

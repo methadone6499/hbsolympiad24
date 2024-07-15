@@ -9,8 +9,8 @@ const postFormSolo = async (req, res) =>{
     
     try{
         
-        const feePaymentBuffer = Buffer.from(req.body.feePayment, 'base64');
-        console.log(feePaymentBuffer);
+        //const feePaymentBuffer = Buffer.from(req.body.feePayment, 'base64');
+        //console.log(feePaymentBuffer);
         const userID = req.body.userID;
         const eventID = req.body.eventID;
 
@@ -27,23 +27,11 @@ const postFormSolo = async (req, res) =>{
             return res.status(400).json({ error: 'User already registered for this event' });
         }
 
-        /*const newForm = new Form({
-            name: req.body.name,
-            email: req.body.email,
-            phoneNumber: req.body.phoneNumber,
-            affiliation: req.body.affiliation,
-            spRequirements: req.body.spRequirements,
-            feePayment: feePaymentBuffer,
-            user: {userID: req.body.user.userID},
-            event: {eventID: req.body.event.eventID},
-        })*/
         const newForm = new Form({
             name: req.body.name,
             email: req.body.email,
             phoneNumber: req.body.phoneNumber,
             affiliation: req.body.affiliation,
-            spRequirements: req.body.spRequirements,
-            feePayment: feePaymentBuffer,
             userID: req.body.userID,
             eventID: req.body.eventID,
         })
@@ -72,8 +60,8 @@ const postFormTeam = async (req, res) =>{
     console.log(req.body);
     try{
         
-        const feePaymentBuffer = Buffer.from(req.body.feePayment, 'base64');
-        console.log(feePaymentBuffer);
+        //const feePaymentBuffer = Buffer.from(req.body.feePayment, 'base64');
+        //console.log(feePaymentBuffer);
         const userID = req.body.userID;
         const eventID = req.body.eventID;
 
@@ -95,7 +83,7 @@ const postFormTeam = async (req, res) =>{
         };
         
         var genToken = function() {
-            return rand() + rand() + rand() + "-" + rand() + rand() + rand(); // to make it longer
+            return rand() + rand() + rand(); // to make it longer
         };
 
         teamToken = genToken();
@@ -105,8 +93,6 @@ const postFormTeam = async (req, res) =>{
             email: req.body.email,
             phoneNumber: req.body.phoneNumber,
             affiliation: req.body.affiliation,
-            spRequirements: req.body.spRequirements,
-            feePayment: feePaymentBuffer,
             token: teamToken,
             user: [{userID: req.body.userID}],
             eventID: req.body.eventID,
@@ -139,6 +125,7 @@ const postFormTeamMember = async(req, res) =>{
     try{
         const existingEntry = await FormTeam.findOne({
             'user.userID': userID,
+            'eventID': eventID,
             'token': token
         });
         if(existingEntry){
