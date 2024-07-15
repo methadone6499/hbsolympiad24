@@ -10,8 +10,10 @@ function SignUp(){
     const [idNum, setIdNum] = useState("");  
     const [email, setEmail] = useState(""); 
     const [phoneNumber, setNumber] = useState("");
-    const [university, setUniversity] = useState(""); 
+    const [university, setUniversity] = useState("");
+    const [uniCardImg, setUniCardImg] = useState("") 
     const [password, setPassword] = useState(""); 
+    const [proofImg, setProofImg] = useState("")
   
     // States for checking the errors 
     const [submitted, setSubmitted] = useState(false); 
@@ -40,12 +42,27 @@ function SignUp(){
         setNumber(e.target.value); 
         setSubmitted(false); 
     }; 
+
+    const handleUniversity = (e) => {
+        setUniversity(e.target.value);
+        setSubmitted(false);
+    }
   
+    const handleUniCardImg = (e) => {
+        setUniCardImg(e.target.value);
+        setSubmitted(false);
+    }
+
     // Handling the password change 
     const handlePassword = (e) => { 
         setPassword(e.target.value); 
         setSubmitted(false); 
     }; 
+
+    const handleProofImg = (e) => {
+        setProofImg(e.target.value);
+        setSubmitted(false);
+    }
 
     function isValidEmail(email) {
         const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -127,19 +144,19 @@ function SignUp(){
 
     return(
         <div className='Home'>
-            <nav class="navbar">
+            <nav className="navbar">
                 {/*button to be used for holding the signup/login in a drop down menu*/}
-                {/*<div class="dropdown"> 
-                    <button class="dropbtn"></button>
-                    <div class="dropdown-content">*
-                        <div class="Login">
-                            <button class="btn btn-sm">
-                                <Link to="/login" class="links">Login</Link>
+                {/*<div className="dropdown"> 
+                    <button className="dropbtn"></button>
+                    <div className="dropdown-content">*
+                        <div className="Login">
+                            <button className="btn btn-sm">
+                                <Link to="/login" className="links">Login</Link>
                             </button>
                         </div>
-                        <div class="SignUp">
-                            <button class="btn btn-sm">
-                                <Link to="/signup" class="links">Sign Up</Link>
+                        <div className="SignUp">
+                            <button className="btn btn-sm">
+                                <Link to="/signup" className="links">Sign Up</Link>
                             </button>
                         </div>
                     {</div>
@@ -148,38 +165,38 @@ function SignUp(){
                 
 
                 {/*navigation list for various menus*/}
-                <ul class="nav-list">
+                <ul className="nav-list">
                     <li>
-                        <Link to="/" class="links">Home</Link>
+                        <Link to="/" className="links">Home</Link>
                     </li>
                     <li>
-                        <Link to="/events" class="links">List of Events</Link>
+                        <Link to="/events" className="links">List of Events</Link>
                     </li>
                     <li>
-                        <Link to="/ind_event_reg" class="links">Individual Event Registration</Link>
+                        <Link to="/ind_event_reg" className="links">Individual Event Registration</Link>
                     </li>
                     <li>
-                        <Link to="/team_event_reg" class="links">Team Event Registration</Link>
+                        <Link to="/team_event_reg" className="links">Team Event Registration</Link>
                     </li>{/*}
                     <li>
-                        <Link to="/user_dashboard" class="links">User</Link>
+                        <Link to="/user_dashboard" className="links">User</Link>
                     </li>
                     <li>
-                        <Link to="/admin_dashboard" class="links">Admin</Link>
+                        <Link to="/admin_dashboard" className="links">Admin</Link>
                     </li>*/}
                 </ul>
-                <div class="Login">
-                    <button class="btn btn-sm">
-                        <Link to="/login" class="links">Login</Link>
+                <div className="Login">
+                    <button className="btn btn-sm">
+                        <Link to="/login" className="links">Login</Link>
                     </button>
                 </div>
-                <div class="SignUp">
-                    <button class="btn btn-sm">
-                        <Link to="/signup" class="links">Sign Up</Link>
+                <div className="SignUp">
+                    <button className="btn btn-sm">
+                        <Link to="/signup" className="links">Sign Up</Link>
                     </button>
                 </div>
 
-                {/*<div class="SearchBar">
+                {/*<div className="SearchBar">
                     <form action="#">
                         <input type="text" placeholder="Search.." name="search" />
                         <button type="submit">Submit</button>
@@ -187,72 +204,122 @@ function SignUp(){
                 </div>*/}
             </nav>
 
-            <div class="box-main">
-                <div class="SignUpForm">
+            <div className="box-main">
+                <div className="SignUpForm">
                     <div>
                         <h1>User Registration</h1>
                     </div>
 
-                    <div class="messages">
+                    <div className="messages">
                         {errorMessage()}
                         {successMessage()}
                     </div>
 
                     <form>
-                        <label class="Label">Name</label>
+                        <label className="Label">Name</label>
                         <input
                             onChange = {handleName}
-                            class = "Input"
+                            className = "Input"
                             value = {name}
                             type = "text"
                             placeholder='John Smith'
                         />
 
-                        <label class="Label">Roll Number/CNIC</label>
+                        <label className="Label">Roll Number/CNIC</label>
                         <input
                             onChange = {handleIdNum}
-                            class = "Input"
+                            className = "Input"
                             value = {idNum}
                             type = "number"
                             placeholder='11111-1111111-1'
                         />
                         
-                        <label class="Label">Email</label>
+                        <label className="Label">Email</label>
                         <input
                             onChange = {handleEmail}
-                            class = "Input"
+                            className = "Input"
                             value = {email}
                             type = "email"
                             placeholder='someone@something.com'
                         />
                         
-                        <label class="Label">Phone Number</label>
+                        <label className="Label">Phone Number</label>
                         <input
                             onChange = {handleNumber}
-                            class = "Input"
+                            className = "Input"
                             value = {phoneNumber}
                             type = "number"
                             placeholder='0000-0000000'
                         />
 
-                        <label class="Label">University</label>
+                        <label className="Label">University</label>
                         <input
-                            class = "Input"
+                            onChange={handleUniversity}
+                            className = "Input"
                             value = {university}
                             type = "text"
                             placeholder='HBS'
                         />
+
+                        <label className='Label'>University ID Card</label>
+                        <div className='imgInuput'>
+                            {uniCardImg &&  (
+                                <div className='imgDisplay'>
+                                    <img 
+                                        alt="not found"
+                                        width = {"250px"}
+                                        src = {URL.createObjectURL(uniCardImg)}
+                                    />
+                                    <button className='reg-btn' onClick={()=>setUniCardImg(null)}>Remove Image</button>
+                                </div>
+                            )}
+
+                            <input
+                                className='Input'
+                                type="file"
+                                name="myImage"
+                                onChange={(e)=>{
+                                    console.log(e.target.files[0]);
+                                    setUniCardImg(e.target.files[0]);
+                                }} 
+                            />
+                        </div>
                         
-                        <label class="Label">Password</label>
+                        <label className="Label">Password</label>
                         <input
                             onChange = {handlePassword}
-                            class = "Input"
+                            className = "Input"
                             value = {password}
                             type = "password"
                             placeholder='password'
                         />
+                        
+                        <label className='Label'>Proof of Payment</label>
+                        <div className='imgInuput'>
+                            {proofImg &&  (
+                                <div className='imgDisplay'>
+                                    <img 
+                                        alt="not found"
+                                        width = {"250px"}
+                                        src = {URL.createObjectURL(proofImg)}
+                                    />
+                                    <button className='reg-btn' onClick={()=>setProofImg(null)}>Remove Image</button>
+                                </div>
+                            )}
 
-                        <button onClick={handleSubmit} class="buton" type="submit">
+                            <input
+                                className='Input'
+                                type="file"
+                                name="myImage"
+                                onChange={(e)=>{
+                                    console.log(e.target.files[0]);
+                                    setProofImg(e.target.files[0]);
+                                }} 
+                            />
+                        </div>
+
+
+                        <button onClick={handleSubmit} className="buton" type="submit">
                             Submit
                         </button>
                     </form>

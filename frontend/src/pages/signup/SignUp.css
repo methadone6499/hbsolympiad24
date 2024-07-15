@@ -1,4 +1,6 @@
 .SignUpForm {
+    display: grid;
+    grid-template-columns: auto;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -32,3 +34,10 @@
     display: flex; 
     justify-content: center; 
 } 
+
+.imgDisplay {
+    display: grid;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
