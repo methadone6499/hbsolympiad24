@@ -10,7 +10,7 @@ function IndEventReg(){
 
     const handleEventSelect = async(selectedEvent) => {
         setSelectedEvent(selectedEvent);
-        //setSubmitted(false);
+        setSubmitted(false);
     }
 
     const [submitted, setSubmitted] = useState(false); 
@@ -75,22 +75,23 @@ function IndEventReg(){
                     display: submitted ? "" : "none", 
                 }} 
             > 
-                <h1>event successfully registered!!</h1> 
+                <h1>Event successfully registered!!</h1> 
             </div> 
         ); 
     }; 
 
     const errorMessage = () => { 
-        return ( 
+        console.log("error");
+        /*return ( 
             <div 
                 className="error"
                 style={{ 
                     display: error ? "" : "none", 
                 }} 
             > 
-                <h1>Please enter all the fields</h1> 
+                console.log("error")
             </div> 
-        );
+        );*/
     };
 
 

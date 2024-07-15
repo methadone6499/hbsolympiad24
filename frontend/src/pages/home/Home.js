@@ -7,7 +7,7 @@ function Home(){
     const current_time = new Date().getTime();
     const time_to_be_added = 3 * 24 * 60 * 60 * 1000;
     
-    const d = new Date("2024-07-21T00:00:00.556094Z");
+    const d = new Date("2024-07-29T00:11:00.556094Z");
     console.log(d.getMinutes());
 
     const targetDate = current_time + time_to_be_added;

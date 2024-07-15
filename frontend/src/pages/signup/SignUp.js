@@ -58,12 +58,12 @@ function SignUp(){
         setPassword(e.target.value); 
         setSubmitted(false); 
     }; 
-
+/*
     const handleProofImg = (e) => {
         setProofImg(e.target.value);
         setSubmitted(false);
     }
-
+*/
     function isValidEmail(email) {
         const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return pattern.test(email);
@@ -72,7 +72,7 @@ function SignUp(){
     // Handling the form submission 
     const handleSubmit = async(e) => { 
         e.preventDefault(); 
-        if (name === "" || idNum  === "" || email === "" || phoneNumber === "" || password === "") 
+        if (name === "" || idNum  === "" || email === "" || phoneNumber === "" || university==="" || password === "") 
         { 
             setError(true); 
         } 
@@ -87,7 +87,7 @@ function SignUp(){
             setError(false); 
             try{
                 await axios.post("http://localhost:5000/v1/signup",{
-                    name, idNum, email, phoneNumber, password, 
+                    name, idNum, email, phoneNumber, university, uniCardImg, password, 
                 })
                 .then(res=>{
                     alert(res.data.message);
@@ -293,7 +293,7 @@ function SignUp(){
                             type = "password"
                             placeholder='password'
                         />
-                        
+                        {/*
                         <label className='Label'>Proof of Payment</label>
                         <div className='imgInuput'>
                             {proofImg &&  (
@@ -316,7 +316,7 @@ function SignUp(){
                                     setProofImg(e.target.files[0]);
                                 }} 
                             />
-                        </div>
+                        </div>*/}
 
 
                         <button onClick={handleSubmit} className="buton" type="submit">
