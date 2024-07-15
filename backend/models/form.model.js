@@ -20,14 +20,6 @@ const formSchema = new mongoose.Schema({
         required: true,
         
     },
-    spRequirements:{
-        type: String,
-    
-    },
-    feePayment:{
-        type: Buffer,
-        required :true,
-    },
     userID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'

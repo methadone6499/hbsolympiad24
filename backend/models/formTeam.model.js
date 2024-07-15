@@ -20,14 +20,6 @@ const formTeamSchema = new mongoose.Schema({
         required: true,
         
     },
-    spRequirements:{
-        type: String,
-    
-    },
-    feePayment:{
-        type: Buffer,
-        required: true
-    },
     token:{
         type: String,
         required: true,

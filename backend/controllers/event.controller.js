@@ -15,7 +15,6 @@ const addEvent = async(req, res) =>{
             location: req.body.location,
             description: req.body.description,
             limits: req.body.limits,
-            price: req.body.price,
             category: req.body.category,
             registered: req.body.registered
         })

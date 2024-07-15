@@ -12,6 +12,12 @@ const userSchema = new mongoose.Schema({
     id:{
         type: String,
     },
+    uniName:{
+        type: String,
+    },
+    uniCard:{
+        type: Buffer,
+    },
     phoneNumber:{
         type: String,
         required: true,
@@ -19,6 +25,9 @@ const userSchema = new mongoose.Schema({
     password:{
         type: String,
         required: true,
+    },
+    feePayment:{
+        type: Buffer
     },
     events: [{
         formID: {
