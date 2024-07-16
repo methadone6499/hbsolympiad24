@@ -1,13 +1,13 @@
 import './Home.css'
-import {Link} from "react-router-dom"
 import CountDownTimer from './CountdownTimer'
+import Navbar from '../navbar/Navbar'
 
 function Home(){
     
     const current_time = new Date().getTime();
     const time_to_be_added = 3 * 24 * 60 * 60 * 1000;
     
-    const d = new Date("2024-07-29T00:11:00.556094Z");
+    const d = new Date("2024-08-29T00:11:00.556094Z");
     console.log(d.getMinutes());
 
     const targetDate = current_time + time_to_be_added;
@@ -16,69 +16,7 @@ function Home(){
 
     return(
         <div className='Home'>
-            
-            {/*nav bar at top of page*/}
-            <nav className="navbar">
-                {/*button to be used for holding the signup/login in a drop down menu*/}
-                {/*<div classname="dropdown"> 
-                    <button className="dropbtn"></button>
-                    <div className="dropdown-content">*
-                        <div className="Login">
-                            <button className="btn btn-sm">
-                                <Link to="/login" className="links">Login</Link>
-                            </button>
-                        </div>
-                        <div className="SignUp">
-                            <button className="btn btn-sm">
-                                <Link to="/signup" className="links">Sign Up</Link>
-                            </button>
-                        </div>
-                    {</div>
-                </div>*/}
-
-                
-
-                {/*navigation list for various menus*/}
-                <ul className="nav-list">
-                    <li>
-                        <Link to="/" className="links">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/events" className="links">List of Events</Link>
-                    </li>
-                    <li>
-                        <Link to="/ind_event_reg" className="links">Individual Event Registration</Link>
-                    </li>
-                    <li>
-                        <Link to="/team_event_reg" className="links">Team Event Registration</Link>
-                    </li>{/*}
-                    <li>
-                        <Link to="/user_dashboard" className="links">User</Link>
-                    </li>
-                    <li>
-                        <Link to="/admin_dashboard" className="links">Admin</Link>
-                    </li>*/}
-                </ul>
-                <div className="Login">
-                    <button className="btn btn-sm">
-                        <Link to="/login" className="links">Login</Link>
-                    </button>
-                </div>
-                <div className="SignUp">
-                    <button className="btn btn-sm">
-                        <Link to="/signup" className="links">Sign Up</Link>
-                    </button>
-                </div>
-
-                
-                {/*search bar for user convinience*/}
-                {/*<div className="SearchBar">
-                    <form action="#">
-                        <input type="text" placeholder="Search.." name="search" />
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>*/}
-            </nav>
+            <Navbar />
 
             <div className="box-main">
                 <img

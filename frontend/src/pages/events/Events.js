@@ -1,69 +1,11 @@
 import './Events.css'
-import {useNavigate, Link} from "react-router-dom"
+import Navbar from '../navbar/Navbar'
 
 function Events(){
 
     return(
         <div className='Home'>
-            <nav className="navbar">
-                {/*button to be used for holding the signup/login in a drop down menu*/}
-                {/*<div className="dropdown"> 
-                    <button className="dropbtn"></button>
-                    <div className="dropdown-content">*
-                        <div className="Login">
-                            <button className="btn btn-sm">
-                                <Link to="/login" className="links">Login</Link>
-                            </button>
-                        </div>
-                        <div className="SignUp">
-                            <button className="btn btn-sm">
-                                <Link to="/signup" className="links">Sign Up</Link>
-                            </button>
-                        </div>
-                    {</div>
-                </div>*/}
-
-                
-
-                {/*navigation list for various menus*/}
-                <ul className="nav-list">
-                    <li>
-                        <Link to="/" className="links">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/events" className="links">List of Events</Link>
-                    </li>
-                    <li>
-                        <Link to="/ind_event_reg" className="links">Individual Event Registration</Link>
-                    </li>
-                    <li>
-                        <Link to="/team_event_reg" className="links">Team Event Registration</Link>
-                    </li>{/*}
-                    <li>
-                        <Link to="/user_dashboard" className="links">User</Link>
-                    </li>
-                    <li>
-                        <Link to="/admin_dashboard" className="links">Admin</Link>
-                    </li>*/}
-                </ul>
-                <div className="Login">
-                    <button className="btn btn-sm">
-                        <Link to="/login" className="links">Login</Link>
-                    </button>
-                </div>
-                <div className="SignUp">
-                    <button className="btn btn-sm">
-                        <Link to="/signup" className="links">Sign Up</Link>
-                    </button>
-                </div>
-
-                {/*<div className="SearchBar">
-                    <form action="#">
-                        <input type="text" placeholder="Search.." name="search" />
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>*/}
-            </nav>
+            <Navbar />
 
             <div className="box-main">
                 <img
@@ -84,12 +26,14 @@ function Events(){
                 </h1>
                 <div className="events-box">
                     <div className="E-event E_T E_L">
-                        <img
-                            src="https://cdn-icons-png.flaticon.com/512/3439/3439594.png" 
-                            width="100"
-                            height="100"
+                        {/*<img
+                            className='imgInnit'
+                            src="https://i.imgur.com/RPIwzpI.jpeg" 
+                            width="112.5"
+                            height="200"
                             placeholder="Table Tennis"
-                        />
+                        />*/}
+                        <br /> <br />
                         <p className="text-big">
                             Table Tennis
                         </p>
@@ -98,12 +42,13 @@ function Events(){
                         </p>
                     </div>
                     <div className="E-event E_T E_R">
-                        <img
+                        {/*<img
                             src="https://cdn-icons-png.flaticon.com/512/184/184093.png"
                             width="100"
                             height="100" 
                             placeholder="Volleyball"
-                        />
+                        />*/}
+                        <br /> <br />
                         <p className="text-big">
                             Volleyball
                         </p>

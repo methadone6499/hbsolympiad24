@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './IndEventReg.css'
-import {Link} from "react-router-dom"
 import axios from 'axios'
+import Navbar from '../navbar/Navbar'
 
 function IndEventReg(){
 
@@ -40,16 +40,6 @@ function IndEventReg(){
             const affiliation = "nig";
             //convertToBase64();
             const userID = "6686b17f0aa299110fe38fd9";
-            /*const formData = new FormData();
-            console.log(feePayment);
-            formData.append('name', name);
-            formData.append('email', email);
-            formData.append('phoneNumber', phoneNumber);
-            formData.append('affiliation', affiliation);
-            formData.append('spRequirements', spRequirements);
-            formData.append('feePayment', feePayment); // Assuming feePayment is a file input
-            formData.append('userID', userID);
-            formData.append('eventID', eventID);*/
             try
             {
                 console.log(selectedEvent)
@@ -97,36 +87,7 @@ function IndEventReg(){
 
     return(
         <div className='Home'>
-            <nav className="navbar">
-
-                {/*navigation list for various menus*/}
-                <ul className="nav-list">
-                    <li>
-                        <Link to="/" className="links">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/events" className="links">List of Events</Link>
-                    </li>
-                    <li>
-                        <Link to="/ind_event_reg" className="links">Individual Event Registration</Link>
-                    </li>
-                    <li>
-                        <Link to="/team_event_reg" className="links">Team Event Registration</Link>
-                    </li>
-                </ul>
-
-                <div className="Login">
-                    <button className="btn btn-sm">
-                        <Link to="/login" className="links">Login</Link>
-                    </button>
-                </div>
-
-                <div className="SignUp">
-                    <button className="btn btn-sm">
-                        <Link to="/signup" className="links">Sign Up</Link>
-                    </button>
-                </div>
-            </nav>
+            <Navbar />
 
             <div className="box-main">
                 <img

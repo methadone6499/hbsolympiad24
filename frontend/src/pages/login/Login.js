@@ -1,22 +1,17 @@
 import './Login.css'
-import {useNavigate, Link} from "react-router-dom"
-import { useState, useEffect } from 'react'
+import {useNavigate} from "react-router-dom"
+import { useState } from 'react'
 import axios, { all } from 'axios'
+import Navbar from '../navbar/Navbar'
 
 function Login(){
-
+   
 
     // States for registration 
     const [idNum, setIdNum] = useState("");  
     const [email, setEmail] = useState(""); 
     const [password, setPassword] = useState(""); 
-    const [allValues, setAllValues] = useState({
-        idNum1: '987654321',
-        email1: 'something@gmail.com',
-        password1: 'whatcoulditbe'
-    })
     const navigate = useNavigate();
-    const [fuck, setFuck] = useState("fuck");
   
     
     // States for checking the errors 
@@ -48,11 +43,12 @@ function Login(){
         return pattern.test(email);
     }
 
+{/*}
     useEffect(() => {
         if (name!= "" && phoneNumber!="" && idNum && email) {
             navigate('/user_dashboard', { state: { name, idNum, email, phoneNumber } });
         }
-    }, [name, phoneNumber, idNum, email]);
+    }, [name, phoneNumber, idNum, email]);*/}
 
   
     // Handling the form submission 
@@ -79,16 +75,15 @@ function Login(){
                 })
                 .then(res=>{
                     //alert("Successful login!");
-                    console.log(res.data.name);
-                    setName(res.data.name);
-                    setPhoneNo(res.data.phoneNumber);
-                    console.log(name);
-                    setFuck("nofuck");
-                    
+                    console.log(res.data.result.name);
+
+                    localStorage.setItem('profile', JSON.stringify(res.data));
+                    navigate('/user_dashboard');
                 })
             }
             catch(e){
-                alert('Server error')
+                alert('Server error');
+                console.log(e);
             }
             
         } 
@@ -139,104 +134,46 @@ function Login(){
 
     return(
         <div className='Home'>
-            <nav class="navbar">
 
-                {/*button to be used for holding the signup/login in a drop down menu*/}
-                {/*<div class="dropdown"> 
-                    <button class="dropbtn"></button>
-                    <div class="dropdown-content">*
-                        <div class="Login">
-                            <button class="btn btn-sm">
-                                <Link to="/login" class="links">Login</Link>
-                            </button>
-                        </div>
-                        <div class="SignUp">
-                            <button class="btn btn-sm">
-                                <Link to="/signup" class="links">Sign Up</Link>
-                            </button>
-                        </div>
-                    {</div>
-                </div>*/}
+            <Navbar />
 
-                
-
-                {/*navigation list for various menus*/}
-                <ul class="nav-list">
-                    <li>
-                        <Link to="/" class="links">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/events" class="links">List of Events</Link>
-                    </li>
-                    <li>
-                        <Link to="/ind_event_reg" class="links">Individual Event Registration</Link>
-                    </li>
-                    <li>
-                        <Link to="/team_event_reg" class="links">Team Event Registration</Link>
-                    </li>{/*}
-                    <li>
-                        <Link to="/user_dashboard" class="links">User</Link>
-                    </li>
-                    <li>
-                        <Link to="/admin_dashboard" class="links">Admin</Link>
-                    </li>*/}
-                </ul>
-                <div class="Login">
-                    <button class="btn btn-sm">
-                        <Link to="/login" class="links">Login</Link>
-                    </button>
-                </div>
-                <div class="SignUp">
-                    <button class="btn btn-sm">
-                        <Link to="/signup" class="links">Sign Up</Link>
-                    </button>
-                </div>
-
-                {/*<div class="SearchBar">
-                    <form action="#">
-                        <input type="text" placeholder="Search.." name="search" />
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>*/}
-            </nav>
-
-            <div class="box-main">
-                <div class="LoginPage">
+            <div className="box-main">
+                <div className="LoginPage">
                     <div>
                         <h1>User Login</h1>
                     </div>
 
-                    <div class="messages">
+                    <div className="messages">
                         {errorMessage()}
                         {successMessage()}
                     </div>
 
                     <form onSubmit={handleSubmit}>
-                        <label class="Label">Roll Number/CNIC</label>
+                        <label className="Label">Roll Number/CNIC</label>
                         <input
                             onChange = {handleIdNum}
-                            class = "Input"
+                            className = "Input"
                             value = {idNum}
                             type = "number"
                         />
                         
-                        <label class="Label">Email</label>
+                        <label className="Label">Email</label>
                         <input
                             onChange = {handleEmail}
-                            class = "Input"
+                            className = "Input"
                             value = {email}
                             type = "text"
                         />
                         
-                        <label class="Label">Password</label>
+                        <label className="Label">Password</label>
                         <input
                             onChange = {handlePassword}
-                            class = "Input"
+                            className = "Input"
                             value = {password}
                             type = "password"
                         />
 
-                        <button class="buton" type="submit">
+                        <button className="buton" type="submit">
                             Submit
                         </button>
                     </form>
