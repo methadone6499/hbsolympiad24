@@ -24,6 +24,9 @@ const formTeamSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    numOfMembers:{
+        type: Number
+    },
     user: [{
         userID: {
             type: mongoose.Schema.Types.ObjectId,
