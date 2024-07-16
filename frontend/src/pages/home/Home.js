@@ -41,76 +41,50 @@ function Home(){
                     event designed to not only engage and smulate our students socially but also foster camaraderie and 
                     compe ve spirit among medical colleges across the region.
                 </p>
+                <br />
                 <h1 className="text-big" id="program">
                     Featured Events
                 </h1>
-                
+                <br />
                 <div className="events-box">
                     <div className="E-event E_T E_L">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbYQTiqHcIlHAI8C5F4jCDkgNhtmxfeg_nSg&s"
-                            width="250"
-                            height="100" 
-                        />
                         <p className="text-big">
-                            Scavenger Hunt
+                            Cultural Festival
                         </p>
                         <p className="text-small">
-                            A scavenger hunt is a game in which the organizers prepare a list defining specific items, which the participants seek to gather or complete all items on the list, usually without purchasing them.
+                            A cultural fest is an event celebrating diverse traditions through music, dance, food, crafts, and performances, promoting cultural exchange and community spirit.
                         </p>
                     </div>
                     <div className="E-event E_T E_R">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqWOFaY9ZYsNQOZZu_TCEt_byJNbqav4qEcA&s"
-                            width="100"
-                            height="100" 
-                        />
                         <p className="text-big">
-                            Art Competition
+                            Qawali
                         </p>
                         <p className="text-small">
-                            Art competitions allow artists to display their work among their peers, have it reviewed by esteemed judges, and sometimes receive exhibition opportunities and monetary incentives.
+                            Qawwali is a Sufi devotional music from South Asia, featuring powerful vocals, rhythmic instruments, and repetitive choruses. Its lyrics focus on spiritual themes, aiming to evoke deep emotional and spiritual experiences in the audience.   
                         </p>
                     </div>
                     <div className="E-event E_L">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNeEoX0s2CnIjAtWD2fMXFceuxVJ1_mzWR3w&s" 
-                            width="100"
-                            height="100" 
-                        />
                         <p className="text-big">
-                            Photography Gallery
+                            BLS Competition
                         </p>
                         <p className="text-small">
-                            An event where competitors can submit their photographs to be displayed so they can be viewed by peers and reviewed by judges to select the best one among them.
+                            A BLS (Basic Life Support) competition tests participants' skills in emergency medical procedures, such as CPR, using an AED, and handling choking incidents. Competitors are judged on their ability to perform these life-saving techniques quickly and accurately.
                         </p>
                     </div>
                     <div className="E-event E_R">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTquooo48SV3Uw_SM4DLHoxzdjOvF-J6Yfgkg&s" 
-                            width="100"
-                            height="100" 
-                        />
                         <p className="text-big">
-                            Music Jamming Session
+                            Futsal
                         </p>
                         <p className="text-small">
-                            A jam session is a relatively informal musical event, process, or activity where musicians, typically instrumentalists, play improvised solos and vamp over tunes, drones, songs, and chord progressions
+                            A BLS (Basic Life Support) competition tests participants' skills in emergency medical procedures, such as CPR, using an AED, and handling choking incidents. Competitors are judged on their ability to perform these life-saving techniques quickly and accurately.
                         </p>
                     </div>
                 </div>
+                <br /> <br />
                 <h1 className="text-big" id="program">
-                    {"\n"}
-                    {"\n"}
-                    {"\n"}
-                    {"\n"}
                     Sponsors
                 </h1>
                 <p className="text-small">
-                    {"\n"}
-                    {"\n"}
-                    {"\n"}
-                    {"\n"}
                 </p>
             </div>
             <footer className="footer">

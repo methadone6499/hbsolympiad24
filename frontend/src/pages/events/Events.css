@@ -10,9 +10,15 @@
 
   .ER-event{
     display: grid;
-    grid-template-columns: 10% 15% auto auto;
+    grid-template-columns: 15% auto auto;
+    justify-content: center;
     align-items: center;
     padding: 5px
+  }
+
+  .btn-thing {
+    display: flex;;
+    align-items: center;
   }
 
   .E_T {

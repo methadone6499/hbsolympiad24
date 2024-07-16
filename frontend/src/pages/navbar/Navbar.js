@@ -16,9 +16,6 @@ const Navbar = () => {
         navigate('/');
     }
 
-    useEffect (() => {
-        setUser(JSON.parse(localStorage.getItem('profile')));
-    }, [])
 
     return (
         
@@ -34,19 +31,28 @@ const Navbar = () => {
                 <Link to="/events" className="links">List of Events</Link>
             </li>
             <li>
-                <Link to="/ind_event_reg" className="links">Individual Event Registration</Link>
+                { user ? 
+                ( 
+                    <Link to="/ind_event_reg" className="links">Individual Event Registration</Link>) : 
+                ( <></> )
+                }
             </li>
             <li>
-                <Link to="/team_event_reg" className="links">Team Event Registration</Link>
+                { user ? 
+                ( 
+                    <Link to="/team_event_reg" className="links">Team Event Registration</Link>) : 
+                ( <></> )
+                }
             </li>
         </ul>
 
-        { user ? (
-            <div>
+        { user ? 
+        (
+            <div className='reg-buttons'>
                 <div className="userDashboard">
-                    <button className="btn btn-sm">
-                        <Link to="/user_dashboard" className="links">UserDashboard {user.result.name}</Link>
-                    </button>
+                    <Link to="/user_dashboard" className="links">
+                        <button className="btn btn-sm">User Dashboard {user.result.name}</button>
+                    </Link>
                 </div>
                 <div className="LogOut">
                     <button className="btn btn-sm" onClick={logOut}>
@@ -54,17 +60,18 @@ const Navbar = () => {
                     </button>
                 </div>
             </div>
-        ) : (
-            <div>
+        ) : 
+        (
+            <div className='reg-buttons'>
                 <div className="Login">
-                    <button className="btn btn-sm">
-                        <Link to="/login" className="links">Login</Link>
-                    </button>
+                    <Link to="/login" className="links">
+                        <button className="btn btn-sm">Login</button>
+                    </Link>
                 </div>
                 <div className="SignUp">
-                    <button className="btn btn-sm">
-                        <Link to="/signup" className="links">Sign Up</Link>
-                    </button>
+                    <Link to="/signup" className="links">
+                        <button className="btn btn-sm">Sign Up</button>
+                    </Link>
                 </div>
             </div>
         ) }

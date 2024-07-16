@@ -5,12 +5,10 @@ import React from 'react'
 import Navbar from '../navbar/Navbar'
 
 function UserDashboard(){
-
-
-
+    
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
-    const { name, id, email, phoneNumber, password} = user.result;
+    const { name, id, email, phoneNumber, password } = user?.result;
     console.log(user);
 
     const [events, setEvents] = useState([]);

@@ -21,18 +21,12 @@ function Events(){
                 <p className="text-small">
                     The HBS olympiad offers a variety of events for all your interests ranging from Sports of both the body and mind to Academic events to clash with your peers in regards to your learnt skills all the way to Social events to chill out with friends and even make more.
                 </p>
+                <br /> <br />
                 <h1 className="text-big" id="program">
                     Sports
                 </h1>
                 <div className="events-box">
                     <div className="E-event E_T E_L">
-                        {/*<img
-                            className='imgInnit'
-                            src="https://i.imgur.com/RPIwzpI.jpeg" 
-                            width="112.5"
-                            height="200"
-                            placeholder="Table Tennis"
-                        />*/}
                         <br /> <br />
                         <p className="text-big">
                             Table Tennis
@@ -42,12 +36,6 @@ function Events(){
                         </p>
                     </div>
                     <div className="E-event E_T E_R">
-                        {/*<img
-                            src="https://cdn-icons-png.flaticon.com/512/184/184093.png"
-                            width="100"
-                            height="100" 
-                            placeholder="Volleyball"
-                        />*/}
                         <br /> <br />
                         <p className="text-big">
                             Volleyball
@@ -57,12 +45,6 @@ function Events(){
                         </p>
                     </div>
                     <div className="E-event E_L">
-                        <img
-                            src="https://cdn-icons-png.flaticon.com/512/889/889455.png" 
-                            width="100"
-                            height="100"
-                            placeholder="Basketball"
-                        />
                         <p className="text-big">
                             Basketball
                         </p>
@@ -71,12 +53,6 @@ function Events(){
                         </p>
                     </div>
                     <div className="E-event E_R">
-                        <img
-                            src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/PedroPinhata/phpkXK09k.png" 
-                            width="80"
-                            height="100" 
-                            placeholder="Chess"
-                        />
                         <p className="text-big">
                             Chess
                         </p>
@@ -85,12 +61,6 @@ function Events(){
                         </p>
                     </div>
                     <div className="E-event E_B E_L">
-                        <img
-                            src="https://w7.pngwing.com/pngs/977/162/png-transparent-video-game-game-controllers-gaming-miscellaneous-game-logo-thumbnail.png" 
-                            width="100"
-                            height="100" 
-                            placeholder="E Games"
-                        />
                         <p className="text-big">
                             E-Games
                         </p>
@@ -99,12 +69,6 @@ function Events(){
                         </p>
                     </div>
                     <div className="E-event E_B E_R">
-                        <img
-                            src="https://p7.hiclipart.com/preview/128/528/45/football-player-computer-icons-futsal-football.jpg" 
-                            width="80"
-                            height="100" 
-                            placeholder="Futsal"
-                        />
                         <p className="text-big">
                             Futsal
                         </p>
@@ -113,17 +77,12 @@ function Events(){
                         </p>
                     </div>
                 </div>
+                <br /> <br />
                 <h1 className="text-big" id="program">
                     Academic
                 </h1>
                 <div className="events-box">
                     <div className="E-event E_T E_L">
-                        <img
-                            src="https://image.similarpng.com/very-thumbnail/2020/12/Quiz-comic-pop-art-style-illustration-on-transparent-background-PNG.png"
-                            width="125"
-                            height="100" 
-                            placeholder="Quiz"
-                        />
                         <p className="text-big">
                             Quizzes
                         </p>
@@ -132,12 +91,6 @@ function Events(){
                         </p>
                     </div>
                     <div className="E-event E_T E_R">
-                        <img
-                            src="https://p1.hiclipart.com/preview/765/543/748/windows-metafile-yellow-surgery-surgical-suture-scalpel-symbol-logo-png-clipart.jpg"
-                            width="100"
-                            height="100" 
-                            placeholder="Suturing"
-                        />
                         <p className="text-big">
                             Suturing
                         </p>
@@ -146,12 +99,6 @@ function Events(){
                         </p>
                     </div>
                     <div className="E-event E_L">
-                        <img
-                            src="https://e7.pngegg.com/pngimages/90/932/png-clipart-first-aid-supplies-cardiopulmonary-resuscitation-basic-life-support-cpr-and-aed-advanced-cardiac-life-support-first-aid-facilities-love-className-thumbnail.png" 
-                            width="100"
-                            height="100" 
-                            placeholder="BLS Comp"
-                        />
                         <p className="text-big">
                             BLS Competition
                         </p>
@@ -160,12 +107,6 @@ function Events(){
                         </p>
                     </div>
                     <div className="E-event E_R">
-                        <img
-                            src="https://image.similarpng.com/very-thumbnail/2021/06/Dental-Logo-and-Icon-with-Modern-Design-Style-on-transparent-background-PNG.png" 
-                            width="100"
-                            height="100" 
-                            placeholder="Dental Comp"
-                        />
                         <p className="text-big">
                             Dental Competition
                         </p>
@@ -174,12 +115,6 @@ function Events(){
                         </p>
                     </div>
                     <div className="E-event E_L E_B">
-                        <img
-                            src="https://w1.pngwing.com/pngs/405/111/png-transparent-background-meeting-presentation-poster-session-convention-research-organization-advertising-education.png" 
-                            width="100"
-                            height="100" 
-                            placeholder="Research Conf"
-                        />
                         <p className="text-big">
                             Research Conference
                         </p>
@@ -188,12 +123,6 @@ function Events(){
                         </p>
                     </div>
                     <div className="E-event E_B E_R">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYdG2uK04Tvm_i0swaSeypkIU-pgQqcWXHkg&s" 
-                            width="100"
-                            height="100" 
-                            placeholder="MUN"
-                        />
                         <p className="text-big">
                             MUN/Debates
                         </p>
@@ -202,17 +131,12 @@ function Events(){
                         </p>
                     </div>
                 </div>
+                <br /> <br />
                 <h1 className="text-big" id="program">
                     Social
                 </h1>
                 <div className="events-box">
                     <div className="E-event E_T E_L">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbYQTiqHcIlHAI8C5F4jCDkgNhtmxfeg_nSg&s"
-                            width="250"
-                            height="100" 
-                            placeholder="Scavenger Hunt"
-                        />
                         <p className="text-big">
                             Scavenger Hunt
                         </p>
@@ -221,12 +145,6 @@ function Events(){
                         </p>
                     </div>
                     <div className="E-event E_T E_R">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqWOFaY9ZYsNQOZZu_TCEt_byJNbqav4qEcA&s"
-                            width="100"
-                            height="100" 
-                            placeholder="Art Comp"
-                        />
                         <p className="text-big">
                             Art Competition
                         </p>
@@ -235,12 +153,6 @@ function Events(){
                         </p>
                     </div>
                     <div className="E-event E_L">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNeEoX0s2CnIjAtWD2fMXFceuxVJ1_mzWR3w&s" 
-                            width="100"
-                            height="100" 
-                            placeholder="Photo Gallery"
-                        />
                         <p className="text-big">
                             Photography Gallery
                         </p>
@@ -249,12 +161,6 @@ function Events(){
                         </p>
                     </div>
                     <div className="E-event E_R">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTquooo48SV3Uw_SM4DLHoxzdjOvF-J6Yfgkg&s" 
-                            width="100"
-                            height="100" 
-                            placeholder="Music Jam"
-                        />
                         <p className="text-big">
                             Music Jamming Session
                         </p>

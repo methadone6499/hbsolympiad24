@@ -4,9 +4,12 @@ import axios from 'axios'
 import Navbar from '../navbar/Navbar'
 
 function IndEventReg(){
+    
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
     const [selectedEvent, setSelectedEvent] = useState("");
 
+    const { name, id, email, phoneNumber, password } = user?.result;
 
     const handleEventSelect = async(selectedEvent) => {
         setSelectedEvent(selectedEvent);
@@ -17,7 +20,7 @@ function IndEventReg(){
     const [error, setError] = useState(false); 
 
     useEffect(() => {
-        console.log('Count updated:', selectedEvent);
+        console.log('Event selected:', selectedEvent);
         handleSubmit();
       }, [selectedEvent]);
 
@@ -34,17 +37,11 @@ function IndEventReg(){
             console.log(selectedEvent)
             const eventID = selectedEvent;
             console.log(eventID)
-            const name = "Usama";
-            const email = "molly@gmail.com";
-            const phoneNumber = "23094392";
-            const affiliation = "nig";
-            //convertToBase64();
-            const userID = "6686b17f0aa299110fe38fd9";
             try
             {
                 console.log(selectedEvent)
                 await axios.post("http://localhost:5000/v1/submitFormSolo",{
-                    name, email, phoneNumber, affiliation, userID, eventID
+                    name, email, phoneNumber, id, eventID
                 })
                 .then(res=>{
                     alert(res.data.message);
@@ -72,16 +69,6 @@ function IndEventReg(){
 
     const errorMessage = () => { 
         console.log("error");
-        /*return ( 
-            <div 
-                className="error"
-                style={{ 
-                    display: error ? "" : "none", 
-                }} 
-            > 
-                console.log("error")
-            </div> 
-        );*/
     };
 
 
@@ -112,12 +99,6 @@ function IndEventReg(){
                         {SuccessMessage()}
                     </div>
                     <div className="ER-event E_T">
-                        <img
-                            src="https://cdn-icons-png.flaticon.com/512/3439/3439594.png" 
-                            width="100"
-                            height="100"
-                            placeholder="Table Tennis"
-                        />
                         <p className="text-big">
                             Table Tennis
                         </p>
@@ -125,20 +106,12 @@ function IndEventReg(){
                             Table tennis, or ping pong, is a fast-paced indoor sport played on a table divided by a net. Players use paddles to hit a lightweight ball back and forth. It requires quick reflexes, strategic thinking, and precise ball control.
                         </p>
                         <button type="submit" className='reg-btn' onClick=
-                                                    {(e)=>{
-                                                        handleEventSelect("Table Tennis");
-                                                    }}>Register</button> 
-
-
-
+                        {(e)=>{
+                            handleEventSelect("Table Tennis (Solo)");
+                         }}>Register</button> 
                     </div>
+
                     <div className="ER-event E_T">
-                        <img
-                            src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/PedroPinhata/phpkXK09k.png" 
-                            width="80"
-                            height="100" 
-                            placeholder="Chess"
-                        />
                         <p className="text-big">
                             Chess
                         </p>
@@ -152,48 +125,32 @@ function IndEventReg(){
 
                     </div>
                     <div className="ER-event E_T">
-                        <img
-                            src="https://cdn-icons-png.flaticon.com/512/889/889455.png" 
-                            width="100"
-                            height="100"
-                            placeholder="Basketball"
-                        />
                         <p className="text-big">
-                            Cultural Festival
+                            E-Games (Tekken)
                         </p>
                         <p className="text-small">
-                            A cultural fest is an event celebrating diverse traditions through music, dance, food, crafts, and performances, promoting cultural exchange and community spirit.
+                            E-gaming, or electronic gaming, involves playing video games on devices like computers, consoles, and mobiles. It includes casual gaming, competitive gaming, and professional esports, featuring single-player and multiplayer experiences, and has grown into a major part of modern entertainment and culture.
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("Cultural Festival");
+                                                        setSelectedEvent("Chess");
                                                     }}>Register</button> 
+
                     </div>
                     <div className="ER-event E_T">
-                        <img
-                            src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/PedroPinhata/phpkXK09k.png" 
-                            width="80"
-                            height="100" 
-                            placeholder="Chess"
-                        />
                         <p className="text-big">
-                            Quizzes
+                            E-Games (FIFA)
                         </p>
                         <p className="text-small">
-                            Quizzes are short tests or competitions designed to assess knowledge on various topics. They can be used for education, entertainment, or competitive purposes, often featuring multiple-choice, true/false, or open-ended questions.
+                            E-gaming, or electronic gaming, involves playing video games on devices like computers, consoles, and mobiles. It includes casual gaming, competitive gaming, and professional esports, featuring single-player and multiplayer experiences, and has grown into a major part of modern entertainment and culture.
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("Quizzes");
+                                                        setSelectedEvent("Chess");
                                                     }}>Register</button> 
+
                     </div>
                     <div className="ER-event E_T">
-                        <img
-                            src="https://w7.pngwing.com/pngs/977/162/png-transparent-video-game-game-controllers-gaming-miscellaneous-game-logo-thumbnail.png" 
-                            width="100"
-                            height="100" 
-                            placeholder="E Games"
-                        />
                         <p className="text-big">
                             Suturing
                         </p>
@@ -206,12 +163,6 @@ function IndEventReg(){
                                                     }}>Register</button> 
                     </div>
                     <div className="ER-event">
-                        <img
-                            src="https://p7.hiclipart.com/preview/128/528/45/football-player-computer-icons-futsal-football.jpg" 
-                            width="80"
-                            height="100" 
-                            placeholder="Futsal"
-                        />
                         <p className="text-big">
                             BLS Competition
                         </p>
@@ -224,12 +175,42 @@ function IndEventReg(){
                                                     }}>Register</button> 
                     </div>
                     <div className="ER-event">
-                        <img
-                            src="https://p7.hiclipart.com/preview/128/528/45/football-player-computer-icons-futsal-football.jpg" 
-                            width="80"
-                            height="100" 
-                            placeholder="Futsal"
-                        />
+                        <p className="text-big">
+                            MUN (UNSC)
+                        </p>
+                        <p className="text-small">
+                            MUN or debates simulate international organizations or parliamentary settings, where participants represent countries or positions to discuss global issues, improving diplomacy and public speaking skills.
+                        </p>
+                        <button type="submit" className='reg-btn' onClick=
+                                                    {(e)=>{
+                                                        setSelectedEvent("MUN (Committe 1)");
+                                                    }}>Register</button> 
+                    </div>
+                    <div className="ER-event">
+                        <p className="text-big">
+                            MUN (PNA)
+                        </p>
+                        <p className="text-small">
+                            MUN or debates simulate international organizations or parliamentary settings, where participants represent countries or positions to discuss global issues, improving diplomacy and public speaking skills.
+                        </p>
+                        <button type="submit" className='reg-btn' onClick=
+                                                    {(e)=>{
+                                                        setSelectedEvent("MUN (Committe 2)");
+                                                    }}>Register</button> 
+                    </div>
+                    <div className="ER-event">
+                        <p className="text-big">
+                            MUN (Crisis Committe)
+                        </p>
+                        <p className="text-small">
+                            MUN or debates simulate international organizations or parliamentary settings, where participants represent countries or positions to discuss global issues, improving diplomacy and public speaking skills.
+                        </p>
+                        <button type="submit" className='reg-btn' onClick=
+                                                    {(e)=>{
+                                                        setSelectedEvent("MUN (Committe 3)");
+                                                    }}>Register</button> 
+                    </div>
+                    <div className="ER-event">
                         <p className="text-big">
                             Art Competition
                         </p>
@@ -242,30 +223,6 @@ function IndEventReg(){
                                                     }}>Register</button> 
                     </div>
                     <div className="ER-event">
-                        <img
-                            src="https://p7.hiclipart.com/preview/128/528/45/football-player-computer-icons-futsal-football.jpg" 
-                            width="80"
-                            height="100" 
-                            placeholder="Futsal"
-                        />
-                        <p className="text-big">
-                            Art Gallery
-                        </p>
-                        <p className="text-small">
-                            An art gallery is a space where artworks are displayed for public viewing and sale. It serves as a venue for artists to exhibit their creations, ranging from paintings and sculptures to digital art and installations. Art galleries also play a role in cultural enrichment, education, and fostering appreciation for visual arts.
-                        </p>
-                        <button type="submit" className='reg-btn' onClick=
-                                                    {(e)=>{
-                                                        setSelectedEvent("Art Gallery");
-                                                    }}>Register</button> 
-                    </div>
-                    <div className="ER-event">
-                        <img
-                            src="https://p7.hiclipart.com/preview/128/528/45/football-player-computer-icons-futsal-football.jpg" 
-                            width="80"
-                            height="100" 
-                            placeholder="Futsal"
-                        />
                         <p className="text-big">
                             Videography Competition
                         </p>
@@ -276,97 +233,6 @@ function IndEventReg(){
                                                     {(e)=>{
                                                         setSelectedEvent("Videography Competition");
                                                     }}>Register</button> 
-                    </div>
-                    <div className="ER-event">
-                        <img
-                            src="https://p7.hiclipart.com/preview/128/528/45/football-player-computer-icons-futsal-football.jpg" 
-                            width="80"
-                            height="100" 
-                            placeholder="Futsal"
-                        />
-                        <p className="text-big">
-                            Live Karaoke
-                        </p>
-                        <p className="text-small">
-                            Live karaoke is an entertainment activity where individuals sing along to recorded music tracks in front of an audience, often using a microphone and a screen displaying lyrics. It combines live performance with audience participation and is popular in bars, clubs, and private events.
-                        </p>
-                        <button type="submit" className='reg-btn' onClick=
-                                                    {(e)=>{
-                                                        setSelectedEvent("Live Karaoke");
-                                                    }}>Register</button> 
-                    </div>
-                    <div className="ER-event">
-                        <img
-                            src="https://p7.hiclipart.com/preview/128/528/45/football-player-computer-icons-futsal-football.jpg" 
-                            width="80"
-                            height="100" 
-                            placeholder="Futsal"
-                        />
-                        <p className="text-big">
-                            Qawali
-                        </p>
-                        <p className="text-small">
-                            Qawwali is a Sufi devotional music from South Asia, featuring powerful vocals, rhythmic instruments, and repetitive choruses. Its lyrics focus on spiritual themes, aiming to evoke deep emotional and spiritual experiences in the audience.
-                        </p>
-                        <button type="submit" className='reg-btn' onClick=
-                                                    {(e)=>{
-                                                        setSelectedEvent("Qawali");
-                                                    }}>Register</button> 
-                         {/*<button id="openModal" className='reg-btn'>Open</button>
-                         <dialog id="modal" className='popup'>
-                            <div className="content">
-                                <p className="text-small">
-                                    Welcome to registration {"\n"}
-                                    Here there be user info
-                                </p>
-
-                                <div className="text-small">
-                                    {errorMessage()}
-                                    {SuccessMessage()}
-                                </div>
-
-                                <form>
-                                    <label className="Label">Name</label>
-                                    <input
-                                        onChange = {handleSpecReq}
-                                        className = "Input"
-                                        value = {specReq}
-                                        type = "text"
-                                        placeholder='John Smith'
-                                    />
-
-                                    {proofImg &&  (
-                                        <div>
-                                            <img 
-                                                alt="not found"
-                                                width = {"250px"}
-                                                src = {URL.createObjectURL(proofImg)}
-                                            />
-                                            <button onClick={()=>setProofImg(null)}>Remove Image</button>
-                                        </div>
-                                   )}
-
-                                    <input
-                                        type="file"
-                                        name="myImage"
-                                        onChange={(e)=>{
-                                            console.log(e.target.files[0]);
-                                            setProofImg(e.target.files[0]);
-                                        }} 
-                                    />
-
-                                    <button onClick={handleSubmit} className="btn" type="submit">
-                                        Submit
-                                    </button>
-                                </form>
-                            </div>
-                            <button id="closeModal" className='reg-btn' onClick=
-                                                    {()=>{
-                                                        setProofImg(null);
-                                                        setSpecReq("");
-                                                        setSubmitted(false);
-                                                    }}>Close</button> 
-                         </dialog>*/}
                     </div>
                 </div>
             </div>

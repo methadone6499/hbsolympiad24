@@ -5,6 +5,8 @@ import axios, { all } from 'axios'
 import Navbar from '../navbar/Navbar'
 
 function Login(){
+    
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
    
 
     // States for registration 
@@ -131,7 +133,13 @@ function Login(){
     };
 
 
+    if (user) {
+        return (
+            <img src="https://i.redd.it/oaafntunc8wb1.jpeg" className='kysNOW'  />)
 
+    }
+
+    else {
     return(
         <div className='Home'>
 
@@ -185,7 +193,7 @@ function Login(){
                 </p>
             </footer>
         </div>
-    )
+    )}
 }
 
 export default Login
