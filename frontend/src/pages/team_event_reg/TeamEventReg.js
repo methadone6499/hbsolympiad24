@@ -142,7 +142,7 @@ function TeamEventReg(){
                                 />
                                 <button type="submit" className='reg-btn' onClick=
                                 {(e)=>{
-                                    handleEventSelect("Table Tennis (Team)")
+                                    handleEventSelect("Table Tennis Duo")
                                 }}>Register</button>
                             </form>
                         )
@@ -161,7 +161,7 @@ function TeamEventReg(){
                         (
                             <button type="submit" className='reg-btn' onClick=
                             {(e)=>{
-                                handleEventSelect("Table Tennis (Team)");
+                                handleEventSelect("Volleyball");
                              }}>Register</button> 
                         ) : 
                         (
@@ -175,7 +175,7 @@ function TeamEventReg(){
                                 />
                                 <button type="submit" className='reg-btn' onClick=
                                 {(e)=>{
-                                    handleEventSelect("Table Tennis (Team)")
+                                    handleEventSelect("Volleyball")
                                 }}>Register</button>
                             </form>
                         )
@@ -194,7 +194,7 @@ function TeamEventReg(){
                         (
                             <button type="submit" className='reg-btn' onClick=
                             {(e)=>{
-                                handleEventSelect("Table Tennis (Team)");
+                                handleEventSelect("Basketball");
                              }}>Register</button> 
                         ) : 
                         (
@@ -208,7 +208,7 @@ function TeamEventReg(){
                                 />
                                 <button type="submit" className='reg-btn' onClick=
                                 {(e)=>{
-                                    handleEventSelect("Table Tennis (Team)")
+                                    handleEventSelect("Basketball")
                                 }}>Register</button>
                             </form>
                         )
@@ -227,7 +227,7 @@ function TeamEventReg(){
                         (
                             <button type="submit" className='reg-btn' onClick=
                             {(e)=>{
-                                handleEventSelect("Table Tennis (Team)");
+                                handleEventSelect("PUBG");
                              }}>Register</button> 
                         ) : 
                         (
@@ -241,7 +241,7 @@ function TeamEventReg(){
                                 />
                                 <button type="submit" className='reg-btn' onClick=
                                 {(e)=>{
-                                    handleEventSelect("Table Tennis (Team)")
+                                    handleEventSelect("PUBG")
                                 }}>Register</button>
                             </form>
                         )
@@ -259,7 +259,7 @@ function TeamEventReg(){
                         (
                             <button type="submit" className='reg-btn' onClick=
                             {(e)=>{
-                                handleEventSelect("Table Tennis (Team)");
+                                handleEventSelect("Futsal");
                              }}>Register</button> 
                         ) : 
                         (
@@ -273,13 +273,82 @@ function TeamEventReg(){
                                 />
                                 <button type="submit" className='reg-btn' onClick=
                                 {(e)=>{
-                                    handleEventSelect("Table Tennis (Team)")
+                                    handleEventSelect("Futsal")
                                 }}>Register</button>
                             </form>
                         )
                         }
                         </div>
                     </div>
+                    
+                    <div className="ER-event">
+                        <p className="text-big">
+                            BLS Competition
+                        </p>
+                        <p className="text-small">
+                            A BLS (Basic Life Support) competition tests participants' skills in emergency medical procedures, such as CPR, using an AED, and handling choking incidents. Competitors are judged on their ability to perform these life-saving techniques quickly and accurately.
+                        </p>
+                        <div className='btn-thing'>
+                        { isCaptain ? 
+                        (
+                            <button type="submit" className='reg-btn' onClick=
+                            {(e)=>{
+                                handleEventSelect("BLS Competition");
+                             }}>Register</button> 
+                        ) : 
+                        (
+                            <form>
+                                <input
+                                    onChange = {handleTeamToken}
+                                    className = "Input"
+                                    value = {teamToken}
+                                    type = "text"
+                                    placeholder='Team Code Here'
+                                />
+                                <button type="submit" className='reg-btn' onClick=
+                                {(e)=>{
+                                    handleEventSelect("BLS Competition")
+                                }}>Register</button>
+                            </form>
+                        )
+                        }
+                        </div>
+                    </div>
+                    
+                    <div className="ER-event">
+                        <p className="text-big">
+                            Quizzes
+                        </p>
+                        <p className="text-small">
+                            Quizzes are short tests or competitions designed to assess knowledge on various topics. They can be used for education, entertainment, or competitive purposes, often featuring multiple-choice, true/false, or open-ended questions.
+                        </p>
+                        <div className='btn-thing'>
+                        { isCaptain ? 
+                        (
+                            <button type="submit" className='reg-btn' onClick=
+                            {(e)=>{
+                                handleEventSelect("Quizzes");
+                             }}>Register</button> 
+                        ) : 
+                        (
+                            <form>
+                                <input
+                                    onChange = {handleTeamToken}
+                                    className = "Input"
+                                    value = {teamToken}
+                                    type = "text"
+                                    placeholder='Team Code Here'
+                                />
+                                <button type="submit" className='reg-btn' onClick=
+                                {(e)=>{
+                                    handleEventSelect("Quizzes")
+                                }}>Register</button>
+                            </form>
+                        )
+                        }
+                        </div>
+                    </div>
+
                     <div className="ER-event E_T">
                         <p className="text-big">
                             Research Conference
@@ -292,7 +361,7 @@ function TeamEventReg(){
                         (
                             <button type="submit" className='reg-btn' onClick=
                             {(e)=>{
-                                handleEventSelect("Table Tennis (Team)");
+                                handleEventSelect("Research Conference");
                              }}>Register</button> 
                         ) : 
                         (
@@ -306,7 +375,7 @@ function TeamEventReg(){
                                 />
                                 <button type="submit" className='reg-btn' onClick=
                                 {(e)=>{
-                                    handleEventSelect("Table Tennis (Team)")
+                                    handleEventSelect("Research Conference")
                                 }}>Register</button>
                             </form>
                         )
@@ -314,7 +383,39 @@ function TeamEventReg(){
                         </div>
                     </div>
 
-
+                    <div className="ER-event E_T">
+                        <p className="text-big">
+                            Scavenger Hunt
+                        </p>
+                        <p className="text-small">
+                            scavenge for some stuff or smthn idk
+                        </p>
+                        <div className='btn-thing'>
+                        { isCaptain ? 
+                        (
+                            <button type="submit" className='reg-btn' onClick=
+                            {(e)=>{
+                                handleEventSelect("Scavenger Hunt");
+                             }}>Register</button> 
+                        ) : 
+                        (
+                            <form>
+                                <input
+                                    onChange = {handleTeamToken}
+                                    className = "Input"
+                                    value = {teamToken}
+                                    type = "text"
+                                    placeholder='Team Code Here'
+                                />
+                                <button type="submit" className='reg-btn' onClick=
+                                {(e)=>{
+                                    handleEventSelect("Scavenger Hunt")
+                                }}>Register</button>
+                            </form>
+                        )
+                        }
+                        </div>
+                    </div>
                 </div>
             </div>
             <footer className="footer">

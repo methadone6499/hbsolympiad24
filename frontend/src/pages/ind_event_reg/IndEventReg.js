@@ -107,7 +107,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                         {(e)=>{
-                            handleEventSelect("Table Tennis (Solo)");
+                            handleEventSelect("Table Tennis");
                          }}>Register</button> 
                     </div>
 
@@ -133,7 +133,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("Chess");
+                                                        setSelectedEvent("Tekken");
                                                     }}>Register</button> 
 
                     </div>
@@ -146,7 +146,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("Chess");
+                                                        setSelectedEvent("FIFA");
                                                     }}>Register</button> 
 
                     </div>
@@ -164,18 +164,6 @@ function IndEventReg(){
                     </div>
                     <div className="ER-event">
                         <p className="text-big">
-                            BLS Competition
-                        </p>
-                        <p className="text-small">
-                            A BLS (Basic Life Support) competition tests participants' skills in emergency medical procedures, such as CPR, using an AED, and handling choking incidents. Competitors are judged on their ability to perform these life-saving techniques quickly and accurately.
-                        </p>
-                        <button type="submit" className='reg-btn' onClick=
-                                                    {(e)=>{
-                                                        setSelectedEvent("BLS Competition");
-                                                    }}>Register</button> 
-                    </div>
-                    <div className="ER-event">
-                        <p className="text-big">
                             MUN (UNSC)
                         </p>
                         <p className="text-small">
@@ -183,7 +171,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("MUN (Committe 1)");
+                                                        setSelectedEvent("MUN (UNSC)");
                                                     }}>Register</button> 
                     </div>
                     <div className="ER-event">
@@ -195,7 +183,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("MUN (Committe 2)");
+                                                        setSelectedEvent("MUN (PNA)");
                                                     }}>Register</button> 
                     </div>
                     <div className="ER-event">
@@ -207,7 +195,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("MUN (Committe 3)");
+                                                        setSelectedEvent("MUN (CC)");
                                                     }}>Register</button> 
                     </div>
                     <div className="ER-event">
@@ -224,6 +212,18 @@ function IndEventReg(){
                     </div>
                     <div className="ER-event">
                         <p className="text-big">
+                            Art Gallery
+                        </p>
+                        <p className="text-small">
+                            An art gallery is a space where artworks are displayed for public viewing and sale. It serves as a venue for artists to exhibit their creations, ranging from paintings and sculptures to digital art and installations. Art galleries also play a role in cultural enrichment, education, and fostering appreciation for visual arts.
+                        </p>
+                        <button type="submit" className='reg-btn' onClick=
+                                                    {(e)=>{
+                                                        setSelectedEvent("Art Gallery");
+                                                    }}>Register</button> 
+                    </div>
+                    <div className="ER-event">
+                        <p className="text-big">
                             Videography Competition
                         </p>
                         <p className="text-small">
@@ -231,7 +231,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("Videography Competition");
+                                                        setSelectedEvent("Videography competition");
                                                     }}>Register</button> 
                     </div>
                 </div>
