@@ -32,11 +32,16 @@ const userSchema = new mongoose.Schema({
     approved:{
         type: Boolean
     },
-    events: [{
+    forms: [{
         formID: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'forms'
         },
+    }],
+    events: [{
+        title:{
+            type: String,
+        }
     }]
 });
 

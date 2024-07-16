@@ -45,7 +45,7 @@ const postFormSolo = async (req, res) =>{
         console.log(updateEvent);
         const updatedUser = await User.findByIdAndUpdate(
             userID,
-            { $push: { events: { formId: newForm._id } } },
+            { $push: { forms: { formId: newForm._id } } },
             { new: true, runValidators: true }
         );
         console.log(updatedUser);
@@ -107,7 +107,7 @@ const postFormTeam = async (req, res) =>{
         console.log(updateEvent);
         const updatedUser = await User.findByIdAndUpdate(
             userID,
-            { $push: { events: { formId: newForm._id } } },
+            { $push: { forms: { formId: newForm._id } } },
             { new: true, runValidators: true }
         );
         console.log(updatedUser);
@@ -149,7 +149,7 @@ const postFormTeamMember = async(req, res) =>{
         console.log(updateForm);
         const updatedUser = await User.findByIdAndUpdate(
             userID,
-            { $push: { events: { formID: updateForm._id } } },
+            { $push: { forms: { formID: updateForm._id } } },
             { new: true, runValidators: true }
         );
         console.log(updatedUser);

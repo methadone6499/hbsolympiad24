@@ -1,4 +1,6 @@
 const User = require('../models/user.model');
+const Forms = require('../models/form.model');
+const Event = require('../models/events.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -56,6 +58,57 @@ const loginUser = async(req, res) => {
     }
 }
 
+const setPayment = async(req, res) =>{
+    console.log(req.body);
+    try{
+        const updatedUser = await User.findOneAndUpdate(
+            { id: req.body.idNum, email: req.body.email },
+            { $set: { feePayment: req.body.feePayment } },
+            { new: true, runValidators: true }
+        );
+        if (updatedUser) {
+            res.status(200).json({updatedUser, message: "fee payment updated successfully"});
+        } else {
+            res.status(404).json({ message: 'User not found or email does not match' });
+        }
+    }
+    catch(e){
+        res.status(500).json({error: "Internal server error"});
+    }
+}
+
+const getUserEvents = async(req, res) => {
+    const id = req.body.id;
+    console.log(id);
+    try{
+        const user = await User.findOne({id}).populate('events._id');
+        console.log(user);
+        const formIDs = user.events.map(event => event._id);
+        console.log(formIDs)
+        const forms = await Forms.find({ _id: { $in: formIDs } }).select('eventID');
+        console.log(forms);
+        /*if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Extract event IDs from the populated forms
+        const eventIDs = user.events.map(event => event.formID.eventID);
+
+        // Find events by event IDs and get their names
+        const events = await Event.find({ _id: { $in: eventIDs } }).select('title');
+
+        // Extract event names
+        const eventNames = events.map(event => event.title);
+
+        res.status(200).json({ eventNames });*/
+        res.status(200).json({message: "first step successful"});
+        
+    }
+    catch(e){
+        res.status(500).json({message: "internal server error"});
+    }
+}
+
 const getUser = async(req, res) => {
     console.log(req.body);
     try{
@@ -76,5 +129,7 @@ const getUser = async(req, res) => {
 module.exports = {
     signupUser,
     loginUser,
+    setPayment,
+    getUserEvents,
     getUser
 }
