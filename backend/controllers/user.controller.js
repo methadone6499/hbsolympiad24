@@ -1,6 +1,6 @@
 const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
-
+const jwt = require('jsonwebtoken');
 
 const signupUser = async (req, res) => {
     const{email}=req.body;
@@ -23,7 +23,9 @@ const signupUser = async (req, res) => {
         });
         console.log(newUser);
         await newUser.save();
-        res.status(201).json({ message: 'User registered successfully' });
+        const token = jwt.sign({name: newUser.name, email: newUser.email, userID: newUser._id}, 'test', { expiresIn: "1h"});
+        console.log(token);
+        res.status(201).json({result: newUser, token, message: "User Registered Successfully"});
     }
     catch(e){
         res.status(500).json({ error: 'Internal server error' });
@@ -44,8 +46,10 @@ const loginUser = async(req, res) => {
         if(!passwordMatch){
             return res.status(401).json({ error: 'Invalid credentials'});
         }
-        console.log(user);
-        res.status(201).json(user);
+
+        const token = jwt.sign({name: user.name, email: user.email, userID: user._id}, 'test', { expiresIn: "1h"});
+        console.log(token);
+        res.status(201).json({result: user, token, message: "User logged in succ"});
     }
     catch(e){
         res.status(500).json({error: 'Internal server error'});
