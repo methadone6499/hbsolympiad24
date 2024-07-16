@@ -7,11 +7,9 @@ const eventSchema = new mongoose.Schema({
     },
     date:{
         type: String,
-        required: true,
     },
     location:{
         type: String,
-        required: true,
     },
     description:{
         type: String,
@@ -19,7 +17,9 @@ const eventSchema = new mongoose.Schema({
     },
     limits:{
         type: Number,
-        max: 2000
+    },
+    memberLimits:{
+        type: Number,
     },
     category:{
         type: String,
@@ -27,7 +27,6 @@ const eventSchema = new mongoose.Schema({
     },
     registered:{
         type: Number,
-        max: 2000,
         required: true,
     }
 })

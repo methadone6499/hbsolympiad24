@@ -11,8 +11,6 @@ const addEvent = async(req, res) =>{
         console.log("Event doesn't exist");
         const newEvent = new Event({
             title: req.body.title,
-            date: req.body.date,
-            location: req.body.location,
             description: req.body.description,
             limits: req.body.limits,
             category: req.body.category,
