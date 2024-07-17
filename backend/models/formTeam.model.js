@@ -11,14 +11,14 @@ const formTeamSchema = new mongoose.Schema({
         required: true,
         
     },
-    phoneNumber:{
-        type: String,
-        required: true,
-    },
-    affiliation:{
+    id:{
         type: String,
         required: true,
         
+    },
+    phoneNumber:{
+        type: String,
+        required: true,
     },
     token:{
         type: String,
@@ -27,10 +27,16 @@ const formTeamSchema = new mongoose.Schema({
     numOfMembers:{
         type: Number
     },
+    eventName:{
+        type: String,
+        required: true
+    },
     user: [{
-        userID: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'users'
+        userName: {
+            type: String,
+        },
+        userEmail: {
+            type: String,
         }
     }],
     eventID: {

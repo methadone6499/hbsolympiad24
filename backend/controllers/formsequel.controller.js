@@ -16,7 +16,7 @@ const postFormSolo = async (req, res) =>{
         })
 
         if(existingForm){
-            return res.status(400).json({error: 'User already registered for this event', existingForm});
+            return res.status(200).json({message: 'You have already registered for this event', existingForm});
         }
         console.log(existingForm);
 
@@ -25,7 +25,7 @@ const postFormSolo = async (req, res) =>{
         )
         console.log(checkLimit.registered, checkLimit.limits);
         if(checkLimit.registered===checkLimit.limits){
-            res.status(400).json({message: "Event registration limit reached better luck next time."})
+            res.status(200).json({message: "Event registration limit reached better luck next time."})
         }
         console.log("limit not reached can continue with registration");
 
@@ -34,7 +34,7 @@ const postFormSolo = async (req, res) =>{
             id: id
         })
         if(userEventLimit.events.length === 5){
-            res.status(400).json({message: "You cannot register for more than 5 events"});
+            res.status(200).json({message: "You cannot register for more than 5 events"});
         }
         console.log("event limit check ", userEventLimit.events.length);
 
@@ -59,7 +59,7 @@ const postFormSolo = async (req, res) =>{
             {$push: { events: {title: eventName}}},
             {new: true, runValidators: true}
         );
-        console.log(updatedUser);
+        //console.log(updatedUser);
         await newForm.save();
         res.status(201).json({message: 'Form successfully submitted'});
     }

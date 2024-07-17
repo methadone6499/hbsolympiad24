@@ -232,7 +232,7 @@ function SignUp(){
                                         //src = {URL.createObjectURL(uniCardImgFR)}
                                         src = {uniCardImgFR}
                                     />
-                                    <button className='reg-btn' onClick={()=>{setUniCardImg(null); setUniCardImgFR(null)}}>Remove 8===D Image</button>
+                                    <button className='reg-btn' onClick={()=>{setUniCardImg(null); setUniCardImgFR(null)}}>Remove Image</button>
                                 </div>
                             )}
 

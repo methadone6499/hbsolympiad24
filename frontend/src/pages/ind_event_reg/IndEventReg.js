@@ -35,13 +35,13 @@ function IndEventReg(){
             setSubmitted(true);
             setError(false);
             console.log(selectedEvent)
-            const eventID = selectedEvent;
-            console.log(eventID)
+            const eventName = selectedEvent;
+            console.log(eventName)
             try
             {
                 console.log(selectedEvent)
-                await axios.post("http://localhost:5000/v1/submitFormSolo",{
-                    name, email, phoneNumber, id, eventID
+                await axios.post("http://localhost:5000/v2/submitFormSolo",{
+                    name, email, phoneNumber, id, eventName
                 })
                 .then(res=>{
                     alert(res.data.message);
