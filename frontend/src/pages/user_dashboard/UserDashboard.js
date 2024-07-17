@@ -8,7 +8,7 @@ function UserDashboard(){
     
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
-    const { name, id, email, phoneNumber, password } = user?.result;
+    const { email, id, name, phoneNumber, password } = user;
     console.log(user);
 
     const [events, setEvents] = useState([]);
