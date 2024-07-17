@@ -35,9 +35,6 @@ const formTeamSchema = new mongoose.Schema({
         userName: {
             type: String,
         },
-        userEmail: {
-            type: String,
-        }
     }],
     eventID: {
         type: mongoose.Schema.Types.ObjectId,

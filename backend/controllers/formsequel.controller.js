@@ -25,7 +25,7 @@ const postFormSolo = async (req, res) =>{
         )
         console.log(checkLimit.registered, checkLimit.limits);
         if(checkLimit.registered===checkLimit.limits){
-            res.status(200).json({message: "Event registration limit reached better luck next time."})
+            return res.status(200).json({message: "Event registration limit reached better luck next time."})
         }
         console.log("limit not reached can continue with registration");
 
@@ -34,7 +34,7 @@ const postFormSolo = async (req, res) =>{
             id: id
         })
         if(userEventLimit.events.length === 5){
-            res.status(200).json({message: "You cannot register for more than 5 events"});
+            return res.status(200).json({message: "You cannot register for more than 5 events"});
         }
         console.log("event limit check ", userEventLimit.events.length);
 
@@ -70,6 +70,17 @@ const postFormSolo = async (req, res) =>{
 }
 
 const postFormTeam = async (req, res) =>{
+    const userEmail = req.body.email;
+    const eventName = req.body.eventName;
+    try{
+        const existingForm = await FormTeam.findOne({
+            'email': userEmail,
+            'eventName': eventName
+        })
+    }
+    catch(e){
+        res.status(500).json({message: "Internal server error"});
+    }
     console.log(req.body);
     
 }
