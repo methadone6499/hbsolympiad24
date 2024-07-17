@@ -142,7 +142,84 @@ const postFormTeam = async (req, res) =>{
 }
 
 const postFormTeamMember = async(req, res) =>{
-    console.log(req.body);
+    const userEmail = req.body.email;
+    const eventName = req.body.eventName;
+    const id = req.body.id;
+    const token = req.body.token;
+    const newUser = {
+        userName: req.body.name,
+        email: userEmail
+    };
+    try{
+        const existingForm = await FormTeam.findOne({
+            'email': userEmail,
+            'eventName': eventName,
+            'id': id,
+        })
+        if(existingForm){
+            //return res.status(200).json({message: 'You have already registered for this event'});
+            return res.status(200).json({message: 'You should kill yourself now captain'});
+        }
+        console.log("captain isn't registering for the same team or something");
+        const existingTeamMember = await FormTeam.findOne({
+            user:{
+                $elemMatch: {
+                    userName: req.body.name,
+                    email: userEmail
+                }
+            },
+            eventName: eventName
+        })
+        if(existingTeamMember){
+            return res.status(200).json({message: "You have already registered in a team"});
+        }
+        console.log("user hasn't registered in a team");
+        const userEventLimit = await User.findOne({
+            email: userEmail,
+            id: id
+        });
+        if(userEventLimit.events.length === 5){
+            return res.status(200).json({message: "You cannot register for more than 5 events"});
+        }
+
+        const checkAmountOfMembers = await FormTeam.findOne({
+            'token': token,
+            'eventName': eventName,
+        })
+        const eventMemberLimit = Event.findOne({
+            'eventName': eventName,
+        })
+        if(checkAmountOfMembers.numOfMembers === eventMemberLimit.maxLimits){
+            return res.status(200).json({message: "max team member limit reached for a team"});
+        }
+        console.log("max team limit not reached");
+        
+        const updateTeamForm = await FormTeam.findOneAndUpdate(
+            {
+                token: token,
+                eventName: eventName
+            },
+            {
+                $push:{ user: newUser},
+                $inc: {numOfMembers: 1}
+            },
+            {
+                new: true,
+                runValidators: true
+            }
+        )
+        console.log(updateTeamForm);
+        const updatedUser = await User.findOneAndUpdate(
+            {email: userEmail},
+            { $push: { events: {title: eventName}}},
+            { new: true, runValidators: true }
+        );
+        return res.status(200).json({message: "You have successfully registered for the team.", updateTeamForm});
+
+    }
+    catch(e){
+        res.status(500).json({message: "Internal server error"});
+    }
 }
 
 const deleteFormSolo = async(req, res) =>{
