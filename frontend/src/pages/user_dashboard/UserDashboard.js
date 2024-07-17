@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react'
 import axios, { all } from 'axios'
 import React from 'react'
 import Navbar from '../navbar/Navbar'
+import Logo from '../Logo/Logo'
 
 function UserDashboard(){
     
@@ -32,6 +33,7 @@ function UserDashboard(){
             <Navbar />
 
             <div className="box-main">
+                <Logo />
                 <h1 className="text-big">
                     User Dashboard
                 </h1>

@@ -1,6 +1,7 @@
 import "./adminDashboard.css"
 import Popup from "reactjs-popup"
 import Navbar from '../navbar/Navbar'
+import Logo from '../Logo/Logo'
 
 function adminDashboard(){
     return(
@@ -8,6 +9,7 @@ function adminDashboard(){
             <Navbar />
 
             <div className="box-main">
+                <Logo />
                 <h1 className="text-big">
                     Admin Dashboard
                 </h1>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './IndEventReg.css'
 import axios from 'axios'
 import Navbar from '../navbar/Navbar'
+import Logo from '../Logo/Logo'
 
 function IndEventReg(){
     
@@ -9,18 +10,22 @@ function IndEventReg(){
 
     const [selectedEvent, setSelectedEvent] = useState("");
 
-    const { name, id, email, phoneNumber, password } = user?.result;
+    const [ succMessage, setSuccMessage ] = useState("")
+
+    const { name, id, email, phoneNumber } = user;
+
+    const userID = id;
 
     const handleEventSelect = async(selectedEvent) => {
         setSelectedEvent(selectedEvent);
-        setSubmitted(false);
+        setSubmitted(true);
     }
 
     const [submitted, setSubmitted] = useState(false); 
     const [error, setError] = useState(false); 
 
     useEffect(() => {
-        console.log('Event selected:', selectedEvent);
+        /*console.log('Event selected:', selectedEvent);*/
         handleSubmit();
       }, [selectedEvent]);
 
@@ -34,17 +39,15 @@ function IndEventReg(){
         {
             setSubmitted(true);
             setError(false);
-            console.log(selectedEvent)
             const eventName = selectedEvent;
-            console.log(eventName)
+            handleEventSelect("");
             try
             {
-                console.log(selectedEvent)
                 await axios.post("http://localhost:5000/v2/submitFormSolo",{
                     name, email, phoneNumber, id, eventName
                 })
                 .then(res=>{
-                    alert(res.data.message);
+                    setSuccMessage(res.data.message);
                 })
             }
             catch(e)
@@ -54,21 +57,24 @@ function IndEventReg(){
         }
     }
 
-    const SuccessMessage = () => {
+    const SuccessMessage = (succMessage) => {
+        
         return ( 
             <div 
                 className="success"
                 style={{ 
                     display: submitted ? "" : "none", 
                 }} 
-            > 
-                <h1>Event successfully registered!!</h1> 
+            >
+                <h1> {succMessage} </h1> 
+
             </div> 
         ); 
     }; 
 
     const errorMessage = () => { 
-        console.log("error");
+        /*error ? (console.log("error"))
+        : (<></>)*/
     };
 
 
@@ -77,13 +83,7 @@ function IndEventReg(){
             <Navbar />
 
             <div className="box-main">
-                <img
-                    src="https://i.imgur.com/e6Lnl9j.png"
-                    alt="Logo"
-                    height="235"
-                    width="325"
-                    placeholder="logo"
-                />
+                <Logo />
                 <h1 className="text-big">
                     Individual Event Registration
                 </h1>
@@ -96,7 +96,7 @@ function IndEventReg(){
                 <div className="event-reg-box">
                     <div className='text-small'>
                         {errorMessage()}
-                        {SuccessMessage()}
+                        {SuccessMessage(succMessage)}
                     </div>
                     <div className="ER-event E_T">
                         <p className="text-big">

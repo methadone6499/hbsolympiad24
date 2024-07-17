@@ -2,6 +2,7 @@ import './TeamEventReg.css'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Navbar from '../navbar/Navbar'
+import Logo from '../Logo/Logo'
 
 function TeamEventReg(){
     
@@ -113,12 +114,7 @@ function TeamEventReg(){
             <Navbar />
 
             <div className="box-main">
-                <img
-                    src="https://i.imgur.com/e6Lnl9j.png"
-                    alt="Logo"
-                    height="235"
-                    width="325"
-                />
+                <Logo />
                 <h1 className="text-big">
                     Team Event Registration
                 </h1>

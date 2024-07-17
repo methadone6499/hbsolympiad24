@@ -1,5 +1,6 @@
 import './Events.css'
 import Navbar from '../navbar/Navbar'
+import Logo from '../Logo/Logo'
 
 function Events(){
 
@@ -8,13 +9,7 @@ function Events(){
             <Navbar />
 
             <div className="box-main">
-                <img
-                    src="https://i.imgur.com/e6Lnl9j.png"
-                    alt="Logo"
-                    height="235"
-                    width="325"
-                    placeholder="logo"
-                />
+                <Logo />
                 <h1 className="text-big">
                     Events for the HBS Olympiad
                  </h1>

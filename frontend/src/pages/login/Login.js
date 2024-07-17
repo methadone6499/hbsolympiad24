@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom"
 import { useState } from 'react'
 import axios, { all } from 'axios'
 import Navbar from '../navbar/Navbar'
+import Logo from '../Logo/Logo'
 
 function Login(){
     
@@ -146,6 +147,7 @@ function Login(){
             <Navbar />
 
             <div className="box-main">
+                <Logo />
                 <div className="LoginPage">
                     <div>
                         <h1>User Login</h1>

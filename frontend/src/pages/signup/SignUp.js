@@ -3,6 +3,7 @@ import { useState, useEffect} from 'react';
 import axios from 'axios';
 import FileBase64 from 'react-file-base64';
 import Navbar from '../navbar/Navbar'
+import Logo from '../Logo/Logo'
 
 function SignUp(){
     
@@ -166,6 +167,7 @@ function SignUp(){
             <Navbar />
 
             <div className="box-main">
+                <Logo />
                 <div className="SignUpForm">
                     <div>
                         <h1>User Registration</h1>
