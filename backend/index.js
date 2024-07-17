@@ -20,11 +20,13 @@ app.listen(5000, () => {
 const userRoutes = require("./routes/userRoute");
 const formRoutes = require("./routes/formRoute")
 const eventRoutes = require("./routes/eventRoute");
+const formRouteSequel = require("./routes/formRouteSequel");
 //routes
 //app.use("/v1/login", loginRoute)
 app.use("/v1", userRoutes);
 app.use("/v1", formRoutes);
 app.use("/v1", eventRoutes);
+app.use("/v2", formRouteSequel);
 
 app.get('/', (req, res) => {
     res.send("Hello from API");
