@@ -78,8 +78,8 @@ function Login(){
                 .then(res=>{
                     //alert("Successful login!");
                     console.log(res.data.result.name);
-
-                    localStorage.setItem('profile', JSON.stringify(res.data));
+                    const userInfo = { name: res.data.result.name, id: res.data.result.id, email: res.data.result.email, phoneNumber: res.data.result.phoneNumber, token: res.data.token };
+                    localStorage.setItem('profile', JSON.stringify(userInfo));
                     navigate('/user_dashboard');
                 })
             }

@@ -10,7 +10,7 @@ function TeamEventReg(){
     const [ selectedEvent, setSelectedEvent ] = useState("");
     const [ teamToken, setTeamToken ] = useState("")
 
-    const { name, id, email, phoneNumber, password } = user.result;
+    const { name, id, email, phoneNumber } = user;
 
     const userID = id;
 
@@ -54,19 +54,38 @@ function TeamEventReg(){
             console.log(selectedEvent)
             const eventID = selectedEvent;
             console.log(eventID)
-            try
-            {
-                console.log(selectedEvent)
-                await axios.post("http://localhost:5000/v1/submitFormTeam",{
-                    name, email, phoneNumber, userID, eventID
-                })
-                .then(res=>{
-                    alert(res.data.message);
-                })
+            if (isCaptain) {
+                try
+                {
+                    console.log(selectedEvent)
+                    await axios.post("http://localhost:5000/v2/submitFormTeam",{
+                        name, email, phoneNumber, userID, eventID
+                    })
+                    .then(res=>{
+                        alert(res.data.message);
+                    })
+                }
+                catch(e)
+                {
+                    alert('server error')
+                }
             }
-            catch(e)
-            {
-                alert('server error')
+            else {
+                try
+                {
+                    console.log(selectedEvent)
+                    await axios.post("http://localhost:5000/v2/submitFormTeamMember",{
+                        name, email, phoneNumber, userID, eventID, teamToken
+                    })
+                    .then(res=>{
+                        alert(res.data.message);
+                    })
+                }
+                catch(e)
+                {
+                    alert('server error')
+                }
+                
             }
         }
     }
