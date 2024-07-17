@@ -11,14 +11,17 @@ const formSchema = new mongoose.Schema({
         required: true,
         
     },
+    id:{
+        type: String,
+        required: true
+    },
     phoneNumber:{
         type: String,
         required: true,
     },
-    affiliation:{
+    eventName:{
         type: String,
-        required: true,
-        
+        required: true
     },
     userID: {
         type: mongoose.Schema.Types.ObjectId,
