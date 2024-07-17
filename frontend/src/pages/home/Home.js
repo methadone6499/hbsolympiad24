@@ -1,6 +1,7 @@
 import './Home.css'
 import CountDownTimer from './CountdownTimer'
 import Navbar from '../navbar/Navbar'
+import Logo from '../Logo/Logo'
 
 function Home(){
     
@@ -19,13 +20,7 @@ function Home(){
             <Navbar />
 
             <div className="box-main">
-                <img
-                    src="https://i.imgur.com/e6Lnl9j.png"
-                    alt="Logo"
-                    height="235"
-                    width="325"
-                    placeholder="logo"
-                />
+                <Logo />
 
                 <div className='timerBox'>
                     <h1 className='text-big'>Countdown Timer</h1>

@@ -51,7 +51,7 @@ const Navbar = () => {
             <div className='reg-buttons'>
                 <div className="userDashboard">
                     <Link to="/user_dashboard" className="links">
-                        <button className="btn btn-sm">User Dashboard {user.result.name}</button>
+                        <button className="btn btn-sm">Profile {user.result.name}</button>
                     </Link>
                 </div>
                 <div className="LogOut">
