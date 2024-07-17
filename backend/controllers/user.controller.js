@@ -1,6 +1,7 @@
 const User = require('../models/user.model');
 const Forms = require('../models/form.model');
 const Event = require('../models/events.model');
+const FormTeam = require('../models/formTeam.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -79,30 +80,43 @@ const setPayment = async(req, res) =>{
 
 const getUserEvents = async(req, res) => {
     const id = req.body.id;
+    const email = req.body.email
     console.log(id);
     try{
-        const user = await User.findOne({id}).populate('events._id');
-        console.log(user);
-        const formIDs = user.events.map(event => event._id);
-        console.log(formIDs)
-        const forms = await Forms.find({ _id: { $in: formIDs } }).select('eventID');
-        console.log(forms);
-        /*if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        // Extract event IDs from the populated forms
-        const eventIDs = user.events.map(event => event.formID.eventID);
-
-        // Find events by event IDs and get their names
-        const events = await Event.find({ _id: { $in: eventIDs } }).select('title');
-
-        // Extract event names
-        const eventNames = events.map(event => event.title);
-
-        res.status(200).json({ eventNames });*/
-        res.status(200).json({message: "first step successful"});
+        const user = await User.findOne({email});
+        console.log(user.events);
+        res.status(200).json({message: "first step successful", user});
         
+    }
+    catch(e){
+        res.status(500).json({message: "internal server error"});
+    }
+}
+
+const getTeamMates = async(req, res) =>{
+    const name = req.body.name;
+    const userEmail = req.body.email;
+    const eventName = req.body.eventName;
+    const id = req.body.id;
+    try{
+        let existingForm = await FormTeam.findOne({
+            'email': userEmail,
+            'eventName': eventName,
+            'id': id,
+        })
+        if(!existingForm){
+            existingForm = await FormTeam.findOne({
+                eventName: eventName,
+                user:{
+                    $elemMatch:{
+                        userName: req.body.name,
+                        email: userEmail
+                    }
+                }
+            })
+        }
+        existingForm.name = existingForm.name + " (Captain)"
+        return res.status(200).json({name: existingForm.name, members: existingForm.user});
     }
     catch(e){
         res.status(500).json({message: "internal server error"});
@@ -131,5 +145,6 @@ module.exports = {
     loginUser,
     setPayment,
     getUserEvents,
-    getUser
+    getUser,
+    getTeamMates
 }
