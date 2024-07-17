@@ -83,7 +83,7 @@ const postFormTeam = async (req, res) =>{
         };
         
         var genToken = function() {
-            return rand() + rand() + rand(); // to make it longer
+            return rand() + rand(); // to make it longer
         };
 
         teamToken = genToken();

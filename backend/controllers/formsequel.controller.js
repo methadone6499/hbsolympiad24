@@ -72,17 +72,73 @@ const postFormSolo = async (req, res) =>{
 const postFormTeam = async (req, res) =>{
     const userEmail = req.body.email;
     const eventName = req.body.eventName;
+    const id = req.body.id;
     try{
         const existingForm = await FormTeam.findOne({
             'email': userEmail,
-            'eventName': eventName
+            'eventName': eventName,
+            'id': id,
         })
+        if(existingForm){
+            return res.status(200).json({message: 'You have already registered for this event'});
+        }
+        console.log(existingForm, "line 85");
+        const checkLimit = await Event.findOne(
+            {title: eventName}
+        )
+        if(checkLimit.registered === checkLimit.limits){
+            return res.status(200).json({message: "No more teams can register better luck next time"});
+        }
+        console.log(checkLimit, "line 92");
+        console.log("event limit check  on line 93");
+        const userEventLimit = await User.findOne({
+            email: userEmail,
+            id: id
+        })
+        console.log(userEventLimit);
+        if(userEventLimit.events.length === 5){
+            return res.status(200).json({message: "You cannot reigster for more than 5 events"});
+        }
+
+        var rand = function() {
+            return Math.random().toString(36).substring(2); // remove `0.`
+        };
+        
+        var genToken = function() {
+            return rand() + rand(); // to make it longer
+        };
+
+        teamToken = genToken();
+
+        const newTeamForm = new FormTeam({
+            name: req.body.name,
+            email: userEmail,
+            id: id,
+            phoneNumber: req.body.phoneNumber,
+            token: teamToken,
+            numOfMembers: 1,
+            eventName: eventName,
+        });
+
+        const updateTeamEventCount = await Event.findOneAndUpdate(
+            {title: eventName},
+            {$inc: {registered: 1}},
+            {new: true, runValidators: true}
+        );
+        
+        const updatedUser = await User.findOneAndUpdate(
+            {email: userEmail},
+            {$push: { events: {title: eventName}}},
+            {new: true, runValidators: true}
+        );
+        console.log(newTeamForm);
+        await newTeamForm.save();
+        return res.status(201).json({message: 'Form successfully submitted, please send the code you have to the people you wish to have as team memberrs.', newTeamForm})
+
     }
     catch(e){
         res.status(500).json({message: "Internal server error"});
     }
-    console.log(req.body);
-    
 }
 
 const postFormTeamMember = async(req, res) =>{
