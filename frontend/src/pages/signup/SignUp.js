@@ -13,8 +13,8 @@ function SignUp(){
     const [email, setEmail] = useState(""); 
     const [phoneNumber, setNumber] = useState("");
     const [university, setUniversity] = useState("");
-    const [uniCardImg, setUniCardImg] = useState("") 
     const [password, setPassword] = useState(""); 
+    const [ confirmPassword, setCofnirmPassword] = useState("");
     const [uniCardImgFR, setUniCardImgFR] = useState("");
     // States for checking the errors 
     const [submitted, setSubmitted] = useState(false); 
@@ -48,11 +48,6 @@ function SignUp(){
         setUniversity(e.target.value);
         setSubmitted(false);
     }
-  
-    const handleUniCardImg = (e) => {
-        //setUniCardImg(e.target.value);
-        setSubmitted(false);
-    }
 
     // Handling the password change 
     const handlePassword = (e) => { 
@@ -60,10 +55,31 @@ function SignUp(){
         setSubmitted(false); 
     }; 
 
+    const handleConfirmPassword = (e) => {
+        setCofnirmPassword(e.target.value);
+        setSubmitted(false);
+    }
+
     function isValidEmail(email) {
         const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return pattern.test(email);
     }
+    
+    const handleFileChange = (base64) => {
+        console.log("hello");
+        const file = base64;
+        console.log(file.length);
+        var sizeInBytes = 4 * Math.ceil((file.length / 3))*0.5624896334383812;
+        console.log(sizeInBytes);
+        if (sizeInBytes > 2097152) { // 5 MB in bytes
+            console.log("hello");
+            alert('File size exceeds 2 MB. Please choose a smaller file.');
+            setUniCardImgFR("")
+        } else {
+            setUniCardImgFR(base64);
+            console.log("here too");
+        }
+      };
    
   
     // Handling the form submission 
@@ -72,7 +88,7 @@ function SignUp(){
         e.preventDefault(); 
         
         
-        if (name === "" || idNum  === "" || email === "" || phoneNumber === "" || university==="" || password === "" || uniCardImgFR === "") 
+        if (name === "" || idNum  === "" || email === "" || phoneNumber === "" || university==="" || password === "" || uniCardImgFR === "" || password != confirmPassword) 
         { 
             setError(true); 
         } 
@@ -127,6 +143,19 @@ function SignUp(){
                     <h1>Please enter the email correctly</h1> 
                 </div> 
             ); 
+        }
+        else if (password != confirmPassword)
+        {
+            return ( 
+            <div 
+                className="error"
+                style={{ 
+                    display: error ? "" : "none", 
+                }} 
+            > 
+                <h1>Passwords do not match</h1> 
+            </div> 
+        );
         }
         else {
             return ( 
@@ -214,10 +243,10 @@ function SignUp(){
                                         width = {"250px"}
                                         src = {uniCardImgFR}
                                     />
-                                    <button className='reg-btn' onClick={()=>{setUniCardImg(null); setUniCardImgFR(null)}}>Remove Image</button>
+                                    <button className='reg-btn' onClick={()=>{setUniCardImgFR(null)}}>Remove Image</button>
                                 </div>
                             )}
-                            <FileBase64 type="file" multiple={false} onDone={({ base64 })=> setUniCardImgFR(base64)}/>
+                            <FileBase64 type="file" multiple={false} onDone={({ base64 })=> handleFileChange(base64)}/>
                         </div>
                         
                         <label className="Label">Password</label>
@@ -225,6 +254,15 @@ function SignUp(){
                             onChange = {handlePassword}
                             className = "Input"
                             value = {password}
+                            type = "password"
+                            placeholder='password'
+                        />
+                        
+                        <label className="Label">Confirm Password</label>
+                        <input
+                            onChange = {handleConfirmPassword}
+                            className = "Input"
+                            value = {confirmPassword}
                             type = "password"
                             placeholder='password'
                         />
