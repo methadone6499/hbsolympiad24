@@ -9,9 +9,17 @@ function UserDashboard(){
     
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
-    const { email, id, name, phoneNumber, password } = user;
+    const { email, id, name, phoneNumber } = user;
 
     const [events, setEvents] = useState([]);
+
+    const [titleMap, setTitleMap] = useState([]);
+    const [idMap, setIdMap] = useState([]);
+
+    useEffect (() => {
+        setTitleMap(events.map(obj => obj.title));
+        setIdMap(events.map(obj => obj._id));
+    }, [events])
 
 
     useEffect(() => {
@@ -21,7 +29,8 @@ function UserDashboard(){
                     id, email, 
                 })
                 const eventData = res.data.user.events;
-                setEvents(eventData)
+                setEvents(eventData);
+                console.log(eventData);
             } catch(e){
                 console.log("Error fetching stuff");
             }
@@ -51,11 +60,11 @@ function UserDashboard(){
                     List of Registered Events
                 </h2>
                 <div className="infoViewBox">
-                    <p className="text-small">
-                        { console.log("here")} 
-                        { console.log() }
-                        ALL EVENT INFO WILL GO HERE SUCH IE THE EVENT NAME AAAAAAAAAA
-                    </p>
+                    <div className="text-small">
+                        { console.log(titleMap) } 
+                        { titleMap.map(txt => <p>{txt} <button>Yes</button></p>) }
+                        { idMap.map(txt => <p>{txt} <button>Yes</button></p>) }
+                    </div>
                     <button type="submit" className="btn">Download Ticket</button>
                 </div>
                 <div>
