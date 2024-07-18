@@ -15,7 +15,6 @@ function SignUp(){
     const [university, setUniversity] = useState("");
     const [uniCardImg, setUniCardImg] = useState("") 
     const [password, setPassword] = useState(""); 
-    const [proofImg, setProofImg] = useState("")
     const [uniCardImgFR, setUniCardImgFR] = useState("");
     // States for checking the errors 
     const [submitted, setSubmitted] = useState(false); 
@@ -60,29 +59,11 @@ function SignUp(){
         setPassword(e.target.value); 
         setSubmitted(false); 
     }; 
-/*
-    const handleProofImg = (e) => {
-        setProofImg(e.target.value);
-        setSubmitted(false);
-    }
-*/
+
     function isValidEmail(email) {
         const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return pattern.test(email);
     }
-
-    /*useEffect(() =>{
-        const ass = async() =>{
-            await axios.post("http://localhost:5000/v1/suki",{
-                email: "jsodf@gmail.com"
-            })
-            .then(res =>{
-                console.log(res);
-                setProofImg(res.data.user.uniCard);
-            })
-        }
-        ass();
-    },[])*/
    
   
     // Handling the form submission 
@@ -231,22 +212,11 @@ function SignUp(){
                                     <img 
                                         alt="not found"
                                         width = {"250px"}
-                                        //src = {URL.createObjectURL(uniCardImgFR)}
                                         src = {uniCardImgFR}
                                     />
                                     <button className='reg-btn' onClick={()=>{setUniCardImg(null); setUniCardImgFR(null)}}>Remove Image</button>
                                 </div>
                             )}
-
-                            {/* <input
-                                className='Input'
-                                type="file"
-                                name="myImage"
-                                onChange={(e)=>{
-                                    setUniCardImg(e.target.files[0]);
-                                    setUniCardImgFR(e.target.files[0]);
-                                }} 
-                            /> */}
                             <FileBase64 type="file" multiple={false} onDone={({ base64 })=> setUniCardImgFR(base64)}/>
                         </div>
                         
@@ -258,38 +228,11 @@ function SignUp(){
                             type = "password"
                             placeholder='password'
                         />
-                        {/*
-                        <label className='Label'>Proof of Payment</label>
-                        <div className='imgInuput'>
-                            {proofImg &&  (
-                                <div className='imgDisplay'>
-                                    <img 
-                                        alt="not found"
-                                        width = {"250px"}
-                                        src = {URL.createObjectURL(proofImg)}
-                                    />
-                                    <button className='reg-btn' onClick={()=>setProofImg(null)}>Remove Image</button>
-                                </div>
-                            )}
-
-                            <input
-                                className='Input'
-                                type="file"
-                                name="myImage"
-                                onChange={(e)=>{
-                                    console.log(e.target.files[0]);
-                                    setProofImg(e.target.files[0]);
-                                }} 
-                            />
-                        </div>*/}
 
 
                         <button onClick={handleSubmit} className="buton" type="submit">
                             Submit
                         </button>
-                        <div className="titties">
-                            <img src={proofImg}/>
-                        </div>
                     </form>
                 </div>
             </div>

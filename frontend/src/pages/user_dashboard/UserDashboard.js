@@ -2,6 +2,7 @@ import './userDashboard.css'
 import {useState, useEffect} from 'react'
 import axios, { all } from 'axios'
 import React from 'react'
+import FileBase64 from 'react-file-base64';
 import Navbar from '../navbar/Navbar'
 import Logo from '../Logo/Logo'
 
@@ -12,6 +13,8 @@ function UserDashboard(){
     const { email, id, name, phoneNumber } = user;
 
     const [events, setEvents] = useState([]);
+
+    const [ feePayment, setfeePayment ] = useState("");
 
     const [titleMap, setTitleMap] = useState([]);
     const [idMap, setIdMap] = useState([]);
@@ -38,6 +41,27 @@ function UserDashboard(){
 
         fetchEvents();
     },[])
+
+    const handleProofSubmit = async(e) => {
+        e.preventDefault();
+
+        if (feePayment === "") { alert("No Image Uploaded") }
+        else {
+            console.log(feePayment);
+            try{
+                await axios.post("localhost:5000/v1/postFeePayment",{
+                    id, email, 
+                })
+                .then(res=>{
+                    console.log(res.data);
+                    alert(res.data.message);
+                })
+            }
+            catch(e){
+                alert('Server error');
+            }
+        }
+    }
 
     return(
         <div className='Home'>
@@ -66,6 +90,24 @@ function UserDashboard(){
                         { idMap.map(txt => <p>{txt} <button>Yes</button></p>) }
                     </div>
                     <button type="submit" className="btn">Download Ticket</button>
+                </div>
+                <br />
+                <div className="infoViewBox">
+                    <label className='Label'>Payment Proof</label>
+                    <div className='imgInuput'>
+                        {feePayment &&  (
+                            <div className='imgDisplay'>
+                                <img 
+                                    alt="not found"
+                                    width = {"250px"}
+                                    src = {feePayment}
+                                />
+                                <button className='reg-btn' onClick={()=>{ setfeePayment(null)}}>Remove Image</button>
+                            </div>
+                        )}
+                        <FileBase64 type="file" multiple={false} onDone={({ base64 })=> setfeePayment(base64)}/>
+                        <button onClick= {handleProofSubmit} class='reg-btn'>Submit</button>
+                    </div>
                 </div>
                 <div>
                 </div>
