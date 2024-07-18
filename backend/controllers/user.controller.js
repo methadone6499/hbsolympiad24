@@ -60,10 +60,11 @@ const loginUser = async(req, res) => {
 }
 
 const setPayment = async(req, res) =>{
+    console.log("here");
     console.log(req.body);
     try{
         const updatedUser = await User.findOneAndUpdate(
-            { id: req.body.idNum, email: req.body.email },
+            { id: req.body.id, email: req.body.email },
             { $set: { feePayment: req.body.feePayment } },
             { new: true, runValidators: true }
         );
@@ -81,10 +82,8 @@ const setPayment = async(req, res) =>{
 const getUserEvents = async(req, res) => {
     const id = req.body.id;
     const email = req.body.email
-    console.log(id);
     try{
         const user = await User.findOne({email});
-        console.log(user.events);
         res.status(200).json({message: "first step successful", user});
         
     }

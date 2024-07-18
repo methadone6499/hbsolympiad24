@@ -2,6 +2,7 @@ import './userDashboard.css'
 import {useState, useEffect} from 'react'
 import axios, { all } from 'axios'
 import React from 'react'
+import FileBase64 from 'react-file-base64';
 import Navbar from '../navbar/Navbar'
 import Logo from '../Logo/Logo'
 
@@ -9,9 +10,19 @@ function UserDashboard(){
     
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
-    const { email, id, name, phoneNumber, password } = user;
+    const { email, id, name, phoneNumber } = user;
 
     const [events, setEvents] = useState([]);
+
+    const [ feePayment, setfeePayment ] = useState("");
+
+    const [titleMap, setTitleMap] = useState([]);
+    const [idMap, setIdMap] = useState([]);
+
+    useEffect (() => {
+        setTitleMap(events.map(obj => obj.title));
+        setIdMap(events.map(obj => obj._id));
+    }, [events])
 
 
     useEffect(() => {
@@ -21,7 +32,8 @@ function UserDashboard(){
                     id, email, 
                 })
                 const eventData = res.data.user.events;
-                setEvents(eventData)
+                setEvents(eventData);
+                console.log(eventData);
             } catch(e){
                 console.log("Error fetching stuff");
             }
@@ -29,6 +41,27 @@ function UserDashboard(){
 
         fetchEvents();
     },[])
+
+    const handleProofSubmit = async(e) => {
+        e.preventDefault();
+
+        if (feePayment === "") { alert("No Image Uploaded") }
+        else {
+            console.log(feePayment);
+            try{
+                await axios.post("localhost:5000/v1/postFeePayment",{
+                    id, email, 
+                })
+                .then(res=>{
+                    console.log(res.data);
+                    alert(res.data.message);
+                })
+            }
+            catch(e){
+                alert('Server error');
+            }
+        }
+    }
 
     return(
         <div className='Home'>
@@ -51,12 +84,30 @@ function UserDashboard(){
                     List of Registered Events
                 </h2>
                 <div className="infoViewBox">
-                    <p className="text-small">
-                        { console.log("here")} 
-                        { console.log() }
-                        ALL EVENT INFO WILL GO HERE SUCH IE THE EVENT NAME AAAAAAAAAA
-                    </p>
+                    <div className="text-small">
+                        { console.log(titleMap) } 
+                        { titleMap.map(txt => <p>{txt} <button>Yes</button></p>) }
+                        { idMap.map(txt => <p>{txt} <button>Yes</button></p>) }
+                    </div>
                     <button type="submit" className="btn">Download Ticket</button>
+                </div>
+                <br />
+                <div className="infoViewBox">
+                    <label className='Label'>Payment Proof</label>
+                    <div className='imgInuput'>
+                        {feePayment &&  (
+                            <div className='imgDisplay'>
+                                <img 
+                                    alt="not found"
+                                    width = {"250px"}
+                                    src = {feePayment}
+                                />
+                                <button className='reg-btn' onClick={()=>{ setfeePayment(null)}}>Remove Image</button>
+                            </div>
+                        )}
+                        <FileBase64 type="file" multiple={false} onDone={({ base64 })=> setfeePayment(base64)}/>
+                        <button onClick= {handleProofSubmit} class='reg-btn'>Submit</button>
+                    </div>
                 </div>
                 <div>
                 </div>

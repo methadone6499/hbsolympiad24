@@ -1,7 +1,6 @@
 .infoViewBox {
     background-color: rgba(39, 39, 39, 0.7);
-    display: grid;
-    grid-template-columns: auto auto;
+    display: block;
     align-items: center;
     justify-content: center;
     border: 5px solid rgb(56, 56, 56);

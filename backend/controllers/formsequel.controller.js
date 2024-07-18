@@ -190,6 +190,7 @@ const postFormTeamMember = async(req, res) =>{
         const eventMemberLimit = Event.findOne({
             'eventName': eventName,
         })
+
         if(checkAmountOfMembers.numOfMembers === eventMemberLimit.maxLimits){
             return res.status(200).json({message: "max team member limit reached for a team"});
         }
