@@ -142,10 +142,11 @@ const postFormTeam = async (req, res) =>{
 }
 
 const postFormTeamMember = async(req, res) =>{
+    console.log(req.body);
     const userEmail = req.body.email;
     const eventName = req.body.eventName;
     const id = req.body.id;
-    const token = req.body.token;
+    const token = req.body.teamToken;
     const newUser = {
         userName: req.body.name,
         email: userEmail
@@ -224,7 +225,27 @@ const postFormTeamMember = async(req, res) =>{
 
 const deleteFormSolo = async(req, res) =>{
     console.log(req.body);
-    
+    const userEmail = req.body.email;
+    const eventName = req.body.eventName;
+    try{
+        const result = await Form.deleteOne({
+            'email': userEmail,
+            'eventName': eventName
+        });
+        if(result.deletedCount === 0){
+            console.log("No form found with the specified fields");
+            res.status(200).json({message:"No form found, please refresh page to see updated event List"});
+        }
+        const updateEvent = await Event.findOneandUpdate(
+            {title: eventName},
+            {$inc: {registered: -1}},
+            {new: true, runValidators: true}
+        )
+        return res.status(200).json({message: "solo form successfully deleted"})
+    }
+    catch(e){
+        res.status(500).json({message: "internal server error"});
+    }
 }
 
 module.exports = {
