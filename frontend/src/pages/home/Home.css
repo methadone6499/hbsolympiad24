@@ -23,17 +23,42 @@
     background-color: #000;
     margin-top: 320px;
   }
+
+  .nav-div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
   
+  .nav-div-mob {
+    display: grid;
+    grid-template-columns: auto;
+    align-items: center;
+    width: 100%;
+
+  }
+
   .nav-list {
     display: flex;
     align-items: center;
     min-width: auto;
     width: 65%
   }
+
+  .nav-list-mob {
+    display: flex;
+    align-items: center;
+    min-width: auto;
+  }
   
   .nav-list li {
     list-style: none;
     padding: 20px 20px;
+  }
+  
+  .nav-list-mob li {
+    list-style: none;
+    padding: 10px 10px;
   }
   
   .nav-list li a {
@@ -42,7 +67,17 @@
     font-size: 17px;
   }
   
+  .nav-list-mob li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 17px;
+  }
+  
   .nav-list li a:hover {
+    color: #ddd;
+  }
+  
+  .nav-list-mob li a:hover {
     color: #ddd;
   }
   
@@ -99,8 +134,8 @@
   .text-small {
     font-size: 18px;
     color: rgb(224, 224, 224);
-    white-space: pre-line;
     margin: 10px;
+
   }
 
   .btn {
@@ -194,6 +229,14 @@
     right: 0px;
     align-items: center;
     min-width: auto;
+  }
+
+  .reg-buttons-mob {
+    display: block;
+    right: 0px;
+    align-items: center;
+    min-width: auto;
+    margin: 10px;
   }
 
   .kysNOW {

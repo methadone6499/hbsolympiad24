@@ -120,7 +120,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("Chess");
+                                                        handleEventSelect("Chess");
                                                     }}>Register</button> 
 
                     </div>
@@ -133,7 +133,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("Tekken");
+                                                        handleEventSelect("Tekken");
                                                     }}>Register</button> 
 
                     </div>
@@ -146,7 +146,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("FIFA");
+                                                        handleEventSelect("FIFA");
                                                     }}>Register</button> 
 
                     </div>
@@ -159,7 +159,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("Suturing");
+                                                        handleEventSelect("Suturing");
                                                     }}>Register</button> 
                     </div>
                     <div className="ER-event">
@@ -171,7 +171,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("MUN (UNSC)");
+                                                        handleEventSelect("MUN (UNSC)");
                                                     }}>Register</button> 
                     </div>
                     <div className="ER-event">
@@ -183,7 +183,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("MUN (PNA)");
+                                                        handleEventSelect("MUN (PNA)");
                                                     }}>Register</button> 
                     </div>
                     <div className="ER-event">
@@ -195,7 +195,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("MUN (CC)");
+                                                        handleEventSelect("MUN (CC)");
                                                     }}>Register</button> 
                     </div>
                     <div className="ER-event">
@@ -207,7 +207,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("Art Competition");
+                                                        handleEventSelect("Art Competition");
                                                     }}>Register</button> 
                     </div>
                     <div className="ER-event">
@@ -219,7 +219,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("Art Gallery");
+                                                        handleEventSelect("Art Gallery");
                                                     }}>Register</button> 
                     </div>
                     <div className="ER-event">
@@ -231,7 +231,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
-                                                        setSelectedEvent("Videography competition");
+                                                        handleEventSelect("Videography competition");
                                                     }}>Register</button> 
                     </div>
                 </div>

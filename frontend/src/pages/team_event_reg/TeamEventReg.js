@@ -10,6 +10,8 @@ function TeamEventReg(){
 
     const [ selectedEvent, setSelectedEvent ] = useState("");
     const [ teamToken, setTeamToken ] = useState("")
+    
+    const [ succMessage, setSuccMessage ] = useState("")
 
     const { name, id, email, phoneNumber } = user;
 
@@ -29,7 +31,7 @@ function TeamEventReg(){
 
     const handleEventSelect = async(selectedEvent) => {
         setSelectedEvent(selectedEvent);
-        setSubmitted(false);
+        setSubmitted(true);
     }
 
     const [submitted, setSubmitted] = useState(false); 
@@ -53,22 +55,29 @@ function TeamEventReg(){
             setSubmitted(true);
             setError(false);
             console.log(selectedEvent)
-            const eventID = selectedEvent;
-            console.log(eventID)
+            const eventName = selectedEvent;
+            handleEventSelect("");
+            console.log(eventName)
+            console.log(name);
+            console.log(email);
+            console.log(phoneNumber);
+            console.log(userID);
             if (isCaptain) {
                 try
                 {
-                    console.log(selectedEvent)
+                    console.log(eventName)
                     await axios.post("http://localhost:5000/v2/submitFormTeam",{
-                        name, email, phoneNumber, userID, eventID
+                        name, email, phoneNumber, id, eventName
                     })
                     .then(res=>{
-                        alert(res.data.message);
+                        console.log(res.data.message);
+                        setSuccMessage(res.data.message);
                     })
                 }
                 catch(e)
                 {
-                    alert('server error')
+                    alert('server error here')
+                    console.log(e)
                 }
             }
             else {
@@ -76,10 +85,10 @@ function TeamEventReg(){
                 {
                     console.log(selectedEvent)
                     await axios.post("http://localhost:5000/v2/submitFormTeamMember",{
-                        name, email, phoneNumber, userID, eventID, teamToken
+                        name, email, phoneNumber, id, eventName, teamToken
                     })
                     .then(res=>{
-                        alert(res.data.message);
+                        setSuccMessage(res.data.message);
                     })
                 }
                 catch(e)
@@ -98,15 +107,16 @@ function TeamEventReg(){
                 style={{ 
                     display: submitted ? "" : "none", 
                 }} 
-            > 
-                <h1>Event successfully registered!!</h1> 
+            >
+                <h1> {succMessage} </h1> 
+
             </div> 
         ); 
     }; 
 
     const errorMessage = () => { 
-        error ? (console.log("error"))
-        : (<></>)
+        /*error ? (console.log("error"))
+        : (<></>)*/
     };
 
     return(
@@ -123,8 +133,19 @@ function TeamEventReg(){
                     For events relating to individual please check out the individual event registration tab.
                 </p>
                         <button  onClick={handleSetCaptain} className='reg-btn'>
-                            { isCaptain ? ('Register as Team Member') : ('Register as Captain') }
+                            { isCaptain ? ('Switch to Member Registration') : ('Switch to Captain Registration') }
                         </button>
+                        <br /> <br />
+                        { isCaptain ? (<br />) :
+                        (
+                            <input
+                                    onChange = {handleTeamToken}
+                                    className = "Input"
+                                    value = {teamToken}
+                                    type = "text"
+                                    placeholder='Team Code Here'
+                            />
+                        )}
                 <div className="event-reg-box">
                     
                     <div className='text-small'>
@@ -147,19 +168,10 @@ function TeamEventReg(){
                              }}>Register</button> 
                         ) : 
                         (
-                            <form>
-                                <input
-                                    onChange = {handleTeamToken}
-                                    className = "Input"
-                                    value = {teamToken}
-                                    type = "text"
-                                    placeholder='Team Code Here'
-                                />
-                                <button type="submit" className='reg-btn' onClick=
-                                {(e)=>{
-                                    handleEventSelect("Table Tennis Duo")
-                                }}>Register</button>
-                            </form>
+                            <button type="submit" className='reg-btn' onClick=
+                            {(e)=>{
+                                handleEventSelect("Table Tennis Duo")
+                            }}>Register</button>
                         )
                         }
                         </div>
@@ -180,19 +192,10 @@ function TeamEventReg(){
                              }}>Register</button> 
                         ) : 
                         (
-                            <form>
-                                <input
-                                    onChange = {handleTeamToken}
-                                    className = "Input"
-                                    value = {teamToken}
-                                    type = "text"
-                                    placeholder='Team Code Here'
-                                />
-                                <button type="submit" className='reg-btn' onClick=
-                                {(e)=>{
-                                    handleEventSelect("Volleyball")
-                                }}>Register</button>
-                            </form>
+                            <button type="submit" className='reg-btn' onClick=
+                            {(e)=>{
+                                handleEventSelect("Volleyball")
+                            }}>Register</button>
                         )
                         }
                         </div>
@@ -213,19 +216,10 @@ function TeamEventReg(){
                              }}>Register</button> 
                         ) : 
                         (
-                            <form>
-                                <input
-                                    onChange = {handleTeamToken}
-                                    className = "Input"
-                                    value = {teamToken}
-                                    type = "text"
-                                    placeholder='Team Code Here'
-                                />
-                                <button type="submit" className='reg-btn' onClick=
-                                {(e)=>{
-                                    handleEventSelect("Basketball")
-                                }}>Register</button>
-                            </form>
+                            <button type="submit" className='reg-btn' onClick=
+                            {(e)=>{
+                                handleEventSelect("Basketball")
+                            }}>Register</button>
                         )
                         }
                         </div>
@@ -246,19 +240,10 @@ function TeamEventReg(){
                              }}>Register</button> 
                         ) : 
                         (
-                            <form>
-                                <input
-                                    onChange = {handleTeamToken}
-                                    className = "Input"
-                                    value = {teamToken}
-                                    type = "text"
-                                    placeholder='Team Code Here'
-                                />
-                                <button type="submit" className='reg-btn' onClick=
-                                {(e)=>{
-                                    handleEventSelect("PUBG")
-                                }}>Register</button>
-                            </form>
+                            <button type="submit" className='reg-btn' onClick=
+                            {(e)=>{
+                                handleEventSelect("PUBG")
+                            }}>Register</button>
                         )
                         }</div>
                     </div>
@@ -278,19 +263,10 @@ function TeamEventReg(){
                              }}>Register</button> 
                         ) : 
                         (
-                            <form>
-                                <input
-                                    onChange = {handleTeamToken}
-                                    className = "Input"
-                                    value = {teamToken}
-                                    type = "text"
-                                    placeholder='Team Code Here'
-                                />
-                                <button type="submit" className='reg-btn' onClick=
-                                {(e)=>{
-                                    handleEventSelect("Futsal")
-                                }}>Register</button>
-                            </form>
+                            <button type="submit" className='reg-btn' onClick=
+                            {(e)=>{
+                                handleEventSelect("Futsal")
+                            }}>Register</button>
                         )
                         }
                         </div>
@@ -312,19 +288,10 @@ function TeamEventReg(){
                              }}>Register</button> 
                         ) : 
                         (
-                            <form>
-                                <input
-                                    onChange = {handleTeamToken}
-                                    className = "Input"
-                                    value = {teamToken}
-                                    type = "text"
-                                    placeholder='Team Code Here'
-                                />
-                                <button type="submit" className='reg-btn' onClick=
-                                {(e)=>{
-                                    handleEventSelect("BLS Competition")
-                                }}>Register</button>
-                            </form>
+                            <button type="submit" className='reg-btn' onClick=
+                            {(e)=>{
+                                handleEventSelect("BLS Competition")
+                            }}>Register</button>
                         )
                         }
                         </div>
@@ -346,19 +313,10 @@ function TeamEventReg(){
                              }}>Register</button> 
                         ) : 
                         (
-                            <form>
-                                <input
-                                    onChange = {handleTeamToken}
-                                    className = "Input"
-                                    value = {teamToken}
-                                    type = "text"
-                                    placeholder='Team Code Here'
-                                />
-                                <button type="submit" className='reg-btn' onClick=
-                                {(e)=>{
-                                    handleEventSelect("Quizzes")
-                                }}>Register</button>
-                            </form>
+                            <button type="submit" className='reg-btn' onClick=
+                            {(e)=>{
+                                handleEventSelect("Quizzes")
+                            }}>Register</button>
                         )
                         }
                         </div>
@@ -380,19 +338,10 @@ function TeamEventReg(){
                              }}>Register</button> 
                         ) : 
                         (
-                            <form>
-                                <input
-                                    onChange = {handleTeamToken}
-                                    className = "Input"
-                                    value = {teamToken}
-                                    type = "text"
-                                    placeholder='Team Code Here'
-                                />
-                                <button type="submit" className='reg-btn' onClick=
-                                {(e)=>{
-                                    handleEventSelect("Research Conference")
-                                }}>Register</button>
-                            </form>
+                            <button type="submit" className='reg-btn' onClick=
+                            {(e)=>{
+                                handleEventSelect("Research Conference")
+                            }}>Register</button>
                         )
                         }
                         </div>
@@ -414,19 +363,10 @@ function TeamEventReg(){
                              }}>Register</button> 
                         ) : 
                         (
-                            <form>
-                                <input
-                                    onChange = {handleTeamToken}
-                                    className = "Input"
-                                    value = {teamToken}
-                                    type = "text"
-                                    placeholder='Team Code Here'
-                                />
-                                <button type="submit" className='reg-btn' onClick=
-                                {(e)=>{
-                                    handleEventSelect("Scavenger Hunt")
-                                }}>Register</button>
-                            </form>
+                            <button type="submit" className='reg-btn' onClick=
+                            {(e)=>{
+                                handleEventSelect("Scavenger Hunt")
+                            }}>Register</button>
                         )
                         }
                         </div>

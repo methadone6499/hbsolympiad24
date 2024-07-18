@@ -10,23 +10,25 @@ function UserDashboard(){
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
     const { email, id, name, phoneNumber, password } = user;
-    console.log(user);
 
     const [events, setEvents] = useState([]);
 
-    /*useEffect(() => {
+
+    useEffect(() => {
         const fetchEvents = async() =>{
             try{
-                const res = await axios.get('http://localhost:5000/v1/getEvents');
-                const data = res.data;
-                setEvents(data);
+                const res = await axios.post('http://localhost:5000/v1/getEvents', {
+                    id, email, 
+                })
+                const eventData = res.data.user.events;
+                setEvents(eventData)
             } catch(e){
                 console.log("Error fetching stuff");
             }
         }
 
         fetchEvents();
-    },[])*/
+    },[])
 
     return(
         <div className='Home'>
@@ -37,30 +39,28 @@ function UserDashboard(){
                 <h1 className="text-big">
                     User Dashboard
                 </h1>
-                <div className="userInfo infoViewBox">
+                <div className="infoViewBox">
                     <p className="text-small">
-                        Name: {name} {"\n"}
-                    </p>
-                    <p className="text-small">
-                        ID Number: {id} {"\n"}
-                    </p>
-                    <p className="text-small">
-                        Email: {email} {"\n"}
-                    </p>
-                    <p className="text-small">
-                        Phone Number: {phoneNumber} {"\n"}
+                        Name: {name} {'\n' }
+                        ID Number: {id} {'\n'}
+                        Email: {email} {'\n'}
+                        Phone Number: {phoneNumber} {'\n'}
                     </p>
                 </div>
                 <h2 className="text-big">
                     List of Registered Events
                 </h2>
-                <div className="eventInfo infoViewBox">
+                <div className="infoViewBox">
                     <p className="text-small">
-                        Event: man!!!!!
+                        { console.log("here")} 
+                        { console.log() }
+                        ALL EVENT INFO WILL GO HERE SUCH IE THE EVENT NAME AAAAAAAAAA
                     </p>
                     <button type="submit" className="btn">Download Ticket</button>
-                    <button type="submit" className="btn">Cancel Event Registration</button>
                 </div>
+                <div>
+                </div>
+
             </div>
             <footer className="footer">
                 <p className="text-footer">
