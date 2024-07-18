@@ -47,10 +47,10 @@ function UserDashboard(){
 
         if (feePayment === "") { alert("No Image Uploaded") }
         else {
-            console.log(feePayment);
             try{
-                await axios.post("localhost:5000/v1/postFeePayment",{
-                    id, email, 
+                console.log(feePayment);
+                await axios.post('http://localhost:5000/v1/postFeePayment',{
+                    id, email, feePayment
                 })
                 .then(res=>{
                     console.log(res.data);
@@ -105,7 +105,7 @@ function UserDashboard(){
                                 <button className='reg-btn' onClick={()=>{ setfeePayment(null)}}>Remove Image</button>
                             </div>
                         )}
-                        <FileBase64 type="file" multiple={false} onDone={({ base64 })=> setfeePayment(base64)}/>
+                        <FileBase64 accept="image/jpeg, image/jpg, image/png" type="file" multiple={false} onDone={({ base64 })=> setfeePayment(base64)}/>
                         <button onClick= {handleProofSubmit} class='reg-btn'>Submit</button>
                     </div>
                 </div>

@@ -8,6 +8,25 @@ const jwt = require('jsonwebtoken');
 const signupUser = async (req, res) => {
     const{email}=req.body;
     //console.log(email);
+    const uniCardImg = req.body.feePayment;
+    function getFileType(base64Data) {
+        //console.log(base64Data)
+        const fileType = base64Data.substring("data:image/".length, base64Data.indexOf(";base64"));
+        if(fileType){
+            return fileType;
+        }
+        return null;
+    }
+
+    const fileType = getFileType(uniCardImg);
+
+    // Allowed MIME types
+    const allowedTypes = ['jpeg', 'jpg', 'png'];
+
+    // Validate file type
+    if (!allowedTypes.includes(fileType)) {
+        return res.status(200).json({ message: 'Invalid file type. Only PNG, JPG, and JPEG are allowed.' });
+    }
 
     try{
         const check = await User.findOne({email:email})
@@ -61,7 +80,27 @@ const loginUser = async(req, res) => {
 
 const setPayment = async(req, res) =>{
     console.log("here");
-    console.log(req.body);
+    //console.log(req.body);
+    const feePayment = req.body.feePayment;
+    function getFileType(base64Data) {
+        //console.log(base64Data)
+        const fileType = base64Data.substring("data:image/".length, base64Data.indexOf(";base64"));
+        if(fileType){
+            return fileType;
+        }
+        return null;
+    }
+
+    const fileType = getFileType(feePayment);
+
+    // Allowed MIME types
+    const allowedTypes = ['jpeg', 'jpg', 'png'];
+
+    // Validate file type
+    if (!allowedTypes.includes(fileType)) {
+        return res.status(200).json({ message: 'Invalid file type. Only PNG, JPG, and JPEG are allowed.' });
+    }
+    
     try{
         const updatedUser = await User.findOneAndUpdate(
             { id: req.body.id, email: req.body.email },
