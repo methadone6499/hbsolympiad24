@@ -4,6 +4,7 @@ const Event = require('../models/events.model');
 const FormTeam = require('../models/formTeam.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { postFormSolo } = require('./form.controller');
 
 const signupUser = async (req, res) => {
     const{email}=req.body;
@@ -123,8 +124,34 @@ const getUserEvents = async(req, res) => {
     const email = req.body.email
     try{
         const user = await User.findOne({email});
-        res.status(200).json({message: "first step successful", user});
+        const { solo, team } = user.events.reduce((acc, item) => {
+            if (item.category === 'Solo') {
+              acc.solo.push(item);
+            } else if (item.category === 'Team') {
+              acc.team.push(item);
+            }
+            return acc;
+        }, { solo: [], team: [] });
+        console.log('Solo:', solo);
+        console.log('Team:', team);
         
+        const teamMembersbyEvent = {};
+        for (let i = 0; i<team.length; i++){
+            try{
+                const formDetails = await FormTeam.findById({_id: team[i].formID});
+
+                if (!teamMembersbyEvent[i]) {
+                    teamMembersbyEvent[i] = [];
+                }
+
+                teamMembersbyEvent[i].push(formDetails);
+                //console.log(formDetails);
+            } catch(error){
+                console.log("error", error);
+            }
+        }
+        console.log(teamMembersbyEvent);
+        res.status(200).json({teamMembersbyEvent, solo});
     }
     catch(e){
         res.status(500).json({message: "internal server error"});

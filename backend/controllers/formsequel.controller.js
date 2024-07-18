@@ -54,9 +54,15 @@ const postFormSolo = async (req, res) =>{
         )
         console.log(updateSoloEventCount);
 
+        const newEvent = {
+            title: eventName,
+            category: updateSoloEventCount.category,
+            formID: newForm._id
+        };
+
         const updatedUser = await User.findOneAndUpdate(
             {email: userEmail},
-            {$push: { events: {title: eventName}}},
+            {$push: { events: newEvent}},
             {new: true, runValidators: true}
         );
         //console.log(updatedUser);
@@ -125,15 +131,21 @@ const postFormTeam = async (req, res) =>{
             {$inc: {registered: 1}},
             {new: true, runValidators: true}
         );
+        const newEvent = {
+            title: eventName,
+            category: updateTeamEventCount.category,
+            formID: newTeamForm._id
+        };
         
         const updatedUser = await User.findOneAndUpdate(
             {email: userEmail},
-            {$push: { events: {title: eventName}}},
+            {$push: { events: newEvent}},
             {new: true, runValidators: true}
         );
+        
         console.log(newTeamForm);
         await newTeamForm.save();
-        return res.status(201).json({message: 'Form successfully submitted, please send the code you have to the people you wish to have as team memberrs.', newTeamForm})
+        return res.status(201).json({message: 'Form successfully submitted, please send the code you have to the people you wish to have as team memberrs.', newTeamForm, updatedUser})
 
     }
     catch(e){
@@ -187,10 +199,10 @@ const postFormTeamMember = async(req, res) =>{
             'token': token,
             'eventName': eventName,
         })
-        const eventMemberLimit = Event.findOne({
-            'eventName': eventName,
-        })
-
+        const eventMemberLimit = await Event.findOne(
+            {'title': eventName}
+        )
+        console.log(eventMemberLimit);
         if(checkAmountOfMembers.numOfMembers === eventMemberLimit.maxLimits){
             return res.status(200).json({message: "max team member limit reached for a team"});
         }
@@ -210,10 +222,15 @@ const postFormTeamMember = async(req, res) =>{
                 runValidators: true
             }
         )
-        console.log(updateTeamForm);
+        const newEvent = {
+            title: eventName,
+            category: eventMemberLimit.category,
+            formID: updateTeamForm._id
+        };
+        //console.log(updateTeamForm);
         const updatedUser = await User.findOneAndUpdate(
             {email: userEmail},
-            { $push: { events: {title: eventName}}},
+            { $push: { events: newEvent}},
             { new: true, runValidators: true }
         );
         return res.status(200).json({message: "You have successfully registered for the team.", updateTeamForm});
