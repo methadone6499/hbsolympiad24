@@ -41,6 +41,22 @@ function UserDashboard(){
 
         fetchEvents();
     },[])
+    
+    const handleFileChange = (base64) => {
+        console.log("hello");
+        const file = base64;
+        console.log(file.length);
+        var sizeInBytes = 4 * Math.ceil((file.length / 3))*0.5624896334383812;
+        console.log(sizeInBytes);
+        if (sizeInBytes > 2097152) { // 5 MB in bytes
+            console.log("hello");
+            alert('File size exceeds 2 MB. Please choose a smaller file.');
+            setfeePayment("")
+        } else {
+            setfeePayment(base64);
+            console.log("here too");
+        }
+      };
 
     const handleProofSubmit = async(e) => {
         e.preventDefault();
@@ -105,7 +121,7 @@ function UserDashboard(){
                                 <button className='reg-btn' onClick={()=>{ setfeePayment(null)}}>Remove Image</button>
                             </div>
                         )}
-                        <FileBase64 accept="image/jpeg, image/jpg, image/png" type="file" multiple={false} onDone={({ base64 })=> setfeePayment(base64)}/>
+                        <FileBase64 accept="image/jpeg, image/jpg, image/png" type="file" multiple={false} onDone={({ base64 })=> handleFileChange(base64)}/>
                         <button onClick= {handleProofSubmit} class='reg-btn'>Submit</button>
                     </div>
                 </div>

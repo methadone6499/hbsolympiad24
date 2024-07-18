@@ -90,6 +90,9 @@ const Navbar = () => {
                         <Link to="/events" className="links">List of Events</Link>
                     </li>
                     <li>
+                        <Link to="/admin_dashboard" className='"lnks'>Admin</Link>
+                    </li>
+                    <li>
                         { user ? 
                         ( 
                             <Link to="/ind_event_reg" className="links">Individual Event Registration</Link>) : 
