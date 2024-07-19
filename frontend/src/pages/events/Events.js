@@ -77,7 +77,7 @@ function Events(){
                     Academic
                 </h1>
                 <div className="events-box">
-                    <div className="E-event E_T E_L">
+                    <div className="E-event E_T">
                         <p className="text-big">
                             Quizzes
                         </p>
@@ -85,7 +85,7 @@ function Events(){
                             A quiz is a form of game or mind sport in which players attempt to answer questions correctly on one or several specific topics. Quizzes can be used as a brief assessment in education and similar fields to measure growth in knowledge, abilities, and skills.
                         </p>
                     </div>
-                    <div className="E-event E_T E_R">
+                    <div className="E-event">
                         <p className="text-big">
                             Suturing
                         </p>
@@ -93,7 +93,7 @@ function Events(){
                             A surgical suture, also known as a stitch or stitches, is a medical device used to hold body tissues together and approximate wound edges after an injury or surgery. Application generally involves using a needle with an attached length of thread.
                         </p>
                     </div>
-                    <div className="E-event E_L">
+                    <div className="E-event">
                         <p className="text-big">
                             BLS Competition
                         </p>
@@ -101,7 +101,7 @@ function Events(){
                             Basic life support (BLS) is a level of medical care which is used for patients with life-threatening condition of cardiac arrest until they can be given full medical care by advanced life support providers.
                         </p>
                     </div>
-                    <div className="E-event E_R">
+                    <div className="E-event">
                         <p className="text-big">
                             Dental Competition
                         </p>
@@ -109,7 +109,7 @@ function Events(){
                         Dentistry, also known as dental medicine and oral medicine, is the branch of medicine focused on the teeth, gums, and mouth. It consists of the study, diagnosis, prevention, management, and treatment of diseases, disorders, and conditions of the mouth, most commonly focused on dentition as well as the oral mucosa.
                         </p>
                     </div>
-                    <div className="E-event E_L E_B">
+                    <div className="E-event">
                         <p className="text-big">
                             Research Conference
                         </p>
@@ -117,7 +117,7 @@ function Events(){
                             A research conference or scientific conference is an event for researchers to present and discuss their scholarly work. Together with academic or scientific journals and preprint archives, conferences provide an important channel for exchange of information between researchers.
                         </p>
                     </div>
-                    <div className="E-event E_B E_R">
+                    <div className="E-event">
                         <p className="text-big">
                             MUN/Debates
                         </p>
@@ -131,7 +131,7 @@ function Events(){
                     Social
                 </h1>
                 <div className="events-box">
-                    <div className="E-event E_T E_L">
+                    <div className="E-event">
                         <p className="text-big">
                             Scavenger Hunt
                         </p>
@@ -139,7 +139,7 @@ function Events(){
                             A scavenger hunt is a game in which the organizers prepare a list defining specific items, which the participants seek to gather or complete all items on the list, usually without purchasing them.
                         </p>
                     </div>
-                    <div className="E-event E_T E_R">
+                    <div className="E-event">
                         <p className="text-big">
                             Art Competition
                         </p>
@@ -147,7 +147,7 @@ function Events(){
                             Art competitions allow artists to display their work among their peers, have it reviewed by esteemed judges, and sometimes receive exhibition opportunities and monetary incentives.
                         </p>
                     </div>
-                    <div className="E-event E_L">
+                    <div className="E-event">
                         <p className="text-big">
                             Photography Gallery
                         </p>
@@ -155,7 +155,7 @@ function Events(){
                             An event where competitors can submit their photographs to be displayed so they can be viewed by peers and reviewed by judges to select the best one among them.
                         </p>
                     </div>
-                    <div className="E-event E_R">
+                    <div className="E-event">
                         <p className="text-big">
                             Music Jamming Session
                         </p>

@@ -1,0 +1,19 @@
+.shownList {
+    border-top: solid 5px red;
+    border-bottom: solid 5px red;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    align-items: center;
+    min-width: auto;
+    color: white;;
+}
+
+.shownList h2 {
+    border-bottom: solid 5px red;;
+}
+
+.shownList li {
+    font-size: 17px;
+    list-style: none;
+    text-decoration: none;
+}

@@ -19,18 +19,7 @@
   .btn-thing {
     display: flex;;
     align-items: center;
-  }
-
-  .E_T {
-    border-bottom: none;
-  }
-
-  .E_L {
-    border-right: none;
-  }
-
-  .E_B {
-    border-top: none;
+    justify-content: center;
   }
 
   .reg-btn {
@@ -43,4 +32,21 @@
 
   .reg-title {
     margin-right: 10px;
+  }
+
+  @media (max-width: 580px) {
+    .events-box {
+      display: block;
+      justify-items: center;
+    }
+    .event-reg-box {
+      display: block;
+      justify-items: center;
+      padding-top: 10px;
+    }
+    .ER-event {
+      display: block;
+      padding-bottom: 10px;
+    }
+  
   }

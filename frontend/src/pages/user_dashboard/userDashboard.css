@@ -12,3 +12,19 @@
 .eventInfo button{
     margin: 10px;
 }  
+
+.user-shown-events {
+    display: block;
+    grid-template-columns: auto auto;
+    min-width: auto;
+    color: white;;
+}
+
+.user-shown-events li {
+    list-style: none;
+}
+
+.team-list-shown {
+    display: grid;
+    grid-template-columns: auto auto;
+}

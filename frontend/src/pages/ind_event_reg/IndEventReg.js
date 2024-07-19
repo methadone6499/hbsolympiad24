@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import './IndEventReg.css'
 import axios from 'axios'
 import Navbar from '../navbar/Navbar'
@@ -14,11 +14,20 @@ function IndEventReg(){
 
     const { name, id, email, phoneNumber } = user;
 
+    const firstItemRef = useRef(null);
+
     const userID = id;
+    
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 5;
+    }
 
     const handleEventSelect = async(selectedEvent) => {
         setSelectedEvent(selectedEvent);
         setSubmitted(true);
+        firstItemRef.current.scrollIntoView();
     }
 
     const [submitted, setSubmitted] = useState(false); 
@@ -87,7 +96,7 @@ function IndEventReg(){
                 <h1 className="text-big">
                     Individual Event Registration
                 </h1>
-                <p className="text-small">
+                <p className="text-small" ref={firstItemRef}>
                     Here you can register for all events and competitions that require a single person as the competitor.{"\n"}
                     For events relating to teams please check out the team event registration tab.
                 </p>
@@ -98,7 +107,7 @@ function IndEventReg(){
                         {errorMessage()}
                         {SuccessMessage(succMessage)}
                     </div>
-                    <div className="ER-event E_T">
+                    <div className="ER-event">
                         <p className="text-big">
                             Table Tennis
                         </p>
@@ -111,7 +120,7 @@ function IndEventReg(){
                          }}>Register</button> 
                     </div>
 
-                    <div className="ER-event E_T">
+                    <div className="ER-event">
                         <p className="text-big">
                             Chess
                         </p>
@@ -124,7 +133,7 @@ function IndEventReg(){
                                                     }}>Register</button> 
 
                     </div>
-                    <div className="ER-event E_T">
+                    <div className="ER-event">
                         <p className="text-big">
                             E-Games (Tekken)
                         </p>
@@ -137,7 +146,7 @@ function IndEventReg(){
                                                     }}>Register</button> 
 
                     </div>
-                    <div className="ER-event E_T">
+                    <div className="ER-event">
                         <p className="text-big">
                             E-Games (FIFA)
                         </p>
@@ -150,14 +159,14 @@ function IndEventReg(){
                                                     }}>Register</button> 
 
                     </div>
-                    <div className="ER-event E_T">
+                    <div className="ER-event">
                         <p className="text-big">
                             Suturing
                         </p>
                         <p className="text-small">
                             Suturing is a medical procedure used to close wounds or surgical incisions with stitches. It involves using a needle and thread to sew tissue together, promoting healing and reducing the risk of infection.
                         </p>
-                        <button type="submit" className='reg-btn' onClick=
+                        <button href="#message" type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
                                                         handleEventSelect("Suturing");
                                                     }}>Register</button> 
