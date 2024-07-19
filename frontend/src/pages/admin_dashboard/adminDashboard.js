@@ -2,6 +2,7 @@ import "./adminDashboard.css"
 import Popup from "reactjs-popup"
 import Navbar from '../navbar/Navbar'
 import Logo from '../Logo/Logo'
+import { Link } from 'react-router-dom'
 
 function AdminDashboard(){
     return(
@@ -25,8 +26,12 @@ function AdminDashboard(){
                     Admin Options
                 </h1>
                 <div className="registrationOverview infoViewBox">
-                    <button className="btn">See all user registration</button>
-                    <button className="btn">See all event registrations</button>
+                    <Link to="/admin_dashboard/UserList" className="links">
+                        <button className="btn">See all user registration</button>
+                    </Link>
+                    <Link to="/admin_dashboard/EventList" className="links">
+                        <button className="btn">See all event registration</button>
+                    </Link>
                     {/* <ul className="regList">
                         <li className="text-small">
                             User 1

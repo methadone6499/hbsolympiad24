@@ -1,5 +1,5 @@
 import './TeamEventReg.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import Navbar from '../navbar/Navbar'
 import Logo from '../Logo/Logo'
@@ -14,6 +14,8 @@ function TeamEventReg(){
     const [ succMessage, setSuccMessage ] = useState("")
 
     const { name, id, email, phoneNumber } = user;
+    
+    const firstItemRef = useRef(null);
 
     const userID = id;
 
@@ -32,6 +34,7 @@ function TeamEventReg(){
     const handleEventSelect = async(selectedEvent) => {
         setSelectedEvent(selectedEvent);
         setSubmitted(true);
+        firstItemRef.current.scrollIntoView();
     }
 
     const [submitted, setSubmitted] = useState(false); 
@@ -128,7 +131,7 @@ function TeamEventReg(){
                 <h1 className="text-big">
                     Team Event Registration
                 </h1>
-                <p className="text-small">
+                <p className="text-small" ref={firstItemRef}>
                     Here you can register for all events and competitions that require a team of people to cooperate.{"\n"}
                     For events relating to individual please check out the individual event registration tab.
                 </p>
@@ -152,7 +155,7 @@ function TeamEventReg(){
                         {errorMessage()}
                         {SuccessMessage()}
                     </div>
-                    <div className="ER-event E_T">
+                    <div className="ER-event">
                         <p className="text-big">
                             Table Tennis
                         </p>

@@ -12,28 +12,38 @@ function UserDashboard(){
 
     const { email, id, name, phoneNumber } = user;
 
-    const [events, setEvents] = useState([]);
+    const [soloEvents, setSoloEvents] = useState([]);
+
+    const [TeamEvents, setTeamEvents] = useState([]);
 
     const [ feePayment, setfeePayment ] = useState("");
 
     const [titleMap, setTitleMap] = useState([]);
     const [idMap, setIdMap] = useState([]);
 
-    useEffect (() => {
-        setTitleMap(events.map(obj => obj.title));
-        setIdMap(events.map(obj => obj._id));
-    }, [events])
-
-
     useEffect(() => {
         const fetchEvents = async() =>{
             try{
                 const res = await axios.post('http://localhost:5000/v1/getEvents', {
-                    id, email, 
+                    email, 
                 })
-                const eventData = res.data.user.events;
-                setEvents(eventData);
-                console.log(eventData);
+
+                const eventSoloData = res.data.solo;
+                const listSoloTitles = eventSoloData.map((d) => <li key={d.title}>{d.title}</li>);
+                const eventTeamData = res.data.teamMembersbyEvent
+                const teamtEventAmmount = Object.keys(eventTeamData).length;
+                const teamData = [];
+                for (var i = 0; i < teamtEventAmmount; i++)
+                {
+                    const eventDataRN = eventTeamData[i][0];
+                    const teamDataRN = { title: eventDataRN.eventName, CaptName: eventDataRN.name, Members: Object.values(eventDataRN.user) };
+                    console.log(teamDataRN);
+                    teamData[i] = teamDataRN;
+                }
+                const listTeamTitles = teamData.map((d) => <li key={d.title}>{d.title}</li>);
+                console.log(listTeamTitles);
+                setSoloEvents(listSoloTitles);
+                setTeamEvents(teamData);
             } catch(e){
                 console.log("Error fetching stuff");
             }
@@ -43,18 +53,13 @@ function UserDashboard(){
     },[])
     
     const handleFileChange = (base64) => {
-        console.log("hello");
         const file = base64;
-        console.log(file.length);
         var sizeInBytes = 4 * Math.ceil((file.length / 3))*0.5624896334383812;
-        console.log(sizeInBytes);
         if (sizeInBytes > 2097152) { // 5 MB in bytes
-            console.log("hello");
             alert('File size exceeds 2 MB. Please choose a smaller file.');
             setfeePayment("")
         } else {
             setfeePayment(base64);
-            console.log("here too");
         }
       };
 
@@ -64,12 +69,10 @@ function UserDashboard(){
         if (feePayment === "") { alert("No Image Uploaded") }
         else {
             try{
-                console.log(feePayment);
                 await axios.post('http://localhost:5000/v1/postFeePayment',{
                     id, email, feePayment
                 })
                 .then(res=>{
-                    console.log(res.data);
                     alert(res.data.message);
                 })
             }
@@ -100,10 +103,24 @@ function UserDashboard(){
                     List of Registered Events
                 </h2>
                 <div className="infoViewBox">
-                    <div className="text-small">
-                        { console.log(titleMap) } 
-                        { titleMap.map(txt => <p>{txt} <button>Yes</button></p>) }
-                        { idMap.map(txt => <p>{txt} <button>Yes</button></p>) }
+                    <div className="text-small user-shown-events">
+                        <ul>
+                        <h2>Solo Events</h2>
+                            { soloEvents }
+                        </ul>
+                        <div>
+                            <h2>Team Events</h2>
+                            <div class="team-list-shown">
+                                <ul>
+                                    <h2>Titles</h2>
+                                    { TeamEvents.map((d) => <li >{d.title}</li>) }
+                                </ul>
+                                <ul>
+                                    <h2>Captains</h2>
+                                    { TeamEvents.map((d) => <li >{d.CaptName}</li>) }
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <button type="submit" className="btn">Download Ticket</button>
                 </div>
@@ -122,7 +139,7 @@ function UserDashboard(){
                             </div>
                         )}
                         <FileBase64 accept="image/jpeg, image/jpg, image/png" type="file" multiple={false} onDone={({ base64 })=> handleFileChange(base64)}/>
-                        <button onClick= {handleProofSubmit} class='reg-btn'>Submit</button>
+                        <button onClick= {handleProofSubmit} className='reg-btn'>Submit</button>
                     </div>
                 </div>
                 <div>
