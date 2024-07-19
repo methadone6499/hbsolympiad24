@@ -36,7 +36,7 @@ const getUsers = async(req, res) =>{
         const limit = 2; // Number of users per page
         const skip = (page - 1) * limit;
 
-        const users = await User.find().skip(skip).limit(limit).select('-feePayment -uniCard');
+        const users = await User.find().skip(skip).limit(limit).select('-feePayment -uniCard -password');
         res.status(200).json(users);
     }
     catch(e){
@@ -45,7 +45,79 @@ const getUsers = async(req, res) =>{
 
 }
 
+const getOneUserByEmail = async(req, res) =>{
+    const userEmail = req.body.email;
+    try{
+        const user = await User.findOne({
+            email: userEmail
+        })
+        if(user){
+            return res.status(200).json(user);
+        }
+        
+        res.status(200).json({message: "no user found please confirm spelling of email"})
+    }   
+    catch(e){
+        res.status(500).json({message: "internal server error"});
+    }
+}
+
+const getUsersByName = async(req, res) =>{
+    const userName = req.body.name;
+    try{
+        const users = await User.find({
+            name: userName
+        }).select('-password');
+        if(users){
+            return res.status(200).json(users);
+        }
+        res.status(200).json({message: "no user found please confirm spelling of name"});
+    }   
+    catch(e){
+        res.status(500).json({message: "internal server error"});
+    }
+}
+
+const getEventForms = async(req, res) => {
+    const eventName = req.body.eventName;
+    try{
+        const forms = await Forms.find({
+            eventName: eventName
+        })
+        if(forms.length > 0){
+            console.log("check");
+            return res.status(200).json(forms);
+        }
+        const teamForms = await FormTeam.find({
+            eventName: eventName
+        })
+        console.log(teamForms);
+        if(teamForms){
+            return res.status(200).json(teamForms);
+        }
+        res.status(200).json({message: "uh damn this wasn't supposed to happen"})
+    }
+    catch(e){
+        res.status(500).json({message: "internal server error"});
+    }
+
+}
+
+const getNumOfRegistered = async(req, res) =>{
+    try{
+        const events = await Event.find().select('title category registered');
+        res.status(200).json(events);
+    }
+    catch(e){
+        res.status(500).json({message: 'Internal server error'});
+    }
+}
+
 module.exports = {
     loginAdmin,
-    getUsers
+    getUsers,
+    getOneUserByEmail,
+    getUsersByName,
+    getEventForms,
+    getNumOfRegistered
 }

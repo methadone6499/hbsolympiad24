@@ -14,9 +14,11 @@ const userSchema = new mongoose.Schema({
     },
     uniName:{
         type: String,
+        required: true,
     },
     uniCard:{
         type: String,
+        required: true
     },
     phoneNumber:{
         type: String,
