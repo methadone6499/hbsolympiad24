@@ -100,7 +100,8 @@ function SignUp(){
         
         else {
             setSubmitted(true); 
-            setError(false); 
+            setError(false);
+            console.log(uniCardImgFR); 
             try{
                 await axios.post("http://localhost:5000/v1/signup",{
                     name, idNum, email, phoneNumber, university, uniCardImgFR, password, 
