@@ -146,7 +146,7 @@ const postFormTeam = async (req, res) =>{
         
         console.log(newTeamForm);
         await newTeamForm.save();
-        return res.status(201).json({message: 'Form successfully submitted, please send the code you have to the people you wish to have as team memberrs.', newTeamForm, updatedUser})
+        return res.status(201).json({message: 'Form successfully submitted, please send the code: '+newTeamForm.token+' you have to the people you wish to have as team members.', newTeamForm, updatedUser})
 
     }
     catch(e){
@@ -179,7 +179,7 @@ const postFormTeamMember = async(req, res) =>{
         })
         if(existingForm){
             //return res.status(200).json({message: 'You have already registered for this event'});
-            return res.status(200).json({message: 'You should kill yourself now captain'});
+            return res.status(200).json({message: 'Captains cannot register as team members for their own team'});
         }
         console.log("captain isn't registering for the same team or something");
         const existingTeamMember = await FormTeam.findOne({

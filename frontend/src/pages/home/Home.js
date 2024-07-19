@@ -79,8 +79,43 @@ function Home(){
                 <h1 className="text-big" id="program">
                     Sponsors
                 </h1>
-                <p className="text-small">
-                </p>
+                
+                <div className="events-box">
+                    <div className="E-event E_T E_L">
+                        <img
+                            src="https://dcassetcdn.com/design_img/22666/14424/14424_503865_22666_thumbnail.jpg"
+                        />
+                        <p className="text-big">
+                            Jizz
+                        </p>
+                    </div>
+                    <div className="E-event E_T E_L">
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjRgi6sgapF8I-wHOw3hg9owge4pTP6TJlzw&s"
+                        />
+                        <p className="text-big">
+                            Mr Breast
+                        </p>
+                    </div>
+                    <div className="E-event E_T E_L">
+                        <img
+                            width="210"
+                            height="181"
+                            src="https://images-cdn.9gag.com/photo/aBn1yvQ_700b.jpg"
+                        />
+                        <p className="text-big">
+                            FCK
+                        </p>
+                    </div>
+                    <div className="E-event E_T E_L">
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ7pyrGBWVkAn4yS3uEk-vCJzWarqWgIbfkw&s"
+                        />
+                        <p className="text-big">
+                            Cock
+                        </p>
+                    </div>
+                </div>
             </div>
             <footer className="footer">
                 <p className="text-footer">

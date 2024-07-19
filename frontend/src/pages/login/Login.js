@@ -1,6 +1,6 @@
 import './Login.css'
 import {useNavigate} from "react-router-dom"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios, { all } from 'axios'
 import Navbar from '../navbar/Navbar'
 import Logo from '../Logo/Logo'
@@ -134,12 +134,10 @@ function Login(){
     };
 
 
-    if (user) {
-        navigate('/user_dashboard');
+    useEffect(() => {
+        if (user) {navigate('/')}
+    }, [])
 
-    }
-
-    else {
     return(
         <div className='Home'>
 
@@ -195,6 +193,6 @@ function Login(){
             </footer>
         </div>
     )}
-}
+
 
 export default Login
