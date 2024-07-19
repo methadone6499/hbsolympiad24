@@ -20,6 +20,10 @@ const formTeamSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    uniName:{
+        type: String,
+        required: true
+    },
     token:{
         type: String,
         required: true,

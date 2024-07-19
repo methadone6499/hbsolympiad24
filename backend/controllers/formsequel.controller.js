@@ -121,6 +121,7 @@ const postFormTeam = async (req, res) =>{
             email: userEmail,
             id: id,
             phoneNumber: req.body.phoneNumber,
+            uniName: req.body.university,
             token: teamToken,
             numOfMembers: 1,
             eventName: eventName,
