@@ -8,8 +8,8 @@ const { postFormSolo } = require('./form.controller');
 
 const signupUser = async (req, res) => {
     const{email}=req.body;
-    //console.log(email);
-    const uniCardImg = req.body.feePayment;
+    console.log(req.body);
+    const uniCardImg = req.body.uniCardImgFR;
     function getFileType(base64Data) {
         //console.log(base64Data)
         const fileType = base64Data.substring("data:image/".length, base64Data.indexOf(";base64"));
@@ -41,6 +41,7 @@ const signupUser = async (req, res) => {
             email: req.body.email,
             id: req.body.idNum,
             phoneNumber: req.body.phoneNumber,
+            uniName: req.body.university,
             uniCard: req.body.uniCardImgFR,
             approved: false,
             password: hashedPassword
@@ -144,7 +145,7 @@ const getUserEvents = async(req, res) => {
                 if (!teamMembersbyEvent[i]) {
                     teamMembersbyEvent[i] = [];
                 }
-                
+
                 teamMembersbyEvent[i].push(formDetails);
                 //console.log(formDetails);
             } catch(error){
