@@ -24,10 +24,13 @@ function IndEventReg(){
       document.documentElement.scrollTop = 5;
     }
 
-    const handleEventSelect = async(selectedEvent) => {
-        setSelectedEvent(selectedEvent);
-        setSubmitted(true);
-        firstItemRef.current.scrollIntoView();
+    const handleEventSelect = (selectedEvent) => {
+        if (window.confirm("Do you want to register for "+selectedEvent)) 
+            { 
+                setSelectedEvent(selectedEvent);
+                setSubmitted(true);
+                firstItemRef.current.scrollIntoView();
+            }
     }
 
     const [submitted, setSubmitted] = useState(false); 
@@ -116,6 +119,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                         {(e)=>{
+                            e.preventDefault()
                             handleEventSelect("Table Tennis");
                          }}>Register</button> 
                     </div>
@@ -129,6 +133,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
+                                                        e.preventDefault()
                                                         handleEventSelect("Chess");
                                                     }}>Register</button> 
 
@@ -142,6 +147,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
+                                                        e.preventDefault()
                                                         handleEventSelect("Tekken");
                                                     }}>Register</button> 
 
@@ -155,6 +161,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
+                                                        e.preventDefault()
                                                         handleEventSelect("FIFA");
                                                     }}>Register</button> 
 
@@ -168,6 +175,7 @@ function IndEventReg(){
                         </p>
                         <button href="#message" type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
+                                                        e.preventDefault()
                                                         handleEventSelect("Suturing");
                                                     }}>Register</button> 
                     </div>
@@ -180,6 +188,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
+                                                        e.preventDefault()
                                                         handleEventSelect("MUN (UNSC)");
                                                     }}>Register</button> 
                     </div>
@@ -192,6 +201,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
+                                                        e.preventDefault()
                                                         handleEventSelect("MUN (PNA)");
                                                     }}>Register</button> 
                     </div>
@@ -204,6 +214,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
+                                                        e.preventDefault()
                                                         handleEventSelect("MUN (CC)");
                                                     }}>Register</button> 
                     </div>
@@ -216,6 +227,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
+                                                        e.preventDefault()
                                                         handleEventSelect("Art Competition");
                                                     }}>Register</button> 
                     </div>
@@ -228,6 +240,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
+                                                        e.preventDefault()
                                                         handleEventSelect("Art Gallery");
                                                     }}>Register</button> 
                     </div>
@@ -240,6 +253,7 @@ function IndEventReg(){
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
+                                                        e.preventDefault()
                                                         handleEventSelect("Videography competition");
                                                     }}>Register</button> 
                     </div>

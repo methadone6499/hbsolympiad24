@@ -13,7 +13,7 @@ function TeamEventReg(){
     
     const [ succMessage, setSuccMessage ] = useState("")
 
-    const { name, id, email, phoneNumber } = user;
+    const { name, id, email, phoneNumber, university } = user;
     
     const firstItemRef = useRef(null);
 
@@ -32,9 +32,12 @@ function TeamEventReg(){
     }
 
     const handleEventSelect = async(selectedEvent) => {
-        setSelectedEvent(selectedEvent);
-        setSubmitted(true);
-        firstItemRef.current.scrollIntoView();
+        if (window.confirm("Do you want to register for "+selectedEvent))
+        {
+            setSelectedEvent(selectedEvent);
+            setSubmitted(true);
+            firstItemRef.current.scrollIntoView();
+        }
     }
 
     const [submitted, setSubmitted] = useState(false); 
@@ -73,6 +76,7 @@ function TeamEventReg(){
                         name, email, phoneNumber, id, eventName
                     })
                     .then(res=>{
+                        console.log(res);
                         console.log(res.data.message);
                         setSuccMessage(res.data.message);
                     })
@@ -362,13 +366,13 @@ function TeamEventReg(){
                         (
                             <button type="submit" className='reg-btn' onClick=
                             {(e)=>{
-                                handleEventSelect("Scavenger Hunt");
+                                handleEventSelect("Scavenger hunt");
                              }}>Register</button> 
                         ) : 
                         (
                             <button type="submit" className='reg-btn' onClick=
                             {(e)=>{
-                                handleEventSelect("Scavenger Hunt")
+                                handleEventSelect("Scavenger hunt")
                             }}>Register</button>
                         )
                         }

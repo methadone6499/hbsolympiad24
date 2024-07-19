@@ -28,6 +28,7 @@ function UserDashboard(){
                     email, 
                 })
 
+                console.log(res);
                 const eventSoloData = res.data.solo;
                 const listSoloTitles = eventSoloData.map((d) => <li key={d.title}>{d.title}</li>);
                 const eventTeamData = res.data.teamMembersbyEvent
@@ -36,12 +37,10 @@ function UserDashboard(){
                 for (var i = 0; i < teamtEventAmmount; i++)
                 {
                     const eventDataRN = eventTeamData[i][0];
-                    const teamDataRN = { title: eventDataRN.eventName, CaptName: eventDataRN.name, Members: Object.values(eventDataRN.user) };
-                    console.log(teamDataRN);
+                    const teamDataRN = { title: eventDataRN.eventName, CaptName: eventDataRN.name, Email: eventDataRN.email, Token: eventDataRN.token, Members: Object.values(eventDataRN.user) };
                     teamData[i] = teamDataRN;
                 }
                 const listTeamTitles = teamData.map((d) => <li key={d.title}>{d.title}</li>);
-                console.log(listTeamTitles);
                 setSoloEvents(listSoloTitles);
                 setTeamEvents(teamData);
             } catch(e){
@@ -104,9 +103,9 @@ function UserDashboard(){
                 </h2>
                 <div className="infoViewBox">
                     <div className="text-small user-shown-events">
-                        <ul>
-                        <h2>Solo Events</h2>
-                            { soloEvents }
+                        <ul className>
+                            <h2>Solo Events</h2>
+                                { soloEvents }
                         </ul>
                         <div>
                             <h2>Team Events</h2>
@@ -118,6 +117,14 @@ function UserDashboard(){
                                 <ul>
                                     <h2>Captains</h2>
                                     { TeamEvents.map((d) => <li >{d.CaptName}</li>) }
+                                </ul>
+                                <ul>
+                                    <h2>Email</h2>
+                                    { TeamEvents.map((d) => <li >{d.Email}</li>) }
+                                </ul>
+                                <ul>
+                                    <h2>Token</h2>
+                                    { TeamEvents.map((d) => <li >{d.Token}</li>) }
                                 </ul>
                             </div>
                         </div>

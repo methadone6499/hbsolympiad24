@@ -18,35 +18,36 @@ const Navbar = () => {
 
 
     return (
-        
-        <nav className="navbar">
-            {/*navigation list for various menus*/}
-            <ul className="nav-list">
-                <li>
-                    <Link to="/" className="links">Home</Link>
-                </li>
-                <li>
-                    <Link to="/events" className="links">Events</Link>
-                </li>
-                <li>
-                    <Link to="/admin_dashboard" className='"lnks'>Admin</Link>
-                </li>
-                <li>
-                    { user ? 
-                    ( 
-                        <Link to="/ind_event_reg" className="links">Individual Registration</Link>) : 
-                    ( <></> )
-                    }
-                </li>
-                <li>
-                    { user ? 
-                    ( 
-                        <Link to="/team_event_reg" className="links">Team Registration</Link>) : 
-                    ( <></> )
-                    }
-                </li>
-            </ul>
-    
+        <div className='nav-div'>
+            <nav className="navbar">
+                {/*navigation list for various menus*/}
+                <ul className="nav-list">
+                    <li>
+                        <Link to="/" className="links">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/events" className="links">Events</Link>
+                    </li>
+                    <li>
+                        <Link to="/admin_dashboard" className='"lnks'>Admin</Link>
+                    </li>
+                    <li>
+                        { user ? 
+                        ( 
+                            <Link to="/ind_event_reg" className="links">Individual Registration</Link>) : 
+                        ( <></> )
+                        }
+                    </li>
+                    <li>
+                        { user ? 
+                        ( 
+                            <Link to="/team_event_reg" className="links">Team Registration</Link>) : 
+                        ( <></> )
+                        }
+                    </li>
+                </ul>
+            </nav>
+
             { user ? 
             (
                 <div className='reg-buttons'>
@@ -76,8 +77,7 @@ const Navbar = () => {
                     </div>
                 </div>
             )}
-        
-        </nav>
+        </div>
     )
 }
 

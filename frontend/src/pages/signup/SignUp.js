@@ -199,13 +199,13 @@ function SignUp(){
                             placeholder='John Smith'
                         />
 
-                        <label className="Label">Roll Number/CNIC</label>
+                        <label className="Label">Roll Number/CNIC (No dashes)</label>
                         <input
                             onChange = {handleIdNum}
                             className = "Input"
                             value = {idNum}
                             type = "number"
-                            placeholder='11111-1111111-1'
+                            placeholder='1111111111111'
                         />
                         
                         <label className="Label">Email</label>
@@ -223,7 +223,7 @@ function SignUp(){
                             className = "Input"
                             value = {phoneNumber}
                             type = "number"
-                            placeholder='0000-0000000'
+                            placeholder='00000000000'
                         />
 
                         <label className="Label">University</label>

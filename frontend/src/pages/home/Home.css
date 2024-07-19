@@ -2,16 +2,22 @@
     margin: 0;
     padding: 0;
   }
+
+  .nav-div{
+    border-bottom: solid 5px red;
+    background-color: rgba(17, 17, 17, 0.5);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: fit-content
+  }
   
   .navbar {
-    width: 100%;
     display: flex;
     top: 0;
     cursor: pointer;
     align-items: center;
-    background-color: rgba(17, 17, 17, 0.5);
-    border-bottom: 5px solid rgb(219, 35, 35);
-    overflow: auto;
+    height:fit-content
   }
   
   .background {
@@ -29,12 +35,13 @@
     display: flex;
     align-items: center;
     min-width: auto;
-    width: 65%
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .nav-list li {
     list-style: none;
-    padding: 20px 20px;
+    padding: 15px 15px;
   }
   
   .nav-list li a {
@@ -190,11 +197,11 @@
   }
 
   .reg-buttons {
-    position: absolute;
     display: flex;
     right: 0px;
     align-items: center;
     min-width: auto;
+    right: 0px;
   }
 
   .kysNOW {
@@ -219,4 +226,12 @@
     100% {
         transform: perspective(400px) scaleX(1);
     }
+}
+
+@media (max-width: 580px) {
+  .nav-div{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
