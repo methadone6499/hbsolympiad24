@@ -146,7 +146,7 @@ const postFormTeam = async (req, res) =>{
         
         console.log(newTeamForm);
         await newTeamForm.save();
-        return res.status(201).json({message: 'Form successfully submitted, please send the code: '+newTeamForm.token+' you have to the people you wish to have as team members.', newTeamForm, updatedUser})
+        return res.status(201).json({message: 'Form successfully submitted, please send the code: '+teamToken+' you have to the people you wish to have as team members.', newTeamForm})
 
     }
     catch(e){
