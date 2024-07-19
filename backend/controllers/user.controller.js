@@ -42,6 +42,7 @@ const signupUser = async (req, res) => {
             id: req.body.idNum,
             phoneNumber: req.body.phoneNumber,
             uniCard: req.body.uniCardImgFR,
+            approved: false,
             password: hashedPassword
         });
         console.log(newUser);
@@ -105,7 +106,7 @@ const setPayment = async(req, res) =>{
     try{
         const updatedUser = await User.findOneAndUpdate(
             { id: req.body.id, email: req.body.email },
-            { $set: { feePayment: req.body.feePayment } },
+            { $set: { feePayment: req.body.feePayment, approved: true}},
             { new: true, runValidators: true }
         );
         if (updatedUser) {
@@ -132,8 +133,8 @@ const getUserEvents = async(req, res) => {
             }
             return acc;
         }, { solo: [], team: [] });
-        console.log('Solo:', solo);
-        console.log('Team:', team);
+        //console.log('Solo:', solo);
+        //console.log('Team:', team);
         
         const teamMembersbyEvent = {};
         for (let i = 0; i<team.length; i++){
@@ -143,14 +144,13 @@ const getUserEvents = async(req, res) => {
                 if (!teamMembersbyEvent[i]) {
                     teamMembersbyEvent[i] = [];
                 }
-
+                
                 teamMembersbyEvent[i].push(formDetails);
                 //console.log(formDetails);
             } catch(error){
                 console.log("error", error);
             }
         }
-        console.log(teamMembersbyEvent);
         res.status(200).json({teamMembersbyEvent, solo});
     }
     catch(e){
