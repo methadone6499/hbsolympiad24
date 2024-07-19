@@ -71,9 +71,9 @@ function TeamEventReg(){
             if (isCaptain) {
                 try
                 {
-                    console.log(eventName)
+                    console.log(user)
                     await axios.post("http://localhost:5000/v2/submitFormTeam",{
-                        name, email, phoneNumber, id, eventName
+                        name, email, phoneNumber, id, eventName, university
                     })
                     .then(res=>{
                         console.log(res);

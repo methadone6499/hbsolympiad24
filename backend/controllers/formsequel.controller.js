@@ -79,6 +79,7 @@ const postFormTeam = async (req, res) =>{
     const userEmail = req.body.email;
     const eventName = req.body.eventName;
     const id = req.body.id;
+    console.log(req.body);
     try{
         const existingForm = await FormTeam.findOne({
             'email': userEmail,
@@ -101,7 +102,7 @@ const postFormTeam = async (req, res) =>{
             email: userEmail,
             id: id
         })
-        console.log(userEventLimit);
+        //console.log(userEventLimit);
         if(userEventLimit.events.length === 5){
             return res.status(200).json({message: "You cannot reigster for more than 5 events"});
         }

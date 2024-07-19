@@ -207,7 +207,7 @@ function IndEventReg(){
                     </div>
                     <div className="ER-event">
                         <p className="text-big">
-                            MUN (Crisis Committe)
+                            MUN (Crisis Committee)
                         </p>
                         <p className="text-small">
                             MUN or debates simulate international organizations or parliamentary settings, where participants represent countries or positions to discuss global issues, improving diplomacy and public speaking skills.
