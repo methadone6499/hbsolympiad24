@@ -164,6 +164,13 @@ const postFormTeamMember = async(req, res) =>{
         email: userEmail
     };
     try{
+        const tokencorrect = await FormTeam.findOne({
+            'eventName': eventName,
+            'token': token
+        })
+        if(!tokencorrect){
+            return res.status(200).json({message: "No token found, please input correct Token!"});
+        }
         const existingForm = await FormTeam.findOne({
             'email': userEmail,
             'eventName': eventName,
