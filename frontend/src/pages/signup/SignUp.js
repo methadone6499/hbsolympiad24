@@ -211,8 +211,8 @@ function SignUp(){
                             onChange = {handleIdNum}
                             className = "Input"
                             value = {idNum}
-                            type = "number"
-                            placeholder='1111111111111'
+                            type = "text"
+                            placeholder=''
                         />
                         
                         <label className="Label">Email</label>
