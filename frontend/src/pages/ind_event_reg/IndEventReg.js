@@ -140,10 +140,10 @@ function IndEventReg(){
                     </div>
                     <div className="ER-event">
                         <p className="text-big">
-                            E-Games (Tekken)
+                            Tekken
                         </p>
                         <p className="text-small">
-                            E-gaming, or electronic gaming, involves playing video games on devices like computers, consoles, and mobiles. It includes casual gaming, competitive gaming, and professional esports, featuring single-player and multiplayer experiences, and has grown into a major part of modern entertainment and culture.
+                            Tekken ("Iron Fist") is a Japanese media franchise centered on a series of fighting games developed and published by Bandai Namco Entertainment (formerly Namco).
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
@@ -154,10 +154,10 @@ function IndEventReg(){
                     </div>
                     <div className="ER-event">
                         <p className="text-big">
-                            E-Games (FIFA)
+                            FIFA
                         </p>
                         <p className="text-small">
-                            E-gaming, or electronic gaming, involves playing video games on devices like computers, consoles, and mobiles. It includes casual gaming, competitive gaming, and professional esports, featuring single-player and multiplayer experiences, and has grown into a major part of modern entertainment and culture.
+                            FIFA is a football video game franchise that was developed by EA Vancouver and EA Romania and published by EA Sports
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
@@ -184,7 +184,7 @@ function IndEventReg(){
                             MUN (UNSC)
                         </p>
                         <p className="text-small">
-                            MUN or debates simulate international organizations or parliamentary settings, where participants represent countries or positions to discuss global issues, improving diplomacy and public speaking skills.
+                            The UN Security Council seeks to address threats to international security. Its five permanent members, chosen in the wake of World War II, have veto power. The Security Council fosters negotiations, imposes sanctions, and authorizes the use of force, including the deployment of peacekeeping missions.
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
@@ -197,7 +197,7 @@ function IndEventReg(){
                             MUN (PNA)
                         </p>
                         <p className="text-small">
-                            MUN or debates simulate international organizations or parliamentary settings, where participants represent countries or positions to discuss global issues, improving diplomacy and public speaking skills.
+                            The National Assembly of Pakistan is the lower house of the bicameral Parliament of Pakistan, with the upper house being the Senate
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
@@ -210,7 +210,7 @@ function IndEventReg(){
                             MUN (Crisis Committee)
                         </p>
                         <p className="text-small">
-                            MUN or debates simulate international organizations or parliamentary settings, where participants represent countries or positions to discuss global issues, improving diplomacy and public speaking skills.
+                            A crisis committee is a decision making body that has more power than a traditional committee. Whilst General Assemblies recommend and build consensus, focusing on creating and refining frameworks for the nations party to align their actions, crisis committees produce action.
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{

@@ -18,9 +18,6 @@ function UserDashboard(){
 
     const [ feePayment, setfeePayment ] = useState("");
 
-    const [titleMap, setTitleMap] = useState([]);
-    const [idMap, setIdMap] = useState([]);
-
     useEffect(() => {
         const fetchEvents = async() =>{
             try{

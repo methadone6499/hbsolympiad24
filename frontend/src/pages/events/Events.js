@@ -122,7 +122,7 @@ function Events(){
                             MUN/Debates
                         </p>
                         <p className="text-small">
-                        Model United Nations, also known as Model UN or MUN, is an educational model of the United Nations used for simulations in which students learn about diplomacy and international relations. At a MUN conference, each student works as the representative of a country, organization, or person, and must solve a problem with other delegates from around the world.
+                            Model United Nations, also known as Model UN or MUN, is an educational model of the United Nations used for simulations in which students learn about diplomacy and international relations. At a MUN conference, each student works as the representative of a country, organization, or person, and must solve a problem with other delegates from around the world.
                         </p>
                     </div>
                 </div>

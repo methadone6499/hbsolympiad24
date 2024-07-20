@@ -236,7 +236,7 @@ function TeamEventReg(){
                             E-Games (PUBG)
                         </p>
                         <p className="text-small">
-                            E-gaming, or electronic gaming, involves playing video games on devices like computers, consoles, and mobiles. It includes casual gaming, competitive gaming, and professional esports, featuring single-player and multiplayer experiences, and has grown into a major part of modern entertainment and culture.
+                            PUBG: Battlegrounds is a 2017 battle royale game developed by PUBG Studios and published by Krafton.
                         </p>
                         <div className='btn-thing'>
                         { isCaptain ? 
@@ -359,7 +359,7 @@ function TeamEventReg(){
                             Scavenger Hunt
                         </p>
                         <p className="text-small">
-                            scavenge for some stuff or smthn idk
+                            A scavenger hunt is a game in which the organizers prepare a list defining specific items, which the participants seek to gather or complete all items on the list, usually without purchasing them.
                         </p>
                         <div className='btn-thing'>
                         { isCaptain ? 

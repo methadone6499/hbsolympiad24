@@ -71,7 +71,7 @@ function Home(){
                             Futsal
                         </p>
                         <p className="text-small">
-                            A BLS (Basic Life Support) competition tests participants' skills in emergency medical procedures, such as CPR, using an AED, and handling choking incidents. Competitors are judged on their ability to perform these life-saving techniques quickly and accurately.
+                            Futsal is a football-based game played on a hardcourt like a basketball court, smaller than a football pitch, and mainly indoors. It has similarities to five-a-side football and indoor football.
                         </p>
                     </div>
                 </div>

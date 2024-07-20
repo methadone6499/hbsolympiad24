@@ -92,8 +92,10 @@
     white-space: pre-line;
   }
   .Home {
-    background-image: url(../../images/insta\ page\ left.png);
+    background-image: url("https://i.imgur.com/VF3uJjA.png");
     background-size: cover;
+    animation: slideBackground 30s linear infinite;
+    background-repeat: repeat;
   }
   
   .text-big {
@@ -233,5 +235,17 @@
     display:flex;
     flex-direction: column;
     align-items: center;
+  }
+}
+
+@keyframes slideBackground {
+  0% {
+    background-position: 0vw;
+  }
+  50% {
+    background-position: 100vw;
+  }
+  100% {
+    background-position: 100%;
   }
 }
