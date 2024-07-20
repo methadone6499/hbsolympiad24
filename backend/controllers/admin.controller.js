@@ -2,6 +2,7 @@ const User = require('../models/user.model');
 const Forms = require('../models/form.model');
 const Event = require('../models/events.model');
 const FormTeam = require('../models/formTeam.model');
+const Admin = require('../models/admin.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
