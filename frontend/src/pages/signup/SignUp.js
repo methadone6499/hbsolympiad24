@@ -1,5 +1,6 @@
 import './SignUp.css';
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import FileBase64 from 'react-file-base64';
 import Navbar from '../navbar/Navbar'
@@ -19,6 +20,11 @@ function SignUp(){
     // States for checking the errors 
     const [submitted, setSubmitted] = useState(false); 
     const [error, setError] = useState(false); 
+
+    const [ succMessage, setSuccMessage ] = useState("")
+
+    const navigate = useNavigate();
+
 
     // Handling the name change 
     const handleName = (e) => { 
@@ -108,7 +114,8 @@ function SignUp(){
                 })
                 .then(res=>{
                     console.log(res.data.token);
-                    alert(res.data.message);
+                    setSuccMessage(res.data.message);
+                    navigate('/login');
                 })
             }
             catch(e){
@@ -126,7 +133,7 @@ function SignUp(){
                     display: submitted ? "" : "none", 
                 }} 
             > 
-                <h1>{name} successfully registered!!</h1> 
+                <h1> {succMessage} </h1> 
             </div> 
         ); 
     }; 

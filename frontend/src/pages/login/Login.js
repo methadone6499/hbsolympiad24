@@ -46,6 +46,8 @@ function Login(){
         return pattern.test(email);
     }
 
+    const [ succMessage, setSuccMessage ] = useState("")
+
 {/*}
     useEffect(() => {
         if (name!= "" && phoneNumber!="" && idNum && email) {
@@ -82,6 +84,7 @@ function Login(){
                     const userInfo = { name: res.data.result.name, id: res.data.result.id, email: res.data.result.email , phoneNumber: res.data.result.phoneNumber, token: res.data.token, university: res.data.result.uniName };
                     localStorage.setItem('profile', JSON.stringify(userInfo));
                     console.log(user);
+                    setSuccMessage(res.data.message);
                     navigate('/user_dashboard');
                 })
             }
@@ -93,7 +96,7 @@ function Login(){
         } 
     }; 
     
-    const successMessage = () => { 
+    const successMessage = (succMessage) => { 
         return ( 
             <div 
                 className="success"
@@ -101,7 +104,7 @@ function Login(){
                     display: submitted ? "" : "none", 
                 }} 
             > 
-                <h1>{name} successfully Logged in!!</h1> 
+                <h1>{succMessage}</h1> 
             </div> 
         ); 
     }; 
