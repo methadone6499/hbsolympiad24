@@ -103,14 +103,6 @@ function Events(){
                     </div>
                     <div className="E-event">
                         <p className="text-big">
-                            Dental Competition
-                        </p>
-                        <p className="text-small">
-                        Dentistry, also known as dental medicine and oral medicine, is the branch of medicine focused on the teeth, gums, and mouth. It consists of the study, diagnosis, prevention, management, and treatment of diseases, disorders, and conditions of the mouth, most commonly focused on dentition as well as the oral mucosa.
-                        </p>
-                    </div>
-                    <div className="E-event">
-                        <p className="text-big">
                             Research Conference
                         </p>
                         <p className="text-small">

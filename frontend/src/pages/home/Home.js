@@ -34,7 +34,7 @@ function Home(){
                     Welcome to HBS OLYMPIAD ‘24, an extravaganza brought to you by the HBS Medical and Dental College 
                     Student Council. As the premier institute on in Islamabad, Pakistan, we are proud to present a three-day 
                     event designed to not only engage and smulate our students socially but also foster camaraderie and 
-                    compe ve spirit among medical colleges across the region.
+                    competitive spirit among medical colleges across the region.
                 </p>
                 <br />
                 <h1 className="text-big" id="program">
@@ -55,7 +55,7 @@ function Home(){
                             Qawali
                         </p>
                         <p className="text-small">
-                            Qawwali is a Sufi devotional music from South Asia, featuring powerful vocals, rhythmic instruments, and repetitive choruses. Its lyrics focus on spiritual themes, aiming to evoke deep emotional and spiritual experiences in the audience.   
+                            Qawali is a Sufi devotional music from South Asia, featuring powerful vocals, rhythmic instruments, and repetitive choruses. Its lyrics focus on spiritual themes, aiming to evoke deep emotional and spiritual experiences in the audience.   
                         </p>
                     </div>
                     <div className="E-event E_L">

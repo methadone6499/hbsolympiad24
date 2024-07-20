@@ -155,7 +155,6 @@ function UserDashboard(){
                             </div>
                         </div>
                     </div>
-                    <button type="submit" className="btn">Download Ticket</button>
                 </div>
                 <br />
                     
