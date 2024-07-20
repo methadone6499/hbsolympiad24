@@ -113,11 +113,32 @@ const getNumOfRegistered = async(req, res) =>{
     }
 }
 
+const approveFeePayment = async(req, res) => {
+    const email = req.body.email;
+    
+    try{
+        const findUser = await User.findOneAndUpdate(
+        { email: email },
+        {$set: {approved: false}}
+        )
+        if(findUser){
+            res.status(200).json({message: "User's fee payment has been disapproved"});
+        }
+        else{
+            res.status(200).json({message: "user not found"});
+        }
+    }
+    catch(e){
+        res.status(500).json({message: "internal server error"});
+    }
+}
+
 module.exports = {
     loginAdmin,
     getUsers,
     getOneUserByEmail,
     getUsersByName,
     getEventForms,
-    getNumOfRegistered
+    getNumOfRegistered,
+    approveFeePayment,
 }

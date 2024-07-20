@@ -104,7 +104,7 @@ const postFormTeam = async (req, res) =>{
         })
         //console.log(userEventLimit);
         if(userEventLimit.events.length === 5){
-            return res.status(200).json({message: "You cannot reigster for more than 5 events"});
+            return res.status(200).json({message: "You cannot register for more than 5 events"});
         }
 
         var rand = function() {
@@ -147,7 +147,7 @@ const postFormTeam = async (req, res) =>{
         
         console.log(newTeamForm);
         await newTeamForm.save();
-        return res.status(201).json({message: 'Form successfully submitted, please send the code: '+teamToken+' you have to the people you wish to have as team members.', newTeamForm})
+        return res.status(201).json({message: 'Form successfully submitted, please send the code: '+teamToken+' you have to the people you want to have as team members.', newTeamForm})
 
     }
     catch(e){
