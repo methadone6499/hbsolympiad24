@@ -26,7 +26,7 @@ function Faqs(){
                             </div>
                             <h1>What not to do when signin up?</h1>
                             <div className='text'>
-                                <p>Insert all correct information and images, because if you do insert wrong images or details your account will be purged</p>
+                                <p>Insert all correct information and images, because if you do insert wrong images or details your account will be purged.</p>
                             </div>
                             <h1>I forgot my password what do I do?</h1>
                             <div className='text'>
