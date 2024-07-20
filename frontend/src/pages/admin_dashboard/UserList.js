@@ -42,7 +42,7 @@ function UserList(){
     const handlePic = async(email) => {
         console.log(email);
         try {
-            const res = await axios.post('http://localhost:5000/admin/getImages', {
+            const res = await axios.post('https://api-yixn.onrender.com/admin/getImages', {
                 email
             })
             setPicEmail(email);
@@ -60,7 +60,7 @@ function UserList(){
     const handleDisapprove = async(email) => {
         console.log(email);
         try {
-            const res = await axios.post('http://localhost:5000/admin/approveFeePayment', {
+            const res = await axios.post('https://api-yixn.onrender.com/admin/approveFeePayment', {
                 email
             })
             console.log(res);
@@ -73,7 +73,7 @@ function UserList(){
     useEffect(() => {
         const fetchUsers = async() => {
             try{
-                const res = await axios.post('http://localhost:5000/admin/getUsers', {
+                const res = await axios.post('https://api-yixn.onrender.com/admin/getUsers', {
                     page
                 })
                 const userAmmount = (Object.values(res.data).length);
@@ -101,7 +101,7 @@ function UserList(){
         if (searchTerm)
         {
             try {
-                const res = await axios.post('http://localhost:5000/admin/getOneUserByEmail', {
+                const res = await axios.post('https://api-yixn.onrender.com/admin/getOneUserByEmail', {
                     email
                 })
                 setSearchMessage(res.data.message);
@@ -119,7 +119,7 @@ function UserList(){
         {
             console.log(searchTerm);
             try {
-                const res = await axios.post('http://localhost:5000/admin/getUsersByName', {
+                const res = await axios.post('https://api-yixn.onrender.com/admin/getUsersByName', {
                     name
                 })
                 setSearchMessage(res.data.message);

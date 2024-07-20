@@ -29,9 +29,6 @@ const Navbar = () => {
                         <Link to="/events" className="links">Events</Link>
                     </li>
                     <li>
-                        <Link to="/admin_dashboard" className='"lnks'>Admin</Link>
-                    </li>
-                    <li>
                         <Link to="/faqs" className='"lnks'>FAQs</Link>
                     </li>
                     <li>

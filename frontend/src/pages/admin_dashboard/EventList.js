@@ -19,7 +19,7 @@ function EventList(){
         e.preventDefault();
 
         try{
-            const res = await axios.post('http://localhost:5000/admin/getEventForms', {
+            const res = await axios.post('https://api-yixn.onrender.com/admin/getEventForms', {
                 eventName
             })
             const eventAmmount = Object.values(res.data).length;

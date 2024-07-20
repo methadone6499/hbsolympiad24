@@ -55,7 +55,7 @@ function IndEventReg(){
             handleEventSelect("");
             try
             {
-                await axios.post("http://localhost:5000/v2/submitFormSolo",{
+                await axios.post("https://api-yixn.onrender.com/v2/submitFormSolo",{
                     name, email, phoneNumber, id, eventName
                 })
                 .then(res=>{
@@ -197,7 +197,8 @@ function IndEventReg(){
                             MUN (PNA)
                         </p>
                         <p className="text-small">
-                            The National Assembly of Pakistan is the lower house of the bicameral Parliament of Pakistan, with the upper house being the Senate
+                        The National Assembly of Pakistan is the lower legislative house of the bicameral Parliament of
+Pakistan, which also comprises the Senate of Pakistan (upper house). The National Assembly and the Senate both convene at Parliament House in Islamabad, Pakistan. The National Assembly is a democratically elected body consisting of a total of 336 members who are referred to as Members of the National Assembly (MNAs).
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{

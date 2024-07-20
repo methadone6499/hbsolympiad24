@@ -26,7 +26,7 @@ function UserDashboard(){
     useEffect(() => {
         const fetchEvents = async() =>{
             try{
-                const res = await axios.post('http://localhost:5000/v1/getEvents', {
+                const res = await axios.post('https://api-yixn.onrender.com/v1/getEvents', {
                     email, 
                 })
                 const eventSoloData = res.data.solo;
@@ -58,7 +58,7 @@ function UserDashboard(){
 
         const getApproval = async() => {
             try {
-                const res = await axios.post('http://localhost:5000/v1/getApproval', {
+                const res = await axios.post('https://api-yixn.onrender.com/v1/getApproval', {
                     email, id,
                 })
                 setApproval(res.data.approved);
@@ -89,7 +89,7 @@ function UserDashboard(){
         if (feePayment === "") { alert("No Image Uploaded") }
         else {
             try{
-                await axios.post('http://localhost:5000/v1/postFeePayment',{
+                await axios.post('https://api-yixn.onrender.com/v1/postFeePayment',{
                     id, email, feePayment
                 })
                 .then(res=>{

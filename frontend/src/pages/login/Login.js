@@ -84,7 +84,7 @@ function Login(){
             const username = adminUsername;
             const password = adminPassword;
             try{
-                await axios.post("http://localhost:5000/admin/login",{
+                await axios.post("https://api-yixn.onrender.com/admin/login",{
                     username, password,
                 })
                 .then(res=>{
@@ -112,7 +112,7 @@ function Login(){
             setError(false); 
             console.log(email);
             try{
-                await axios.post("http://localhost:5000/v1/login",{
+                await axios.post("https://api-yixn.onrender.com/v1/login",{
                     idNum, email, password, 
                 })
                 .then(res=>{
@@ -126,8 +126,7 @@ function Login(){
                 })
             }
             catch(e){
-                alert('Server error');
-                console.log(e);
+                setSuccMessage('Invalid credentials');
             }
             
         } 

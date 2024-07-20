@@ -109,7 +109,7 @@ function SignUp(){
             setError(false);
             console.log(uniCardImgFR); 
             try{
-                await axios.post("http://localhost:5000/v1/signup",{
+                await axios.post("https://api-yixn.onrender.com/v1/signup",{
                     name, idNum, email, phoneNumber, university, uniCardImgFR, password, 
                 })
                 .then(res=>{
