@@ -189,6 +189,28 @@ const getTeamMates = async(req, res) =>{
     }
 }
 
+const getApproval = async(req, res) => {
+    const email = req.body.email;
+    const id = req.body.id;
+    try{
+        const user = await User.findOne({
+            'email': email,
+            'id': id
+        })
+        const approved = user.approved;
+        if(user.approved === true){
+            return res.status(201).json({message: "Your fee payment can be disapproved if the picture you've uploaded is incorrect or blurry and the payment is unreadable ", approved});
+        }
+        if(user.approved === false){
+            return res.status(201).json({message: "Your fee payment has been disapproved, to remove this message reupload your fee payment", approved});
+        }
+        return res.status(200).json({message: "no such user exists"});
+    }
+    catch(e){
+        res.status(500).json({message: "internal server error"});
+    }
+}
+
 const getUser = async(req, res) => {
     console.log(req.body);
     try{
@@ -212,5 +234,6 @@ module.exports = {
     setPayment,
     getUserEvents,
     getUser,
-    getTeamMates
+    getTeamMates,
+    getApproval
 }

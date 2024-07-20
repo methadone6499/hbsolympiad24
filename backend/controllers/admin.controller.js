@@ -133,6 +133,28 @@ const approveFeePayment = async(req, res) => {
     }
 }
 
+const getImages = async(req, res) =>{
+    const email = req.body.email;
+    try{
+        const user = await User.findOne({
+            'email': email,
+        })
+        const uniCard = user.uniCard;
+        const feePayment = user.feePayment;
+        
+        if(uniCard && feePayment){
+            return res.status(200).json({uniCard, feePayment});
+        }
+        else{
+            const message = "User still has not uploaded fee payment."
+            return res.status(200).json({uniCard, message});
+        }
+    }
+    catch(e){
+        res.status(500).json({message: "internal server error"});
+    }
+}
+
 module.exports = {
     loginAdmin,
     getUsers,
@@ -141,4 +163,5 @@ module.exports = {
     getEventForms,
     getNumOfRegistered,
     approveFeePayment,
+    getImages
 }
