@@ -22,7 +22,7 @@ function Faqs(){
                             </div>
                             <h1>How does fee payment work?</h1>
                             <div className='text'>
-                                <p>The steps to do payment are uploaded on the user dashboard, just pay according to the steps given on user dashboard account and upload the fee payment proof on the user dashboard. The user dashboard can be accessed by pressing Profile button on the top right. HBS university students will pay less, other medical university students will pay more. If there's a discrepancy in payment or a terrible image is uploaded your payment will be disapproved and you will not be allowed to take part in the event until you reupload the proper fee payment.</p>
+                                <p>The steps to do payment are uploaded on the user dashboard, just pay according to the steps given on user dashboard account and upload the fee payment proof on the user dashboard. The user dashboard can be accessed by pressing Profile button on the top right. If there's a discrepancy in payment or a terrible image is uploaded your payment will be disapproved and you will not be allowed to take part in the event until you reupload with the proper fee payment amount and image.</p>
                             </div>
                             <h1>What not to do when signin up?</h1>
                             <div className='text'>
