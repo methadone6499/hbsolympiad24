@@ -8,25 +8,42 @@ const jwt = require('jsonwebtoken');
 
 const loginAdmin = async(req, res) => {
     
-    const{email,password}=req.body
+    const{username,password}=req.body
     console.log(req.body);
     try{
-        const user = await User.findOne({email:email});
-        if(!user){
+        const admin = await Admin.findOne({username:username});
+        if(!admin){
             return res.status(401).json({error: 'Invalid credentials'});
         }
 
-        const passwordMatch = await bcrypt.compare(password, user.password);
+        const passwordMatch = await bcrypt.compare(password, admin.password);
         if(!passwordMatch){
             return res.status(501).json({ error: 'Invalid credentials'});
         }
-        console.log(user);
-        const token = jwt.sign({name: user.name, email: user.email, userID: user._id}, 'test', { expiresIn: "1h"});
+        console.log(admin);
+        const token = jwt.sign({username: admin.username}, 'test', { expiresIn: "1h"});
         console.log(token);
-        res.status(201).json({result: user, token, message: "Admin logged in success"});
+        res.status(201).json({result: admin, token, message: "Admin logged in success"});
     }
     catch(e){
         res.status(500).json({error: 'Internal server error'});
+    }
+}
+
+const signUpAdmin = async(req, res) =>{
+    const{username, password} = req.body;
+    console.log(req.body);
+    try{
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newAdmin = new Admin({
+            username: username,
+            password: hashedPassword
+        })
+        await newAdmin.save();
+        res.status(201).json({message: "user registered successfully", newAdmin});
+    }
+    catch(e){
+        res.status(500).json({message: "internal server error"});
     }
 }
 
@@ -158,6 +175,7 @@ const getImages = async(req, res) =>{
 
 module.exports = {
     loginAdmin,
+    signUpAdmin,
     getUsers,
     getOneUserByEmail,
     getUsersByName,

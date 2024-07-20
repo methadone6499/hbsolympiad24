@@ -74,7 +74,7 @@ const loginUser = async(req, res) => {
         console.log(user);
         const token = jwt.sign({name: user.name, email: user.email, userID: user._id}, 'test', { expiresIn: "1h"});
         console.log(token);
-        res.status(201).json({result: user, token, message: "User logged in succ"});
+        res.status(201).json({result: user, token, message: "User logged in successful"});
     }
     catch(e){
         res.status(500).json({error: 'Internal server error'});
