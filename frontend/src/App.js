@@ -11,6 +11,7 @@ import UserDashboard from "./pages/user_dashboard/UserDashboard"
 import AdminDashboard from "./pages/admin_dashboard/adminDashboard"
 import UserList from './pages/admin_dashboard/UserList'
 import EventList from './pages/admin_dashboard/EventList'
+import Faqs from './pages/faqs/Faqs'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
                 <Route path="/admin_dashboard" element={<AdminDashboard/>}/>
                 <Route path="/admin_dashboard/UserList" element={<UserList/>}/>
                 <Route path="/admin_dashboard/EventList" element={<EventList/>}/>
+                <Route path="/faqs" element={<Faqs/>}/>
             </Routes>
         </BrowserRouter>
     </div>
