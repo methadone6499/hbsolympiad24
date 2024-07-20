@@ -2,7 +2,7 @@
     border-top: solid 5px red;
     border-bottom: solid 5px red;
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
     align-items: center;
     min-width: auto;
     color: white;;
@@ -16,6 +16,7 @@
     font-size: 17px;
     list-style: none;
     text-decoration: none;
+    padding: 10px;
 }
 
 .shownList-event {

@@ -10,18 +10,31 @@ function Login(){
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
    
 
-    // States for registration 
+    // States for user registration 
     const [idNum, setIdNum] = useState("");  
     const [email, setEmail] = useState(""); 
     const [password, setPassword] = useState(""); 
     const navigate = useNavigate();
   
+    // States for admin registration
+    const [adminUsername, setAdminUsername] = useState("");
+    const [adminPassword, setAdminPassword] = useState("");
     
     // States for checking the errors 
     const [submitted, setSubmitted] = useState(false); 
     const [error, setError] = useState(false); 
-    const [name, setName] = useState("");
-    const [phoneNumber, setPhoneNo] = useState("");
+    const [ isAdmin, setIsAdmin ] = useState(false);
+
+    const handleAdminSwitch = () => {
+        setIsAdmin(!isAdmin);
+    }
+
+    const handelAdminUsername = (e) => {
+        setAdminUsername(e.target.value);
+    }
+    const handleAdminPasswoord = (e) => {
+        setAdminPassword(e.target.value);
+    }
 
     // Handling the ID change 
     const handleIdNum = (e) => { 
@@ -57,6 +70,18 @@ function Login(){
 
   
     // Handling the form submission 
+
+    const handleAdminSubmit = async(e) => {
+        e.preventDefault();
+        if (adminUsername === "" || adminPassword ==="")
+        {
+            setError(true);
+        }
+        else {
+            console.log("Admin Login");
+        }
+    }
+
     const handleSubmit = async(e) => { 
        console.log(e);
         e.preventDefault(); 
@@ -149,46 +174,88 @@ function Login(){
 
             <div className="box-main">
                 <Logo />
-                <div className="LoginPage">
+                { isAdmin ? 
+                (
                     <div>
-                        <h1>User Login</h1>
+                    {console.log("Admin")}
+                    <button className='btn btn-sm' onClick={handleAdminSwitch}>Switch to User</button>
+                        <div>
+                            <h1>Admin Login</h1>
+                        </div>
+
+                        <div className="messages">
+                            {errorMessage()}
+                            {successMessage()}
+                        </div>
+
+                        <form onSubmit={handleAdminSubmit}>
+                            <label className="Label">Username</label>
+                            <input
+                                onChange = {handelAdminUsername}
+                                className = "Input"
+                                value = {adminUsername}
+                                type = "text"
+                            />
+
+                            <label className="Label">Password</label>
+                            <input
+                                onChange = {handleAdminPasswoord}
+                                className = "Input"
+                                value = {adminPassword}
+                                type = "password"
+                            />
+
+                            <button className="buton" type="submit">
+                                Submit
+                            </button>
+                        </form>
                     </div>
+                ) : 
+                (
+                    <div className="LoginPage">
+                        {console.log("Admin")}
+                        <button onClick={handleAdminSwitch}>Switch to Admin</button>
+                        <div>
+                            <h1>User Login</h1>
+                        </div>
 
-                    <div className="messages">
-                        {errorMessage()}
-                        {successMessage()}
+                        <div className="messages">
+                            {errorMessage()}
+                            {successMessage()}
+                        </div>
+
+                        <form onSubmit={handleSubmit}>
+                            <label className="Label">Roll Number/CNIC</label>
+                            <input
+                                onChange = {handleIdNum}
+                                className = "Input"
+                                value = {idNum}
+                                type = "text"
+                            />
+                            
+                            <label className="Label">Email</label>
+                            <input
+                                onChange = {handleEmail}
+                                className = "Input"
+                                value = {email}
+                                type = "text"
+                            />
+                            
+                            <label className="Label">Password</label>
+                            <input
+                                onChange = {handlePassword}
+                                className = "Input"
+                                value = {password}
+                                type = "password"
+                            />
+
+                            <button className="buton" type="submit">
+                                Submit
+                            </button>
+                        </form>
                     </div>
-
-                    <form onSubmit={handleSubmit}>
-                        <label className="Label">Roll Number/CNIC</label>
-                        <input
-                            onChange = {handleIdNum}
-                            className = "Input"
-                            value = {idNum}
-                            type = "number"
-                        />
-                        
-                        <label className="Label">Email</label>
-                        <input
-                            onChange = {handleEmail}
-                            className = "Input"
-                            value = {email}
-                            type = "text"
-                        />
-                        
-                        <label className="Label">Password</label>
-                        <input
-                            onChange = {handlePassword}
-                            className = "Input"
-                            value = {password}
-                            type = "password"
-                        />
-
-                        <button className="buton" type="submit">
-                            Submit
-                        </button>
-                    </form>
-                </div>
+                ) }
+                
             </div>
             <footer className="footer">
                 <p className="text-footer">

@@ -32,7 +32,7 @@ function Home(){
                  </h1>
                 <p className="text-small">
                     Welcome to HBS OLYMPIAD ‘24, an extravaganza brought to you by the HBS Medical and Dental College 
-                    Student Council. As the premier ins tu on in Islamabad, Pakistan, we are proud to present a three-day 
+                    Student Council. As the premier institute on in Islamabad, Pakistan, we are proud to present a three-day 
                     event designed to not only engage and smulate our students socially but also foster camaraderie and 
                     compe ve spirit among medical colleges across the region.
                 </p>

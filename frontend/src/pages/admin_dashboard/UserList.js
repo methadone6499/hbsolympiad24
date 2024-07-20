@@ -18,6 +18,10 @@ function UserList(){
 
     const [searchTerm, setSearchTerm ] = useState(true);
 
+    const [ userCardImg, setUserCardImg ] = useState("");
+    const [ userPayProof, setUserPayProofImg ] = useState("");
+    const [ picEmail, setPicEmail] = useState("")
+
     const handleSetEmail = (e) => {
         setEmail(e.target.value);
     }
@@ -35,6 +39,37 @@ function UserList(){
         setSearchTerm(!searchTerm);
     }
 
+    const handlePic = async(email) => {
+        console.log(email);
+        try {
+            const res = await axios.post('http://localhost:5000/admin/getImages', {
+                email
+            })
+            setPicEmail(email);
+            console.log(res.data);
+            setUserCardImg(res.data.uniCard);
+            if (res.data.feePayment) {setUserPayProofImg(res.data.feePayment)}
+            else { alert(res.data.message); setUserPayProofImg("")}
+        }
+        catch(e) {
+            console.log("error innit");
+            console.log(e);
+            alert(e)
+;        }
+    } 
+    const handleDisapprove = async(email) => {
+        console.log(email);
+        try {
+            const res = await axios.post('http://localhost:5000/admin/approveFeePayment', {
+                email
+            })
+            console.log(res);
+        }
+        catch(e) {
+            alert(e);
+;        }
+    }
+
     useEffect(() => {
         const fetchUsers = async() => {
             try{
@@ -44,6 +79,7 @@ function UserList(){
                 const userAmmount = (Object.values(res.data).length);
                 const userData = res.data;
                 const userList = userData.map((d) => <li key={d.name}>{d.name}</li>);
+                console.log(userData);
                 setSentUsers(userData);
                 if ( sentUser ) 
                     { 
@@ -150,11 +186,11 @@ function UserList(){
                 <div className='shownList'>
                     <ul>
                         <h2>Names</h2>
-                        { sentUser ? ( sentUser.map((d) => <li key={d.name}>{d.name}</li>)  ) : ( 'none' ) }
+                        { sentUser ? ( sentUser.map((d) => <li key={d.email}>{d.name}</li>)  ) : ( 'none' ) }
                     </ul>
                     <ul>
                         <h2>IDs</h2>
-                        { sentUser ? ( sentUser.map((d) => <li key={d.id}>{d.id}</li>)  ) : ( 'none' ) }
+                        { sentUser ? ( sentUser.map((d) => <li key={d.email}>{d.id}</li>)  ) : ( 'none' ) }
                     </ul>
                     <ul>
                         <h2>Emails</h2>
@@ -162,11 +198,35 @@ function UserList(){
                     </ul>
                     <ul>
                         <h2>Phone Number</h2>
-                        { sentUser ? ( sentUser.map((d) => <li key={d.phoneNumber}>{d.phoneNumber}</li>)  ) : ( 'none' ) }
+                        { sentUser ? ( sentUser.map((d) => <li key={d.email}>{d.phoneNumber}</li>)  ) : ( 'none' ) }
+                    </ul>
+                    <ul>
+                        <h2>Buttons</h2>
+                        { sentUser ? ( sentUser.map((d) => <li key={d.email}><button onClick={()=>handlePic(d.email)}>{d.email}</button></li>)  ) : ( 'none' ) }
                     </ul>
                 </div>
                 <button className='btn btn-sm' onClick={ handleSetPage } >Next Page</button>
             </div>
+            { sentUser ? ( sentUser.map((d) => <li key={d.email}>
+                { d.email === picEmail ? 
+                ( 
+                    <div>
+                        <label className='Label'>Uni Card</label>
+                        { userCardImg ? (<img width="100px" height="100px" src={userCardImg}></img>) : (<></>)}
+                        { userPayProof ? 
+                        (
+                            <div>
+                                <label className='Label'>Fee Payment</label>
+                                <img width="100px" height="100px" src={userPayProof}></img>
+                                <button className='btn btn-sm' onClick={()=>handleDisapprove(d.email)}>Disapprove Fee Image</button>
+                            </div>
+                        ) : (<h2 className='text-big'>No Fee Payment Yet</h2>)}
+                    </div>
+                ) : 
+                (
+                    <></>
+                ) } 
+                </li>)  ) : ( 'none' ) }
             <footer className="footer">
                 <p className="text-footer">
                     Copyright ©-All rights are reserved
