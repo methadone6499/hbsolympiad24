@@ -37,7 +37,15 @@ function UserDashboard(){
                 for (var i = 0; i < teamtEventAmmount; i++)
                 {
                     const eventDataRN = eventTeamData[i][0];
-                    const teamDataRN = { title: eventDataRN.eventName, CaptName: eventDataRN.name, Email: eventDataRN.email, Token: eventDataRN.token, Members: Object.values(eventDataRN.user) };
+                    console.log(eventDataRN.user);
+                    var memberList = "";
+                    for (let i = 0; i < eventDataRN.user.length; i++)
+                    {
+                        console.log(eventDataRN.user[i].userName);
+                        memberList = memberList + eventDataRN.user[i].userName + " ,";
+                    }
+                    console.log(memberList)
+                    const teamDataRN = { title: eventDataRN.eventName, CaptName: eventDataRN.name, Email: eventDataRN.email, Token: eventDataRN.token, Members: memberList };
                     teamData[i] = teamDataRN;
                 }
                 const listTeamTitles = teamData.map((d) => <li key={d.title}>{d.title}</li>);
@@ -53,7 +61,6 @@ function UserDashboard(){
                 const res = await axios.post('http://localhost:5000/v1/getApproval', {
                     email, id,
                 })
-                console.log(res.data.approved);
                 setApproval(res.data.approved);
             }
             catch(e) {
@@ -127,19 +134,23 @@ function UserDashboard(){
                             <div className="team-list-shown">
                                 <ul>
                                     <h2>Titles</h2>
-                                    { TeamEvents.map((d) => <li >{d.title}</li>) }
+                                    { TeamEvents.map((d) => <li key={d.Email} >{d.title}</li>) }
                                 </ul>
                                 <ul>
                                     <h2>Captains</h2>
-                                    { TeamEvents.map((d) => <li >{d.CaptName}</li>) }
+                                    { TeamEvents.map((d) => <li key={d.Email} >{d.CaptName}</li>) }
                                 </ul>
                                 <ul>
                                     <h2>Email</h2>
-                                    { TeamEvents.map((d) => <li >{d.Email}</li>) }
+                                    { TeamEvents.map((d) => <li key={d.Email} >{d.Email}</li>) }
+                                </ul>
+                                <ul>
+                                    <h2>Members</h2>
+                                    { TeamEvents.map((d) => <li key={d.Email} >{d.Members}</li>) }
                                 </ul>
                                 <ul>
                                     <h2>Token</h2>
-                                    { TeamEvents.map((d) => <li >{d.Token}</li>) }
+                                    { TeamEvents.map((d) => <li key={d.Email} >{d.Token}</li>) }
                                 </ul>
                             </div>
                         </div>
@@ -153,7 +164,10 @@ function UserDashboard(){
                         <div className='infoViewBox'>
                             <label className='Label'>Payment Proof</label>
                             <p className='text-small'>
-                                For Fee Payments pls send to 03025300003 Sadapay and upload picture of payment reciept
+                                For Fee Payments send to 03025300003 Sadapay and upload picture of payment reciept { '\n' } { '\n' }
+                                For HBS students to participate The cost is 500 for a maximum of 5 events Your registration will only be completed once the 1500PKR alongside the 500PKR cost is confirmed{ '\n' }{ '\n' }
+                                For Outsiders Till 15th August 2000PKR for socials and up to 5 events maximum From 16th August 2500PKR for socials and up to 5 events maximum { '\n' }{ '\n' }
+                                Please make sure the payment recipet you upload has the date of payment visible{ '\n' }{ '\n' }
                             </p>
                             <div className='imgInuput'>
                             {feePayment &&  (

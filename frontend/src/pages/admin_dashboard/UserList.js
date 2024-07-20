@@ -183,24 +183,20 @@ function UserList(){
                 <h1 className="text-big">
                     User List
                 </h1>
-                <div className='shownList'>
+                <div className='shownList user'>
                     <ul>
                         <h2>Names</h2>
                         { sentUser ? ( sentUser.map((d) => <li key={d.email}>{d.name}</li>)  ) : ( 'none' ) }
-                    </ul>
-                    <ul>
+                    
                         <h2>IDs</h2>
                         { sentUser ? ( sentUser.map((d) => <li key={d.email}>{d.id}</li>)  ) : ( 'none' ) }
-                    </ul>
-                    <ul>
+                    
                         <h2>Emails</h2>
                         { sentUser ? ( sentUser.map((d) => <li key={d.email}>{d.email}</li>)  ) : ( 'none' ) }
-                    </ul>
-                    <ul>
+                    
                         <h2>Phone Number</h2>
                         { sentUser ? ( sentUser.map((d) => <li key={d.email}>{d.phoneNumber}</li>)  ) : ( 'none' ) }
-                    </ul>
-                    <ul>
+                    
                         <h2>Buttons</h2>
                         { sentUser ? ( sentUser.map((d) => <li key={d.email}><button onClick={()=>handlePic(d.email)}>{d.email}</button></li>)  ) : ( 'none' ) }
                     </ul>

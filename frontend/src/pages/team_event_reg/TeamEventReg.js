@@ -161,9 +161,10 @@ function TeamEventReg(){
                     </div>
                     <div className="ER-event">
                         <p className="text-big">
-                            Table Tennis
+                            Table Tennis Duo
                         </p>
                         <p className="text-small">
+                            [ Member Limit: 2 ]{ '\n'}
                             Table tennis, or ping pong, is a fast-paced indoor sport played on a table divided by a net. Players use paddles to hit a lightweight ball back and forth. It requires quick reflexes, strategic thinking, and precise ball control.
                         </p>
                         <div className='btn-thing'>
@@ -188,6 +189,7 @@ function TeamEventReg(){
                             Volleyball
                         </p>
                         <p className="text-small">
+                            [ Member Limit: 8 ]{ '\n'}
                             Volleyball is a team sport played on a court with a net. Two teams of six players each try to score points by hitting a ball over the net and into the opponent's court.
                         </p>
                         <div className='btn-thing'>
@@ -212,6 +214,7 @@ function TeamEventReg(){
                             Basketball
                         </p>
                         <p className="text-small">
+                            [ Member Limit: 8 ]{ '\n'}
                             Basketball is a team sport played on a rectangular court between two teams of five players each. The objective is to score points by shooting the ball through the opponent's hoop. It involves dribbling, passing, and strategic play to outscore the opposing team.
                         </p>
                         <div className='btn-thing'>
@@ -233,10 +236,11 @@ function TeamEventReg(){
                     </div>
                     <div className="ER-event E_T">
                         <p className="text-big">
-                            E-Games (PUBG)
+                            PUBG
                         </p>
                         <p className="text-small">
-                            PUBG: Battlegrounds is a 2017 battle royale game developed by PUBG Studios and published by Krafton.
+                            [ Member Limit: 4 ]{ '\n'}
+                            PUBG: Battlegrounds is a 2017 battle royale game developed by PUBG Studios and published by Krafton in which you are dropped into a battlefield with a team of 4 players against other for a total of 64 players.
                         </p>
                         <div className='btn-thing'>
                         { isCaptain ? 
@@ -259,6 +263,7 @@ function TeamEventReg(){
                             Futsal
                         </p>
                         <p className="text-small">
+                            [ Member Limit: 8 ]{ '\n'}
                             Futsal is an indoor soccer game with five players per team, played on a small, hard court with a smaller, less bouncy ball. It emphasizes quick passing and skillful play, featuring fast-paced, high-scoring matches.
                         </p>
                         <div className='btn-thing'>
@@ -284,6 +289,7 @@ function TeamEventReg(){
                             BLS Competition
                         </p>
                         <p className="text-small">
+                            [ Member Limit: 3 ]{ '\n'}
                             A BLS (Basic Life Support) competition tests participants' skills in emergency medical procedures, such as CPR, using an AED, and handling choking incidents. Competitors are judged on their ability to perform these life-saving techniques quickly and accurately.
                         </p>
                         <div className='btn-thing'>
@@ -309,6 +315,7 @@ function TeamEventReg(){
                             Quizzes
                         </p>
                         <p className="text-small">
+                            [ Member Limit: 2 ]{ '\n'}
                             Quizzes are short tests or competitions designed to assess knowledge on various topics. They can be used for education, entertainment, or competitive purposes, often featuring multiple-choice, true/false, or open-ended questions.
                         </p>
                         <div className='btn-thing'>
@@ -334,6 +341,7 @@ function TeamEventReg(){
                             Research Conference
                         </p>
                         <p className="text-small">
+                            [ Member Limit: 3 ]{ '\n'}
                             A research conference is a gathering where scholars present and discuss their latest research findings. It includes presentations, discussions, and networking opportunities, allowing researchers to share knowledge and collaborate on future projects.
                         </p>
                         <div className='btn-thing'>
@@ -359,6 +367,7 @@ function TeamEventReg(){
                             Scavenger Hunt
                         </p>
                         <p className="text-small">
+                            [ Member Limit: 5 ]{ '\n'}
                             A scavenger hunt is a game in which the organizers prepare a list defining specific items, which the participants seek to gather or complete all items on the list, usually without purchasing them.
                         </p>
                         <div className='btn-thing'>

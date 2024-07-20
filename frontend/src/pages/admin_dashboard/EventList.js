@@ -31,8 +31,15 @@ function EventList(){
             {
                 const eventDataRN = Object.values(res.data)[i];
                 var eventListRN = {};
+                var memberList = "";
+                for (let i = 0; i < eventDataRN.user.length; i++)
+                {
+                    console.log(eventDataRN.user[i].userName);
+                    memberList = memberList + eventDataRN.user[i].userName + " ,";
+                }
+                console.log(memberList);
                 if (eventSolo === true) { eventListRN = { CaptName: eventDataRN.name, ID: eventDataRN.id, Email:eventDataRN.email } }
-                else { eventListRN = { CaptName: eventDataRN.name, ID: eventDataRN.id, Email:eventDataRN.email, Members: Object.values(eventDataRN.user)} }
+                else { eventListRN = { CaptName: eventDataRN.name, ID: eventDataRN.id, Email:eventDataRN.email, Members: memberList } }
                 eventList[i] = eventListRN;
             }
             setEventSearched(eventList);
@@ -68,35 +75,35 @@ function EventList(){
                     <div className='shownList-event'>
                         <ul>
                             <h2>Name</h2>
-                            { eventSearched ? ( eventSearched.map((d) => <li key={d.CaptName}>{d.CaptName}</li>)  ) : ( 'none' ) }
+                            { eventSearched ? ( eventSearched.map((d) => <li key={d.Email}>{d.CaptName}</li>)  ) : ( 'none' ) }
                         </ul>
                         <ul>
                             <h2>ID</h2>
-                            { eventSearched ? ( eventSearched.map((d) => <li key={d.ID}>{d.ID}</li>)  ) : ( 'none' ) }
+                            { eventSearched ? ( eventSearched.map((d) => <li key={d.Email}>{d.ID}</li>)  ) : ( 'none' ) }
                         </ul>
                         <ul>
-                            <h2>Emai</h2>
+                            <h2>Email</h2>
                             { eventSearched ? ( eventSearched.map((d) => <li key={d.Email}>{d.Email}</li>)  ) : ( 'none' ) }
                         </ul>
                     </div>
                 ) : 
                 (
-                    <div className='shownList'>
+                    <div className='shownList event'>
                         <ul>
                             <h2>Name</h2>
-                            { eventSearched ? ( eventSearched.map((d) => <li key={d.CaptName}>{d.CaptName}</li>)  ) : ( 'none' ) }
+                            { eventSearched ? ( eventSearched.map((d) => <li key={d.Email}>{d.CaptName}</li>)  ) : ( 'none' ) }
                         </ul>
                         <ul>
                             <h2>ID</h2>
-                            { eventSearched ? ( eventSearched.map((d) => <li key={d.ID}>{d.ID}</li>)  ) : ( 'none' ) }
+                            { eventSearched ? ( eventSearched.map((d) => <li key={d.Email}>{d.ID}</li>)  ) : ( 'none' ) }
                         </ul>
                         <ul>
-                            <h2>Emai</h2>
+                            <h2>Email</h2>
                             { eventSearched ? ( eventSearched.map((d) => <li key={d.Email}>{d.Email}</li>)  ) : ( 'none' ) }
                         </ul>
                         <ul>
                             <h2>Members</h2>
-                            { eventSearched ? ( eventSearched[0].Members.map((d) => <li key={d.userName}>{d.userName}</li>)  ) : ( 'none' ) }
+                            { eventSearched ? ( eventSearched.map((d) => <li key={d.Email}>{d.Members}</li>) ) : ( 'none' ) }
                         </ul>
                     </div>
                 )

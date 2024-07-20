@@ -204,6 +204,7 @@ function SignUp(){
                             value = {name}
                             type = "text"
                             placeholder='John Smith'
+                            maxLength="25"
                         />
 
                         <label className="Label">Roll Number/CNIC (No dashes)</label>
@@ -213,6 +214,7 @@ function SignUp(){
                             value = {idNum}
                             type = "text"
                             placeholder=''
+                            maxLength="13"
                         />
                         
                         <label className="Label">Email</label>
@@ -222,6 +224,7 @@ function SignUp(){
                             value = {email}
                             type = "email"
                             placeholder='someone@something.com'
+                            maxLength="50"
                         />
                         
                         <label className="Label">Phone Number</label>
@@ -231,15 +234,17 @@ function SignUp(){
                             value = {phoneNumber}
                             type = "number"
                             placeholder='00000000000'
+                            maxLength="13"
                         />
 
-                        <label className="Label">University</label>
+                        <label className="Label">University Name</label>
                         <input
                             onChange={handleUniversity}
                             className = "Input"
                             value = {university}
                             type = "text"
                             placeholder='HBS'
+                            maxLength="50"
                         />
 
                         <label className='Label'>University ID Card</label>
@@ -264,6 +269,7 @@ function SignUp(){
                             value = {password}
                             type = "password"
                             placeholder='password'
+                            maxLength="14"
                         />
                         
                         <label className="Label">Confirm Password</label>
@@ -273,6 +279,7 @@ function SignUp(){
                             value = {confirmPassword}
                             type = "password"
                             placeholder='password'
+                            maxLength="14"
                         />
 
 

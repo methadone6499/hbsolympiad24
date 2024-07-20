@@ -157,7 +157,7 @@ function IndEventReg(){
                             FIFA
                         </p>
                         <p className="text-small">
-                            FIFA is a football video game franchise that was developed by EA Vancouver and EA Romania and published by EA Sports
+                            FIFA is a football video game franchise that was developed by EA Vancouver and EA Romania and published by EA Sports in which you can control a whole team of players to play against against person.
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{

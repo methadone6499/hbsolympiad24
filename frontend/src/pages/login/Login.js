@@ -78,7 +78,25 @@ function Login(){
             setError(true);
         }
         else {
-            console.log("Admin Login");
+            setSubmitted(true); 
+            setError(false); 
+            console.log(email);
+            const username = adminUsername;
+            const password = adminPassword;
+            try{
+                await axios.post("http://localhost:5000/admin/login",{
+                    username, password,
+                })
+                .then(res=>{
+                    console.log(res);
+                    setSuccMessage(res.data.message);
+                    navigate('/admin_dashboard');
+                })
+            }
+            catch(e){
+                alert('Server error');
+                console.log(e);
+            }
         }
     }
 
@@ -87,12 +105,6 @@ function Login(){
         e.preventDefault(); 
         if (idNum  === "" || email === "" || password === "") { 
             setError(true); 
-        }
-
-        else if (!isValidEmail(email)) {
-            setError(true);
-            setSubmitted(false);
-            console.log("Incorrect Email")
         }
         
         else { 
@@ -176,8 +188,7 @@ function Login(){
                 <Logo />
                 { isAdmin ? 
                 (
-                    <div>
-                    {console.log("Admin")}
+                    <div className='LoginPage'>
                     <button className='btn btn-sm' onClick={handleAdminSwitch}>Switch to User</button>
                         <div>
                             <h1>Admin Login</h1>
@@ -213,8 +224,7 @@ function Login(){
                 ) : 
                 (
                     <div className="LoginPage">
-                        {console.log("Admin")}
-                        <button onClick={handleAdminSwitch}>Switch to Admin</button>
+                        <button className='btn btn-sm' onClick={handleAdminSwitch}>Switch to Admin</button>
                         <div>
                             <h1>User Login</h1>
                         </div>
