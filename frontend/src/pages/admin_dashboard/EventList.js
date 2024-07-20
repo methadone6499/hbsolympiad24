@@ -8,6 +8,7 @@ function EventList(){
     const [ eventName, setEventName ] = useState("");
     const [ eventSearched, setEventSearched ] = useState("");
     const [ isEventSolo, setIsEventSolo ] = useState(true);
+    const [ noOfParticipants, setNoOfParticipants ] = useState("");
 
     const handleEventName = (e) => {
         setEventName(e.target.value);
@@ -23,22 +24,28 @@ function EventList(){
             })
             const eventAmmount = Object.values(res.data).length;
             const eventList = [];
+            console.log(res.data.length);
             var eventSolo = true;
             if (res.data[0].user) { eventSolo = false }
             else { eventSolo = true }
             setIsEventSolo(eventSolo);
+            setNoOfParticipants(res.data.length)
             for (var i = 0; i < eventAmmount; i++)
             {
                 const eventDataRN = Object.values(res.data)[i];
                 var eventListRN = {};
                 var memberList = "";
-                for (let i = 0; i < eventDataRN.user.length; i++)
+                if (eventSolo) {}
+                else 
                 {
-                    console.log(eventDataRN.user[i].userName);
-                    memberList = memberList + eventDataRN.user[i].userName + " ,";
+                    for (let i = 0; i < eventDataRN.user.length; i++)
+                        {
+                            console.log(eventDataRN.user[i].userName);
+                            memberList = memberList + eventDataRN.user[i].userName + " ,";
+                        }
                 }
                 console.log(memberList);
-                if (eventSolo === true) { eventListRN = { CaptName: eventDataRN.name, ID: eventDataRN.id, Email:eventDataRN.email } }
+            if (eventSolo === true) { eventListRN = { CaptName: eventDataRN.name, ID: eventDataRN.id, Email:eventDataRN.email } }
                 else { eventListRN = { CaptName: eventDataRN.name, ID: eventDataRN.id, Email:eventDataRN.email, Members: memberList } }
                 eventList[i] = eventListRN;
             }
@@ -69,7 +76,10 @@ function EventList(){
                     />
                     <button className="btn btn-sm" onClick={handleEventSearchSubmit}>Get Event Participants</button> 
                 </form>
-
+                <div className='text-big'>
+                    <p>No of Participants/Teams: </p>
+                    {noOfParticipants}
+                </div>
                 { isEventSolo ? 
                 (
                     <div className='shownList-event'>
