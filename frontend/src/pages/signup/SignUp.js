@@ -23,6 +23,8 @@ function SignUp(){
 
     const [ succMessage, setSuccMessage ] = useState("")
 
+    const [ isButtonDisabled, setButtonDisabled ] = useState("")
+
     const navigate = useNavigate();
 
 
@@ -105,11 +107,12 @@ function SignUp(){
         }
         
         else {
+            setButtonDisabled(true);
             setSubmitted(true); 
             setError(false);
             console.log(uniCardImgFR); 
             try{
-                await axios.post("https://api-yixn.onrender.com/v1/signup",{
+                await axios.post("https://localhost:5000/v1/signup",{
                     name, idNum, email, phoneNumber, university, uniCardImgFR, password, 
                 })
                 .then(res=>{
@@ -283,7 +286,7 @@ function SignUp(){
                         />
 
 
-                        <button onClick={handleSubmit} className="buton" type="submit">
+                        <button onClick={handleSubmit} className="buton" type="submit"  disabled={isButtonDisabled}>
                             Submit
                         </button>
                     </form>

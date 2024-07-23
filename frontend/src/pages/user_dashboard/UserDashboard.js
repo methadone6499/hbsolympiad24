@@ -26,7 +26,7 @@ function UserDashboard(){
     useEffect(() => {
         const fetchEvents = async() =>{
             try{
-                const res = await axios.post('https://api-yixn.onrender.com/v1/getEvents', {
+                const res = await axios.post('https://localhost:5000/v1/getEvents', {
                     email, 
                 })
                 const eventSoloData = res.data.solo;
@@ -58,7 +58,7 @@ function UserDashboard(){
 
         const getApproval = async() => {
             try {
-                const res = await axios.post('https://api-yixn.onrender.com/v1/getApproval', {
+                const res = await axios.post('https://localhost:5000/v1/getApproval', {
                     email, id,
                 })
                 setApproval(res.data.approved);
@@ -89,7 +89,7 @@ function UserDashboard(){
         if (feePayment === "") { alert("No Image Uploaded") }
         else {
             try{
-                await axios.post('https://api-yixn.onrender.com/v1/postFeePayment',{
+                await axios.post('https://localhost:5000/v1/postFeePayment',{
                     id, email, feePayment
                 })
                 .then(res=>{
@@ -163,10 +163,17 @@ function UserDashboard(){
                         <div className='infoViewBox'>
                             <label className='Label'>Payment Proof</label>
                             <p className='text-small'>
-                                For Fee Payments send to 03025300003 Sadapay and upload picture of payment reciept { '\n' } { '\n' }
-                                For HBS students to participate The cost is 500 for a maximum of 5 events Your registration will only be completed once the 1500PKR alongside the 500PKR cost is confirmed{ '\n' }{ '\n' }
-                                For Outsiders Till 15th August 2000PKR for socials and up to 5 events maximum From 16th August 2500PKR for socials and up to 5 events maximum { '\n' }{ '\n' }
-                                Please make sure the payment recipet you upload has the date of payment visible{ '\n' }{ '\n' }
+                                For Fee Payments send to { '\n' }
+                                Account Name: MUHAMMAD NEHYAN { '\n' }
+                                IBAN: PK21KHYB0022002010127303 { '\n' }
+                                Bank: Bank of Khyber { '\n' }
+                                Account Name: Haris Tanveer { '\n' }
+                                Account number: 03357888774 Sadapay { '\n' }
+                                and upload picture of payment receipt { '\n' } { '\n' }
+                                { '\n '}
+                                To check payment costs, please refer to the 
+                                <a href="https://www.instagram.com/hbs.studentcouncil?igsh=MWpycmFhMHBxYjgxeg==">Instagram Page</a>
+                                { '\n' } { '\n' }
                             </p>
                             <div className='imgInuput'>
                             {feePayment &&  (

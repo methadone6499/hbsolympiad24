@@ -14,7 +14,7 @@ function Events(){
                     Events for the HBS Olympiad
                  </h1>
                 <p className="text-small">
-                    The HBS olympiad offers a variety of events for all your interests ranging from Sports of both the body and mind to Academic events to clash with your peers in regards to your learnt skills all the way to Social events to chill out with friends and even make more.
+                    The HBS Olympiad offers a variety of events for all interests. Ranging from battles of the mind in our academic events to good old fashioned sports competitions, we have something for everyone to enjoy! Whether alone or with friends, we'll be making sure that all participants have a memorable time!
                 </p>
                 <br /> <br />
                 <h1 className="text-big" id="program">
@@ -27,7 +27,7 @@ function Events(){
                             Table Tennis
                         </p>
                         <p className="text-small">
-                            Table tennis is a racket sport derived from tennis but distinguished by its playing surface being atop a stationary table. Either individually or in teams of two, players take alternating turns returning a light, hollow ball over the table's net onto the opposing half of the court using small rackets until they fail to do so, which results in a point for the opponent
+                            Put your reflexes to the test in an exhilaratingly fast paced session of table tennis. Take the competition by storm yourself, or team up with a partner in doubles for twice the fun
                         </p>
                     </div>
                     <div className="E-event E_T E_R">
@@ -36,7 +36,7 @@ function Events(){
                             Volleyball
                         </p>
                         <p className="text-small">
-                            Volleyball is a team sport in which two teams of six players are separated by a net. Each team tries to score points by grounding a ball on the other team's court under organized rules.
+                            Set and spike your way to victory in an old school game of volleyball. Gear up with your friends and get ready to fly high to get the ball over the net
                         </p>
                     </div>
                     <div className="E-event E_L">
@@ -52,7 +52,7 @@ function Events(){
                             Chess
                         </p>
                         <p className="text-small">
-                            Chess is an abstract strategy game that involves no hidden information and no elements of chance. It is played on a chessboard with an 8×8 grid. The players, referred to as "White" and "Black", each control sixteen pieces. White moves first, followed by Black. The game is won by checkmating the opponent's king.
+                            Fancy yourself a tactical genius? Or maybe you just prefer to showcase your brain over your brawn. Look no further than chess to satiate your desire to be the king (or queen) of the competition
                         </p>
                     </div>
                     <div className="E-event E_B E_L">
@@ -60,15 +60,15 @@ function Events(){
                             E-Games
                         </p>
                         <p className="text-small">
-                            An electronic game is a game that uses electronics to create an interactive system with which a player can play. Video games are the most common form today along with other common forms including handheld electronic games, standalone systems and exclusively non-visual products.
+                            Maybe you’re more at home with a mouse and keyboard or a controller than a ball or racquet. Smash the competition that thinks they can take you on in our competitive gaming event
                         </p>
                     </div>
-                    <div className="E-event E_B E_R">
+                    <div className="E-event E_R">
                         <p className="text-big">
                             Futsal
                         </p>
                         <p className="text-small">
-                            Futsal is a football-based game played on a hardcourt like a basketball court, smaller than a football pitch, and mainly indoors. It has similarities to five-a-side football and indoor football.
+                            Consider yourself a trick shot expert? Or perhaps you prefer to dazzle the competition with your dribbling. Look no further than our Futsal event to showcase your skills
                         </p>
                     </div>
                 </div>
@@ -82,7 +82,7 @@ function Events(){
                             Quizzes
                         </p>
                         <p className="text-small">
-                            A quiz is a form of game or mind sport in which players attempt to answer questions correctly on one or several specific topics. Quizzes can be used as a brief assessment in education and similar fields to measure growth in knowledge, abilities, and skills.
+                            Wit beyond measure may be mans greatest treasure. But it’s no good until we put it to the test! Join us for our exciting quiz event and see just how far your mind takes you
                         </p>
                     </div>
                     <div className="E-event">
@@ -90,7 +90,7 @@ function Events(){
                             Suturing
                         </p>
                         <p className="text-small">
-                            A surgical suture, also known as a stitch or stitches, is a medical device used to hold body tissues together and approximate wound edges after an injury or surgery. Application generally involves using a needle with an attached length of thread.
+                            A must for all the aspiring surgeons in our midst! Think you’ve got what it takes to suture quickly, cleanly and with artistic precision? We’ve got wounds to close, waiting for you right here
                         </p>
                     </div>
                     <div className="E-event">
@@ -98,15 +98,15 @@ function Events(){
                             BLS Competition
                         </p>
                         <p className="text-small">
-                            Basic life support (BLS) is a level of medical care which is used for patients with life-threatening condition of cardiac arrest until they can be given full medical care by advanced life support providers.
+                            When it comes to a crashing patient, there’s no time to waste. Showcase your ability to deal with an active emergency with CPR, AEDs and more in our fast paced BLS even
                         </p>
                     </div>
                     <div className="E-event">
                         <p className="text-big">
                             Research Conference
                         </p>
-                        <p className="text-small">
-                            A research conference or scientific conference is an event for researchers to present and discuss their scholarly work. Together with academic or scientific journals and preprint archives, conferences provide an important channel for exchange of information between researchers.
+                        <p className="text-small">\
+                            Dreaming of being the future of medicine? Prepared to push the boundaries of whats possible in this field? Prove your mettle in our esteemed Research Conference by showcasing your work and learning from your talented peers. There’s no better place to get those precious publications ready
                         </p>
                     </div>
                     <div className="E-event">
@@ -114,7 +114,7 @@ function Events(){
                             MUN/Debates
                         </p>
                         <p className="text-small">
-                            Model United Nations, also known as Model UN or MUN, is an educational model of the United Nations used for simulations in which students learn about diplomacy and international relations. At a MUN conference, each student works as the representative of a country, organization, or person, and must solve a problem with other delegates from around the world.
+                            Give me a platform and I’ll say it all”- or so they say. Well here it is! Participate in our greatly anticipated Model United Nations event to get a chance to share your views, to use your voice, to have your words, be heard by all! The competition is fierce and theres no room for fear, but nobody ever changed anything by being silent
                         </p>
                     </div>
                 </div>
@@ -128,7 +128,7 @@ function Events(){
                             Scavenger Hunt
                         </p>
                         <p className="text-small">
-                            A scavenger hunt is a game in which the organizers prepare a list defining specific items, which the participants seek to gather or complete all items on the list, usually without purchasing them.
+                            Prepared to go on a wild goose chase all around campus? Of course you are! Be prepared to use all your detective skills and put those calf muscles to use in our fun and exciting Scavenger Hunt
                         </p>
                     </div>
                     <div className="E-event">
@@ -136,15 +136,15 @@ function Events(){
                             Art Competition
                         </p>
                         <p className="text-small">
-                            Art competitions allow artists to display their work among their peers, have it reviewed by esteemed judges, and sometimes receive exhibition opportunities and monetary incentives.
+                            Express yourself and your ideas in our wonderful arts competition. Whether through a paintbrush, pencil, or maybe even crayons, leave no stone unturned in showing letting us know what you have to say from within
                         </p>
                     </div>
                     <div className="E-event">
                         <p className="text-big">
-                            Photography Gallery
+                            Art Gallery
                         </p>
                         <p className="text-small">
-                            An event where competitors can submit their photographs to be displayed so they can be viewed by peers and reviewed by judges to select the best one among them.
+                            Perhaps you’re more interested in preserving the beauty in the world from on a sheet of paper with paint and pencil as your tools. Capture lightning in a bottle with your unbridled imagination in our art gallery
                         </p>
                     </div>
                     <div className="E-event">
@@ -152,7 +152,23 @@ function Events(){
                             Music Jamming Session
                         </p>
                         <p className="text-small">
-                            A jam session is a relatively informal musical event, process, or activity where musicians, typically instrumentalists, play improvised solos and vamp over tunes, drones, songs, and chord progressions
+                            Jam out to the beat of the drums or the melody on a six string in our rocking music jam session. Fly solo or with a band  to show us just how good you are
+                        </p>
+                    </div>
+                    <div className="E-event E_T E_R">
+                        <p className="text-big">
+                            Qawali
+                        </p>
+                        <p className="text-small">
+                            Prepare to be enthralled by the powerful vocals, rhythmic beats and standout energy of our greatly anticipated Qawali event! Whether you are new to the genre or an avid enjoyer of the classics, we hope you are excited for this passionate segment
+                        </p>
+                    </div>
+                    <div className="E-event E_T E_L">
+                        <p className="text-big">
+                            Cultural Festival
+                        </p>
+                        <p className="text-small">
+                            A celebration of the arts, music, dance and community, the cultural festival stands at the heart of the HBS Olympiad, promising incredible performances and a refreshing taste of community spirit
                         </p>
                     </div>
                 </div>

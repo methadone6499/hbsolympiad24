@@ -32,7 +32,7 @@ function TeamEventReg(){
     }
 
     const handleEventSelect = async(selectedEvent) => {
-        if (window.confirm("Do you want to register for "+selectedEvent))
+        if (window.confirm("Are you sure you want to register for this event, This decision cannot be reversed"))
         {
             setSelectedEvent(selectedEvent);
             setSubmitted(true);
@@ -72,7 +72,7 @@ function TeamEventReg(){
                 try
                 {
                     console.log(user)
-                    await axios.post("https://api-yixn.onrender.com/v2/submitFormTeam",{
+                    await axios.post("https://localhost:5000/v2/submitFormTeam",{
                         name, email, phoneNumber, id, eventName, university
                     })
                     .then(res=>{
@@ -91,7 +91,7 @@ function TeamEventReg(){
                 try
                 {
                     console.log(selectedEvent)
-                    await axios.post("https://api-yixn.onrender.com/v2/submitFormTeamMember",{
+                    await axios.post("https://localhost:5000/v2/submitFormTeamMember",{
                         name, email, phoneNumber, id, eventName, teamToken
                     })
                     .then(res=>{
@@ -165,7 +165,7 @@ function TeamEventReg(){
                         </p>
                         <p className="text-small">
                             [ Member Limit: 2 ]{ '\n'}
-                            Table tennis, or ping pong, is a fast-paced indoor sport played on a table divided by a net. Players use paddles to hit a lightweight ball back and forth. It requires quick reflexes, strategic thinking, and precise ball control.
+                            Put your reflexes to the test in an exhilaratingly fast paced session of table tennis. Team up with a partner in doubles for twice the fun and cooperation.
                         </p>
                         <div className='btn-thing'>
                         { isCaptain ? 
@@ -190,7 +190,7 @@ function TeamEventReg(){
                         </p>
                         <p className="text-small">
                             [ Member Limit: 8 ]{ '\n'}
-                            Volleyball is a team sport played on a court with a net. Two teams of six players each try to score points by hitting a ball over the net and into the opponent's court.
+                            Set and spike your way to victory in an old school game of volleyball. Gear up with your friends and get ready to fly high to get the ball over the net    
                         </p>
                         <div className='btn-thing'>
                         { isCaptain ? 
@@ -215,7 +215,7 @@ function TeamEventReg(){
                         </p>
                         <p className="text-small">
                             [ Member Limit: 8 ]{ '\n'}
-                            Basketball is a team sport played on a rectangular court between two teams of five players each. The objective is to score points by shooting the ball through the opponent's hoop. It involves dribbling, passing, and strategic play to outscore the opposing team.
+                            Calling out all the local Micheal Jordans who believe they can dunk on our heads with this one. Whether you’re sinking 3s or going for a slam dunk, theres no better place to showcase your skills
                         </p>
                         <div className='btn-thing'>
                         { isCaptain ? 
@@ -264,7 +264,7 @@ function TeamEventReg(){
                         </p>
                         <p className="text-small">
                             [ Member Limit: 8 ]{ '\n'}
-                            Futsal is an indoor soccer game with five players per team, played on a small, hard court with a smaller, less bouncy ball. It emphasizes quick passing and skillful play, featuring fast-paced, high-scoring matches.
+                            Consider yourself a trick shot expert? Or perhaps you prefer to dazzle the competition with your dribbling. Look no further than our Futsal event to showcase your skills
                         </p>
                         <div className='btn-thing'>
                         { isCaptain ? 
@@ -289,8 +289,7 @@ function TeamEventReg(){
                             BLS Competition
                         </p>
                         <p className="text-small">
-                            [ Member Limit: 3 ]{ '\n'}
-                            A BLS (Basic Life Support) competition tests participants' skills in emergency medical procedures, such as CPR, using an AED, and handling choking incidents. Competitors are judged on their ability to perform these life-saving techniques quickly and accurately.
+                            [ Member Limit: 3 ]{ '\n'}When it comes to a crashing patient, there’s no time to waste. Showcase your ability to deal with an active emergency with CPR, AEDs and more in our fast paced BLS even
                         </p>
                         <div className='btn-thing'>
                         { isCaptain ? 
@@ -316,7 +315,7 @@ function TeamEventReg(){
                         </p>
                         <p className="text-small">
                             [ Member Limit: 2 ]{ '\n'}
-                            Quizzes are short tests or competitions designed to assess knowledge on various topics. They can be used for education, entertainment, or competitive purposes, often featuring multiple-choice, true/false, or open-ended questions.
+                            Wit beyond measure may be mans greatest treasure. But it’s no good until we put it to the test! Join us for our exciting quiz event and see just how far your mind takes you
                         </p>
                         <div className='btn-thing'>
                         { isCaptain ? 
@@ -342,7 +341,7 @@ function TeamEventReg(){
                         </p>
                         <p className="text-small">
                             [ Member Limit: 3 ]{ '\n'}
-                            A research conference is a gathering where scholars present and discuss their latest research findings. It includes presentations, discussions, and networking opportunities, allowing researchers to share knowledge and collaborate on future projects.
+                            Dreaming of being the future of medicine? Prepared to push the boundaries of whats possible in this field? Prove your mettle in our esteemed Research Conference by showcasing your work and learning from your talented peers. There’s no better place to get those precious publications ready
                         </p>
                         <div className='btn-thing'>
                         { isCaptain ? 
@@ -368,7 +367,7 @@ function TeamEventReg(){
                         </p>
                         <p className="text-small">
                             [ Member Limit: 5 ]{ '\n'}
-                            A scavenger hunt is a game in which the organizers prepare a list defining specific items, which the participants seek to gather or complete all items on the list, usually without purchasing them.
+                            Prepared to go on a wild goose chase all around campus? Of course you are! Be prepared to use all your detective skills and put those calf muscles to use in our fun and exciting Scavenger Hunt
                         </p>
                         <div className='btn-thing'>
                         { isCaptain ? 

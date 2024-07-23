@@ -32,8 +32,8 @@ function Home(){
                  </h1>
                 <p className="text-small">
                     Welcome to HBS OLYMPIAD ‘24, an extravaganza brought to you by the HBS Medical and Dental College 
-                    Student Council. As the premier institute on in Islamabad, Pakistan, we are proud to present a three-day 
-                    event designed to not only engage and smulate our students socially but also foster camaraderie and 
+                    Student Council. As the premier institute in Islamabad, Pakistan, we are proud to present a three-day 
+                    event designed to not only engage our students socially but also foster camaraderie and 
                     competitive spirit among medical colleges across the region.
                 </p>
                 <br />
@@ -47,7 +47,7 @@ function Home(){
                             Cultural Festival
                         </p>
                         <p className="text-small">
-                            A cultural fest is an event celebrating diverse traditions through music, dance, food, crafts, and performances, promoting cultural exchange and community spirit.
+                            A celebration of the arts, music, dance and community, the cultural festival stands at the heart of the HBS Olympiad, promising incredible performances and a refreshing taste of community spirit
                         </p>
                     </div>
                     <div className="E-event E_T E_R">
@@ -55,7 +55,7 @@ function Home(){
                             Qawali
                         </p>
                         <p className="text-small">
-                            Qawali is a Sufi devotional music from South Asia, featuring powerful vocals, rhythmic instruments, and repetitive choruses. Its lyrics focus on spiritual themes, aiming to evoke deep emotional and spiritual experiences in the audience.   
+                            Prepare to be enthralled by the powerful vocals, rhythmic beats and standout energy of our greatly anticipated Qawali event! Whether you are new to the genre or an avid enjoyer of the classics, we hope you are excited for this passionate segment
                         </p>
                     </div>
                     <div className="E-event E_L">
@@ -63,7 +63,7 @@ function Home(){
                             BLS Competition
                         </p>
                         <p className="text-small">
-                            A BLS (Basic Life Support) competition tests participants' skills in emergency medical procedures, such as CPR, using an AED, and handling choking incidents. Competitors are judged on their ability to perform these life-saving techniques quickly and accurately.
+                            When it comes to a crashing patient, there’s no time to waste. Showcase your ability to deal with an active emergency with CPR, AEDs and more in our fast paced BLS even
                         </p>
                     </div>
                     <div className="E-event E_R">
@@ -71,7 +71,7 @@ function Home(){
                             Futsal
                         </p>
                         <p className="text-small">
-                            Futsal is a football-based game played on a hardcourt like a basketball court, smaller than a football pitch, and mainly indoors. It has similarities to five-a-side football and indoor football.
+                            Consider yourself a trick shot expert? Or perhaps you prefer to dazzle the competition with your dribbling. Look no further than our Futsal event to showcase your skills
                         </p>
                     </div>
                 </div>

@@ -71,34 +71,34 @@ function Login(){
   
     // Handling the form submission 
 
-    const handleAdminSubmit = async(e) => {
-        e.preventDefault();
-        if (adminUsername === "" || adminPassword ==="")
-        {
-            setError(true);
-        }
-        else {
-            setSubmitted(true); 
-            setError(false); 
-            console.log(email);
-            const username = adminUsername;
-            const password = adminPassword;
-            try{
-                await axios.post("https://api-yixn.onrender.com/admin/login",{
-                    username, password,
-                })
-                .then(res=>{
-                    console.log(res);
-                    setSuccMessage(res.data.message);
-                    navigate('/admin_dashboard');
-                })
-            }
-            catch(e){
-                alert('Server error');
-                console.log(e);
-            }
-        }
-    }
+    // const handleAdminSubmit = async(e) => {
+    //     e.preventDefault();
+    //     if (adminUsername === "" || adminPassword ==="")
+    //     {
+    //         setError(true);
+    //     }
+    //     else {
+    //         setSubmitted(true); 
+    //         setError(false); 
+    //         console.log(email);
+    //         const username = adminUsername;
+    //         const password = adminPassword;
+    //         try{
+    //             await axios.post("https://api-yixn.onrender.com/admin/login",{
+    //                 username, password,
+    //             })
+    //             .then(res=>{
+    //                 console.log(res);
+    //                 setSuccMessage(res.data.message);
+    //                 navigate('/admin_dashboard');
+    //             })
+    //         }
+    //         catch(e){
+    //             alert('Server error');
+    //             console.log(e);
+    //         }
+    //     }
+    // }
 
     const handleSubmit = async(e) => { 
        console.log(e);
@@ -112,7 +112,7 @@ function Login(){
             setError(false); 
             console.log(email);
             try{
-                await axios.post("https://api-yixn.onrender.com/v1/login",{
+                await axios.post("https://localhost:5000/v1/login",{
                     idNum, email, password, 
                 })
                 .then(res=>{
@@ -120,6 +120,8 @@ function Login(){
                     console.log(res.data.result.uniName);
                     const userInfo = { name: res.data.result.name, id: res.data.result.id, email: res.data.result.email , phoneNumber: res.data.result.phoneNumber, token: res.data.token, university: res.data.result.uniName };
                     localStorage.setItem('profile', JSON.stringify(userInfo));
+                    var now = new Date().getTime();
+                    localStorage.setItem('setupTime', now);
                     console.log(user);
                     setSuccMessage(res.data.message);
                     navigate('/user_dashboard');
@@ -185,7 +187,7 @@ function Login(){
 
             <div className="box-main">
                 <Logo />
-                { isAdmin ? 
+                {/* { isAdmin ? 
                 (
                     <div className='LoginPage'>
                     <button className='btn btn-sm' onClick={handleAdminSwitch}>Switch to User</button>
@@ -220,10 +222,9 @@ function Login(){
                             </button>
                         </form>
                     </div>
-                ) : 
-                (
+                ) :  */}
+                
                     <div className="LoginPage">
-                        <button className='btn btn-sm' onClick={handleAdminSwitch}>Switch to Admin</button>
                         <div>
                             <h1>User Login</h1>
                         </div>
@@ -263,8 +264,6 @@ function Login(){
                             </button>
                         </form>
                     </div>
-                ) }
-                
             </div>
             <footer className="footer">
                 <p className="text-footer">

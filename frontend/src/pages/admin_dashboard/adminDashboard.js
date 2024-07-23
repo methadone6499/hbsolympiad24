@@ -18,10 +18,10 @@ function AdminDashboard(){
                     Admin Options
                 </h1>
                 <div className="registrationOverview infoViewBox">
-                    <Link to="/admin_dashboard/UserList" className="links">
+                    <Link to="/WufZhss2VJkaT8oGh7AJ/UserList" className="links">
                         <button className="btn">See all user registration</button>
                     </Link>
-                    <Link to="/admin_dashboard/EventList" className="links">
+                    <Link to="/WufZhss2VJkaT8oGh7AJ/EventList" className="links">
                         <button className="btn">See all event registration</button>
                     </Link>
                 </div>

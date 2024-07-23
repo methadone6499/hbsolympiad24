@@ -25,7 +25,7 @@ function IndEventReg(){
     }
 
     const handleEventSelect = (selectedEvent) => {
-        if (window.confirm("Do you want to register for "+selectedEvent)) 
+        if (window.confirm("Are you sure you want to register for this event, This decision cannot be reversed")) 
             { 
                 setSelectedEvent(selectedEvent);
                 setSubmitted(true);
@@ -55,7 +55,7 @@ function IndEventReg(){
             handleEventSelect("");
             try
             {
-                await axios.post("https://api-yixn.onrender.com/v2/submitFormSolo",{
+                await axios.post("https://localhost:5000/v2/submitFormSolo",{
                     name, email, phoneNumber, id, eventName
                 })
                 .then(res=>{
@@ -115,7 +115,7 @@ function IndEventReg(){
                             Table Tennis
                         </p>
                         <p className="text-small">
-                            Table tennis, or ping pong, is a fast-paced indoor sport played on a table divided by a net. Players use paddles to hit a lightweight ball back and forth. It requires quick reflexes, strategic thinking, and precise ball control.
+                            Put your reflexes to the test in an exhilaratingly fast paced session of table tennis. Take the competition by storm and smash your way to victory.
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                         {(e)=>{
@@ -129,7 +129,7 @@ function IndEventReg(){
                             Chess
                         </p>
                         <p className="text-small">
-                            Chess is a strategic board game for two players on a checkered 64-square board. Players aim to checkmate the opponent's king by strategically moving pieces.
+                            Fancy yourself a tactical genius? Or maybe you just prefer to showcase your brain over your brawn. Look no further than chess to satiate your desire to be the king (or queen) of the competition
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
@@ -171,7 +171,7 @@ function IndEventReg(){
                             Suturing
                         </p>
                         <p className="text-small">
-                            Suturing is a medical procedure used to close wounds or surgical incisions with stitches. It involves using a needle and thread to sew tissue together, promoting healing and reducing the risk of infection.
+                            A must for all the aspiring surgeons in our midst! Think you’ve got what it takes to suture quickly, cleanly and with artistic precision? We’ve got wounds to close, waiting for you right here
                         </p>
                         <button href="#message" type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
@@ -197,8 +197,7 @@ function IndEventReg(){
                             MUN (PNA)
                         </p>
                         <p className="text-small">
-                        The National Assembly of Pakistan is the lower legislative house of the bicameral Parliament of
-Pakistan, which also comprises the Senate of Pakistan (upper house). The National Assembly and the Senate both convene at Parliament House in Islamabad, Pakistan. The National Assembly is a democratically elected body consisting of a total of 336 members who are referred to as Members of the National Assembly (MNAs).
+                        The National Assembly of Pakistan is the lower legislative house of the bicameral Parliament of Pakistan, which also comprises the Senate of Pakistan (upper house). The National Assembly and the Senate both convene at Parliament House in Islamabad, Pakistan. The National Assembly is a democratically elected body consisting of a total of 336 members who are referred to as Members of the National Assembly (MNAs).
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
@@ -224,7 +223,7 @@ Pakistan, which also comprises the Senate of Pakistan (upper house). The Nationa
                             Art Competition
                         </p>
                         <p className="text-small">
-                            An art competition is an event where artists submit their artworks to be judged based on creativity, technique, and interpretation of a theme. It provides a platform for artists to showcase their talents, gain recognition, and often includes awards or prizes for outstanding entries.
+                            Express yourself and your ideas in our wonderful arts competition. Whether through a paintbrush, pencil, or maybe even crayons, leave no stone unturned in showing letting us know what you have to say from within
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
@@ -237,7 +236,7 @@ Pakistan, which also comprises the Senate of Pakistan (upper house). The Nationa
                             Art Gallery
                         </p>
                         <p className="text-small">
-                            An art gallery is a space where artworks are displayed for public viewing and sale. It serves as a venue for artists to exhibit their creations, ranging from paintings and sculptures to digital art and installations. Art galleries also play a role in cultural enrichment, education, and fostering appreciation for visual arts.
+                            Perhaps you’re more interested in preserving the beauty in the world from on a sheet of paper with paint and pencil as your tools. Capture lightning in a bottle with your unbridled imagination in our art gallery
                         </p>
                         <button type="submit" className='reg-btn' onClick=
                                                     {(e)=>{
