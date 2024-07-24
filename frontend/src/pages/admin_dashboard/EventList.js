@@ -5,6 +5,30 @@ import axios from 'axios'
 
 function EventList(){
 
+    const option = [
+        { eventName: "Choose an Event" },
+        { eventName: "Table Tennis" },
+        { eventName: "Table Tennis Duo" },
+        { eventName: "Volleyball" },
+        { eventName: "Basketball" },
+        { eventName: "Chess" },
+        { eventName: "Tekken" },
+        { eventName: "FIFA" },
+        { eventName: "PUBG" },
+        { eventName: "Futsal" },
+        { eventName: "Quizzes" },
+        { eventName: "Suturing" },
+        { eventName: "BLS Competition" },
+        { eventName: "Research Conference" },
+        { eventName: "MUN (UNSC)" },
+        { eventName: "MUN (PNA)" },
+        { eventName: "MUN (CC)" },
+        { eventName: "Scavenger hunt" },
+        { eventName: "Art Competition" },
+        { eventName: "Videography competition" },
+        { eventName: "Art Gallery" },
+    ]
+
     const [ eventName, setEventName ] = useState("");
     const [ eventSearched, setEventSearched ] = useState("");
     const [ isEventSolo, setIsEventSolo ] = useState(true);
@@ -17,9 +41,10 @@ function EventList(){
     const handleEventSearchSubmit = async(e) => {
 
         e.preventDefault();
-
+        console.log(eventName);
+        
         try{
-            const res = await axios.post('https://localhost:5000/admin/getEventForms', {
+            const res = await axios.post('http://localhost:5000/admin/getEventForms', {
                 eventName
             })
             const eventAmmount = Object.values(res.data).length;
@@ -52,8 +77,10 @@ function EventList(){
             setEventSearched(eventList);
         }
         catch(e) {
-            alert('server error here')
-            console.log(e)
+            alert('No Participants in selected event');
+            setEventName("N/A");
+            setNoOfParticipants("0");
+            console.log(e);
         }
     }
 
@@ -65,19 +92,18 @@ function EventList(){
                 <h1 className="text-big">
                     Event List
                 </h1>
-                
-                <form>
-                    <input
-                        onChange = {handleEventName}
-                        className = "Input"
-                        value = {eventName}
-                        type = "text"
-                        placeholder='Event Search'
-                    />
+
+                <div className='eventDropList'>
+                    <select value={eventName} onChange={handleEventName}>
+                        {
+                            option.map( (d)=> <option value={d.eventName}>{d.eventName}</option> )
+                        }
+                    </select>
                     <button className="btn btn-sm" onClick={handleEventSearchSubmit}>Get Event Participants</button> 
-                </form>
+                </div>
+
                 <div className='text-big'>
-                    <p>No of Participants/Teams: </p>
+                    <p>No of Participants/Teams in {eventName} : </p>
                     {noOfParticipants}
                 </div>
                 { isEventSolo ? 

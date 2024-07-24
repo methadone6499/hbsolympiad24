@@ -101,7 +101,6 @@ function Login(){
     // }
 
     const handleSubmit = async(e) => { 
-       console.log(e);
         e.preventDefault(); 
         if (idNum  === "" || email === "" || password === "") { 
             setError(true); 
@@ -112,7 +111,7 @@ function Login(){
             setError(false); 
             console.log(email);
             try{
-                await axios.post("https://localhost:5000/v1/login",{
+                await axios.post("http://localhost:5000/v1/login",{
                     idNum, email, password, 
                 })
                 .then(res=>{

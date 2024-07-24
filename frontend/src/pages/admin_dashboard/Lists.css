@@ -50,3 +50,14 @@
 .shownList-event li :last-child {
     border-bottom: solid 5px red;
 }
+
+.eventDropList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.eventDropList select {
+    height: max-content;
+    font-size: 20px;
+}

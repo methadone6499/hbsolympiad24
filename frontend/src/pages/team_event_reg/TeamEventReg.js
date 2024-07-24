@@ -72,7 +72,7 @@ function TeamEventReg(){
                 try
                 {
                     console.log(user)
-                    await axios.post("https://localhost:5000/v2/submitFormTeam",{
+                    await axios.post("http://localhost:5000/v2/submitFormTeam",{
                         name, email, phoneNumber, id, eventName, university
                     })
                     .then(res=>{
@@ -91,7 +91,7 @@ function TeamEventReg(){
                 try
                 {
                     console.log(selectedEvent)
-                    await axios.post("https://localhost:5000/v2/submitFormTeamMember",{
+                    await axios.post("http://localhost:5000/v2/submitFormTeamMember",{
                         name, email, phoneNumber, id, eventName, teamToken
                     })
                     .then(res=>{

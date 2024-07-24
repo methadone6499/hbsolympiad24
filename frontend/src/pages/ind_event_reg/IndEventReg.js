@@ -55,7 +55,7 @@ function IndEventReg(){
             handleEventSelect("");
             try
             {
-                await axios.post("https://localhost:5000/v2/submitFormSolo",{
+                await axios.post("http://localhost:5000/v2/submitFormSolo",{
                     name, email, phoneNumber, id, eventName
                 })
                 .then(res=>{
