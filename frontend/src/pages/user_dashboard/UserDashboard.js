@@ -6,6 +6,8 @@ import FileBase64 from 'react-file-base64';
 import Navbar from '../navbar/Navbar'
 import Logo from '../Logo/Logo'
 import { useNavigate } from 'react-router-dom';
+import jsPDF from "jspdf";
+import "jspdf-autotable"
 
 function UserDashboard(){
     
@@ -22,6 +24,57 @@ function UserDashboard(){
     const [ approval, setApproval] = useState(false)
 
     const navigate = useNavigate();
+
+
+    const exportPDF = () => {
+        const unit = "pt";
+        const size = "A4"; // Use A1, A2, A3 or A4
+        const orientation = "portrait"; // portrait or landscape
+        var img = new Image();
+    
+        const marginLeft = 40;
+        const doc = new jsPDF(orientation, unit, size);
+    
+        doc.setFontSize(15);
+    
+        const title = "HBS Ticket";
+        const headers = [["Event", "Type", "Captain Name"]];
+
+        img.src = 'https://i.imgur.com/e6Lnl9j.png'
+    
+        const dataSolo = soloEvents.map(d=> [d.key, "Solo", ""]);
+        const dataTeam = TeamEvents.map(d=> [d.title, "Team", d.CaptName]);
+        
+        const data = [...dataSolo, ...dataTeam];
+
+        const namePrint = "Name : " + name;
+        const IdPrint = "ID : " + id;
+        const emailPrint = "Email : " + email;
+
+        const userInfo = [[namePrint],[IdPrint],[emailPrint]]
+
+        let userInfoTable = {
+            startY: 60,
+            body: userInfo,
+            styles: {color: [0,0,0]}
+        }
+
+        let content = {
+            startY: 150,
+            head: headers,
+            body: data,
+            styles : { halign : 'center' }, 
+            headStyles :{fillColor : [17, 17, 17]},
+            alternateRowStyles: {fillColor : [231, 215, 252]}, 
+            tableLineColor: [124, 95, 240], 
+            tableLineWidth: 0.1,
+        };
+
+        doc.text(title, 250, 40);
+        doc.autoTable(userInfoTable);
+        doc.autoTable(content);
+        doc.save("report.pdf")
+      }
 
     useEffect(() => {
         const fetchEvents = async() =>{
@@ -86,7 +139,7 @@ function UserDashboard(){
     const handleProofSubmit = async(e) => {
         e.preventDefault();
 
-        if (feePayment === "") { alert("No Image Uploaded") }
+        if (feePayment === "" || feePayment === null) { alert("No Image Uploaded") }
         else {
             try{
                 await axios.post('http://localhost:5000/v1/postFeePayment',{
@@ -128,6 +181,7 @@ function UserDashboard(){
                         <ul >
                             <h2>Solo Events</h2>
                                 { soloEvents }
+                                { console.log(soloEvents) }
                         </ul>
                         <div>
                             <h2>Team Events</h2>
@@ -152,13 +206,19 @@ function UserDashboard(){
                                     <h2>Token</h2>
                                     { TeamEvents.map((d) => <li key={d.Email} >{d.Token}</li>) }
                                 </ul>
+                                { console.log(TeamEvents) }
                             </div>
                         </div>
                     </div>
                 </div>
                 <br />
                     
-                { approval ? ( console.log("approved") ) : 
+                { approval ? 
+                    ( 
+                        <div>
+                            <button className='btn btn-sm' onClick={exportPDF}>Print Ticket</button>
+                        </div>
+                    ) : 
                     ( 
                         <div className='infoViewBox'>
                             <label className='Label'>Payment Proof</label>

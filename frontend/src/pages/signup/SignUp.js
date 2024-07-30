@@ -96,7 +96,7 @@ function SignUp(){
         e.preventDefault(); 
         
         
-        if (name === "" || idNum  === "" || email === "" || phoneNumber === "" || university==="" || password === "" || uniCardImgFR === "" || password != confirmPassword) 
+        if (name === "" || idNum  === "" || email === "" || phoneNumber === "" || university==="" || password === "" || uniCardImgFR ==="" || uniCardImgFR === null || password != confirmPassword) 
         { 
             setError(true); 
         } 
@@ -123,6 +123,7 @@ function SignUp(){
             }
             catch(e){
                 alert('Server error');
+                setSuccMessage(e.message);
             }
         } 
     }; 
