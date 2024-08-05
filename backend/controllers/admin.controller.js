@@ -173,6 +173,83 @@ const getImages = async(req, res) =>{
     }
 }
 
+const deleteUser = async(req, res) => {
+    const {email, username, password} = req.body;
+    console.log(email, username, password);
+    const message = "user successfully deleted";
+    try{
+        const admin = await Admin.findOne({username: username});
+        if(!admin){
+            return res.status(401).json({error: 'Invalid credentials'});
+        }
+
+        const passwordMatch = await bcrypt.compare(password, admin.password);
+        if(!passwordMatch){
+            return res.status(501).json({ error: 'Invalid credentials'});
+        }
+        
+        const findSoloForms = await Forms.find({email: email});
+        for (const item of findSoloForms) {
+            const eventName = item.eventName;
+
+            // Find the event by its title (eventName) and decrement the registered count
+            const event = await Event.findOneAndUpdate(
+                { title: eventName },
+                { $inc: { registered: -0 } }, // Decrement registered count by 1
+                { new: true } // Return the updated document
+            );
+
+            if (event) {
+                console.log(`Updated event: ${eventName}, new registered count: ${event.registered}`);
+            } else {
+                console.log(`Event not found: ${eventName}`);
+            }
+        }
+        const deleteSoloForms = await Forms.deleteMany({email: email});
+        //--------------------------------------------------------------------------------------------------
+        const findTeamForms = await FormTeam.find({email: email});
+        for (const item of findTeamForms) {
+            const eventName = item.eventName;
+            console.log("check");
+            // delete the events the other users are registered in as a team member of the user whose account will be deleted
+            for (const user of item.user) {
+                // Find the corresponding user in the User collection
+                await User.updateOne(
+                  { email: user.email }, // Find user by email
+                  { $pull: { events: { title: eventName } } } // Remove the event from events array
+                );
+            }
+            console.log("check2 ")
+            const teamEvent = await Event.findOneAndUpdate(
+                {title: eventName},
+                { $inc: {registered: -0} },
+                {new: true}
+            );
+            if (teamEvent) {
+                console.log(`Updated event: ${eventName}, new registered count of teams: ${teamEvent.registered}`);
+            } else {
+                console.log(`Event not found: ${eventName}`);
+            }
+        }
+        const deleteTeamForms = await FormTeam.deleteMany({email: email});
+        //------------------------------------delete user as team member from forms
+        const findTeamMemberForms = await FormTeam.find({'user.email': email});
+        for (const item of findTeamMemberForms) {
+            const result = await FormTeam.updateOne(
+                { _id: item._id },
+                { $pull: { user: { email: email } },
+                  $inc: { numOfMembers: -1 } }
+              );
+        }
+        //return res.status(200).json({message, findSoloForms, deleteSoloForms, deleteTeamForms});
+        const test = await User.deleteOne({email: email});
+        return res.status(200).json({message, test});
+    }
+    catch(e){
+        return res.status(500).json({message: "internal server error"});
+    }
+}
+
 module.exports = {
     loginAdmin,
     signUpAdmin,
@@ -182,5 +259,6 @@ module.exports = {
     getEventForms,
     getNumOfRegistered,
     approveFeePayment,
-    getImages
+    getImages,
+    deleteUser
 }
