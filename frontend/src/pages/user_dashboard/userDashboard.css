@@ -9,6 +9,17 @@
     margin: 0 auto;
 }
 
+.infoViewBoxUrgent {
+    background-color: rgb(102, 0, 0);
+    display: block;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid rgb(211, 0, 0);
+    border-left: none;
+    border-right: none;
+    margin: 0 auto;
+}
+
 .eventInfo button{
     margin: 10px;
 }  

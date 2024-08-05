@@ -73,7 +73,7 @@ function UserDashboard(){
         doc.text(title, 250, 40);
         doc.autoTable(userInfoTable);
         doc.autoTable(content);
-        doc.save("report.pdf")
+        doc.save("HBS Ticket.pdf")
       }
 
     useEffect(() => {
@@ -162,6 +162,14 @@ function UserDashboard(){
 
             <div className="box-main">
                 <Logo />
+                {
+                    approval ? ('none') : 
+                    (
+                        <div className='infoViewBoxUrgent'>
+                            <p className='text-small'>Please upload your fee payment</p>
+                        </div>
+                    )
+                }
                 <h1 className="text-big">
                     User Dashboard
                 </h1>

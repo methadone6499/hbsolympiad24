@@ -18,9 +18,19 @@ function UserList(){
 
     const [searchTerm, setSearchTerm ] = useState(true);
 
+    const [ adminPassword, setAdminPassword ] = useState("");
+
+    const [ purgeMail, setPurgeMail ] = useState("");
+
+    const [ isButtonDisabled, setButtonDisabled ] = useState("")
+
     const [ userCardImg, setUserCardImg ] = useState("");
     const [ userPayProof, setUserPayProofImg ] = useState("");
     const [ picEmail, setPicEmail] = useState("")
+
+    const handleAdminPassword = (e) => {
+        setAdminPassword(e.target.value);
+    }
 
     const handleSetEmail = (e) => {
         setEmail(e.target.value);
@@ -57,6 +67,7 @@ function UserList(){
             alert(e)
 ;        }
     } 
+
     const handleDisapprove = async(email) => {
         console.log(email);
         try {
@@ -68,6 +79,40 @@ function UserList(){
         catch(e) {
             alert(e);
 ;        }
+    }
+
+    
+    const openForm = (email) => {
+        setPurgeMail(email);
+        document.getElementById("myForm").style.display = "block";
+        setButtonDisabled(true);
+    }
+
+    const closeForm = () => {
+        document.getElementById("myForm").style.display = "none"
+        setButtonDisabled(false);
+    }
+
+    const handlePurge = async(e) => {
+        e.preventDefault();
+        const adminUsername = "Muhammad Nehyan";
+        console.log(purgeMail);
+        console.log(adminUsername);
+        console.log(adminPassword);
+        const email = purgeMail;
+        const username = adminUsername;
+        const password = adminPassword;
+        try {
+            const res = await axios.post('http://localhost:5000/admin/deleteUser', {
+                username, password, email,
+            })
+            window.location.reload();
+        }
+        catch(e) {
+            console.log(e);
+            alert(e.response.data.error)
+        }
+        setAdminPassword("")
     }
 
     useEffect(() => {
@@ -201,12 +246,35 @@ function UserList(){
                         { sentUser ? ( sentUser.map((d) => <li key={d.email}>{d.phoneNumber}</li>)  ) : ( 'none' ) }
                     </ul>
                     <ul>
-                        <h2>Buttons</h2>
-                        { sentUser ? ( sentUser.map((d) => <li key={d.email}><button onClick={()=>handlePic(d.email)}>Check Inputst</button></li>)  ) : ( 'none' ) }
+                        <h2>Uploaded Pictures</h2>
+                        { sentUser ? ( sentUser.map((d) => <li key={d.email}><button onClick={()=>handlePic(d.email)}>Uploaded Pics</button></li>)  ) : ( 'none' ) }
+                    </ul>
+                    <ul>
+                        <h2>Purge</h2>
+                        { sentUser ? ( sentUser.map((d) => <li key={d.email}><button onClick={ ()=>openForm(d.email) } disabled={isButtonDisabled}>Purge</button></li>) ) : ( 'none' ) }
+                        <div class="form-popup" id="myForm">
+                            <form class="form-container">
+                                <p className='text-small'>To purge this user please enter the admin password</p>
+                                <p className='text-small'>Please keep in mind that this process cannot be reversed</p>
+
+                                <label className="psw"><b>Password</b></label>
+                                <input 
+                                    onChange={ handleAdminPassword }
+                                    type="password"
+                                    placeholder="Enter Password"
+                                    value={adminPassword}
+                                />
+
+                                <button type="submit" class="btn btn-sm" onClick={ handlePurge } >Purge</button>
+                                <button type="button" class="btn btn-sm" onClick={ closeForm }>Close</button>
+                            </form>
+                        </div>
                     </ul>
                 </div>
                 <button className='btn btn-sm' onClick={ handleSetPage } >Next Page</button>
             </div>
+
+
             { sentUser ? ( sentUser.map((d) => <li key={d.email}>
                 { d.email === picEmail ? 
                 ( 
