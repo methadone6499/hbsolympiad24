@@ -250,6 +250,47 @@ const deleteUser = async(req, res) => {
     }
 }
 
+const deleteTeamEvent = async(req, res) =>{
+    const {email, eventName, username, password} = req.body;
+    try{
+        const admin = await Admin.findOne({username: username});
+        if(!admin){
+            return res.status(401).json({message: 'Invalid credentials'});
+        }
+
+        const passwordMatch = await bcrypt.compare(password, admin.password);
+        if(!passwordMatch){
+            return res.status(501).json({ message: 'Invalid credentials'});
+        }
+
+        const findTeamForm = await FormTeam.findOne({
+            'email': email,
+            'eventName': eventName
+        })
+
+        if(!findTeamForm){
+            return res.status(401).json({message:"user is not registered in this event"});
+        }
+        if(findTeamForm.numOfMembers > 1){
+            return res.statu(401).json({message:"team cannot be deleted, team already has members"});
+        }
+        const deleteTeamForm = await FormTeam.deleteOne({
+            'email': email,
+            'eventName': eventName
+        })
+
+        const removeFormUser = await User.updateOne(
+            { email: email }, // Find user by email
+            { $pull: { events: { title: eventName } } } // Remove the event from events array
+        )
+
+        return res.status(200).json({message: "team event deleted successfully from user"});
+    }
+    catch(e){
+        return res.status(500).json({message: "internal server error"});
+    }
+}
+
 module.exports = {
     loginAdmin,
     signUpAdmin,
@@ -260,5 +301,6 @@ module.exports = {
     getNumOfRegistered,
     approveFeePayment,
     getImages,
-    deleteUser
+    deleteUser,
+    deleteTeamEvent
 }
