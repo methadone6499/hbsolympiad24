@@ -96,9 +96,6 @@ function UserList(){
     const handlePurge = async(e) => {
         e.preventDefault();
         const adminUsername = "Muhammad Nehyan";
-        console.log(purgeMail);
-        console.log(adminUsername);
-        console.log(adminPassword);
         const email = purgeMail;
         const username = adminUsername;
         const password = adminPassword;

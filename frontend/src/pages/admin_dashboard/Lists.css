@@ -13,7 +13,7 @@
 
 .event {
     
-    grid-template-columns: auto auto auto auto
+    grid-template-columns: auto auto auto auto auto
 }
 
 .shownList h2 {
@@ -25,30 +25,6 @@
     list-style: none;
     text-decoration: none;
     padding: 10px;
-}
-
-.shownList-event {
-    border-top: solid 5px red;
-    border-bottom: solid 5px red;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    align-items: center;
-    min-width: auto;
-    color: white;;
-}
-
-.shownList-event h2 {
-    border-bottom: solid 5px red;
-}
-
-.shownList-event li {
-    font-size: 17px;
-    list-style: none;
-    text-decoration: none;
-}
-
-.shownList-event li :last-child {
-    border-bottom: solid 5px red;
 }
 
 .eventDropList {
