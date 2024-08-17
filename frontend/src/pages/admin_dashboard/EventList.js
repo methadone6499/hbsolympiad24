@@ -107,7 +107,7 @@ function EventList(){
                     for (let i = 0; i < eventDataRN.user.length; i++)
                         {
                             console.log(eventDataRN.user[i].userName);
-                            memberList = memberList + eventDataRN.user[i].userName + " |";
+                            memberList = memberList + eventDataRN.user[i].userName + " | ";
                         }
                 }
                 console.log(memberList);
@@ -149,25 +149,10 @@ function EventList(){
                 </div>
                     <div className='shownList event'>
                         <ul>
-                            <h2>Name</h2>
-                            { eventSearched ? ( eventSearched.map((d) => <li key={d.Email}>{d.CaptName}</li>)  ) : ( 'none' ) }
+                            <li><h2>Name</h2><h2>ID</h2><h2>Email</h2><h2>Members</h2><h2>Button Innit</h2></li>
+                            { eventSearched ? ( eventSearched.map((d) => <li key={d.Email}><span>{d.CaptName}</span><span>{d.ID}</span><span>{d.Email}</span><span>{d.Members}</span><span><button class="btn btn-sm" onClick={ ()=>{ if( d.Members==="None") {openForm(d.Email)} else {alert("Only Empty Teams can be removed")} } } disabled={isButtonDisabled}>Remove Empty Team</button></span></li>)  ) : ( 'none' ) }
                         </ul>
-                        <ul>
-                            <h2>ID</h2>
-                            { eventSearched ? ( eventSearched.map((d) => <li key={d.Email}>{d.ID}</li>)  ) : ( 'none' ) }
-                        </ul>
-                        <ul>
-                            <h2>Email</h2>
-                            { eventSearched ? ( eventSearched.map((d) => <li key={d.Email}>{d.Email}</li>)  ) : ( 'none' ) }
-                        </ul>
-                        <ul>
-                            <h2>Members</h2>
-                            { eventSearched ? ( eventSearched.map((d) => <li key={d.Email}>{d.Members}</li>) ) : ( 'none' ) }
-                        </ul>
-                        <ul>
-                            <h2>Remove Empty Team</h2>
-                            { eventSearched ? ( eventSearched.map( (d) => <li key={d.Email}><button onClick={ ()=>{ if( d.Members==="None") {openForm(d.Email)} else {alert("Only Empty Teams can be removed")} } } disabled={isButtonDisabled}>Remove Empty Team</button></li> ) ) : ( 'none' ) }
-                            <div class="form-popup" id="myForm">
+                        <div class="form-popup" id="myForm">
                             <form class="form-container">
                                 <p className='text-small'>To purge this team please enter the admin password</p>
                                 <p className='text-small'>Please keep in mind that this process cannot be reversed</p>
@@ -184,7 +169,6 @@ function EventList(){
                                 <button type="button" class="btn btn-sm" onClick={ closeForm }>Close</button>
                             </form>
                         </div>
-                        </ul>
                     </div>
             </div>
             <footer className="footer">

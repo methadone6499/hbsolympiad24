@@ -11,9 +11,10 @@
     grid-template-columns: auto auto auto auto auto auto;
 }
 
-.event {
-    
-    grid-template-columns: auto auto auto auto auto
+.event li {
+    display: grid;
+    grid-template-columns: 15% 15% 20% 30% 20%;
+    align-items: center;
 }
 
 .shownList h2 {
